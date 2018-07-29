@@ -1,0 +1,424 @@
+\chapter{Toolbox}
+	\label{chap:toolbox}
+	In this chapter, we develop some more advanced tools in topological dynamics, which are more advanced than the ones listed in Chapter~\ref{chap:prelims}. They will be to prove the main theorems in the last two sections of Chapter~\ref{chap:grouplike}. We also explore the connections between the model-theoretic notion of NIP and the dynamical notion of tameness, which will be useful mainly in Chapter~\ref{chap:applications}. Most of the content of this chapter comes from \cite{KR18} (joint with Krzysztof Krupiński).
+	\section{From topological dynamics to Polish spaces}
+	\label{sec:top_dyn_to_Polish}
+	The main outcome of this section is the construction of a Polish compact group associated with a given metrisable dynamical system. We also obtain some more general statements useful in the non-metrisable case.
+	
+	Throughout this section, $G$ is an abstract group and $(G,X,x_0)$ is a (compact) $G$-ambit, i.e.\ $G$ acts on $X$ by homeomorphisms and $G\cdot x_0$ is dense in $X$.
+	We use the notation of Section~\ref{sec:prel_topdyn}. In particular, we use $EL$ for the Ellis semigroup of $G$ acting on $X$, $\cM$ for a fixed minimal left ideal in $EL$, and $u$ for a fixed idempotent in $\cM$.
+	
+	\subsection*{Good quotients of the Ellis semigroup and the Ellis group}
+	In this subsection, we find a rich Polish quotient of the Ellis group of a metric dynamical system (i.e.\ when $X$ is metrisable).
+	
+	We have a natural map $R\colon EL\to X$ given by $R(f)=f(x_0)$. This gives us an equivalence relation $\equiv$ on $EL$ given by $f_1\equiv f_2$ whenever $R(f_1)=R(f_2)$. Note that $R$ is continuous, so $\equiv$ is closed, and by compactness and the density of $G\cdot x_0$ in $X$, $R$ is surjective, so, abusing notation, we topologically identify $EL/{\equiv}$ with $X$. Similarly, for $A\subseteq EL$, we identify $A/{\equiv}$ with $R[A]\subseteq X$. The goal of this subsection is to find a Polish quotient of $u\cM/H(u\cM)$ which will be sufficiently well-behaved with respect to $R$.
+	
+	\begin{prop}
+		\label{prop:commu}
+		$R$ commutes with (left) multiplication in $EL$. More precisely, suppose $f_1,f_2\in EL$. Then $R(f_1f_2)=f_1(R(f_2))$. In the same way, $R$ commutes with multiplication by the elements of $G$.
+	\end{prop}
+	\begin{proof}
+		$R(f_1f_2)=(f_1f_2)(x_0)=f_1(f_2(x_0))=f_1(R(f_2))$. From this, the second part follows, since $g\cdot f=\pi_gf$ for $g \in G$.
+	\end{proof}
+	
+	\index{D@$D$}
+	Let $D=[u]_{\equiv}\cap u\cM$. More explicitly, $D=\{f\in u\cM \mid f(x_0)=u(x_0) \}$. This $D$ will be important in much of the thesis.
+	
+	\begin{lem}
+		\label{lem:D_closed}
+		$D$ is a ($\tau$-)closed subgroup of $u\cM$ (see Fact~\ref{fct:tau_top_pre}(3)).
+	\end{lem}
+	\begin{proof} Consider any $d \in \cl_\tau(D)$.
+		Let $(g_i),(d_i)$ be nets as in the definition of $u\circ D$, i.e.\ such that $g_i\in G$, $g_i\to u$ and $g_id_i\to d$.
+		By continuity of $R$, because $R(d_i)=R(u)$ (by the definition of $D$), and by the preceding remark, as well as left continuity of multiplication in $EL$, we have
+		\[
+		R(d)=\lim R(g_id_i)=\lim g_iR(d_i)=\lim g_iR(u)=R(\lim g_iu)=R(u^2)=R(u).
+		\]
+		This shows that $D$ is $\tau$-closed.
+		
+		To see that $D$ is a subgroup of $u\cM$, take any $d,d_1,d_2\in D$. Then:
+		\[
+		R(d_1d_2)=d_1(R(d_2))=d_1(R(u))=R(d_1u)=R(d_1)=R(u),
+		\]
+		\[
+		R(d^{-1})=R(d^{-1}u)=d^{-1}(R(u))=d^{-1}(R(d))=R(d^{-1}d)=R(u).\qedhere
+		\]
+	\end{proof}
+	
+	The following simple example shows that the subgroups $D$ and $DH(u\cM)$ do not have to be normal in $u\cM$.
+	\begin{ex}
+		\label{ex:D_not_normal}
+		Consider $G=S_3$ acting naturally on $X=\{1,2,3\}$ (with the discrete topology), and take $x_0=1$. Then $G=u\cM$ and $D=DH(u\cM)$ is the stabilizer of $1$, which is not normal in $u\cM$. \xqed{\lozenge}
+	\end{ex}
+	
+	\begin{lem}
+		\label{lem:D_kernel_equiv}
+		Let $f_1,f_2\in u\cM$. Then $f_1\equiv f_2$ (i.e.\ $R(f_1):=f_1(x_0)=f_2(x_0)=:R(f_2)$) if and only if $f_1^{-1}f_2\in D$ (note that here, $f_1^{-1}$ is the inverse of $f_1$ in $u\cM$, not the inverse function), i.e.\ $f_1D=f_2D$. (And thus $u\cM/{\equiv}$ and $u\cM/D$ can and will be identified as sets.)
+	\end{lem}
+	\begin{proof}
+		In one direction, if $f_1\equiv f_2$,
+		\[
+		R(f_1^{-1}f_2)=f_1^{-1}(R(f_2))=f_1^{-1}(R(f_1))=R(f_1^{-1}f_1)=R(u).
+		\]
+		In the other direction, if $R(f_1^{-1}f_2)=R(u)$, then
+		\[
+		R(f_1)=R(f_1u)=f_1(R(u))=f_1(R(f_1^{-1}f_2))=R(f_1f_1^{-1}f_2)=R(f_2)\qedhere
+		\]
+	\end{proof}
+	
+	Recall that by Fact~\ref{fct:tau_top_pre}(8), we have the compact Hausdorff topological group $u\cM/H(u\cM)$. Since $D$ is closed in $u\cM$ (and hence compact), it follows that the quotient $H(u\cM)D/H(u\cM)$ is a closed subgroup in $u\cM/H(u\cM)$. Consequently, $u\cM/(H(u\cM)D)$ (which one may also be describe as the quotient of $u\cM/H(u\cM)$ by $DH(u\cM)/H(u\cM)$) is a compact Hausdorff space (by Fact~\ref{fct:quotient_by_closed_subgroup}). By applying Lemma~\ref{lem:D_kernel_equiv}, we conclude that the quotient map $u\cM\to u\cM/(H(u\cM)D)$ factors through $u\cM/{\equiv}$, which we identify with $R[u\cM]\subseteq X$, giving us the following commutative diagram:
+	\begin{center}
+		\begin{tikzcd}
+		u\cM\arrow[r] \arrow[d,"R"]& u\cM/H(u\cM)\arrow[d]\\
+		R[u\cM] \arrow[r,"\widehat j"] & u\cM/(H(u\cM)D).
+		\end{tikzcd}
+	\end{center}
+	
+	\begin{prop}
+		Suppose $\sim$ is a closed equivalence relation on a compact Hausdorff space $X$, while $F\subseteq X$ is closed. Then the set $[F]_\sim$ of all elements equivalent to some element of $F$ is also closed.\xqed{\lozenge}
+	\end{prop}
+	\begin{proof}
+		$[F]_\sim$ is the projection of $(X\times F)\cap {\sim}$ onto the first axis.
+	\end{proof}
+	
+	\begin{lem}
+		\label{lem:jhat_cont}
+		On $u\cM/{\equiv}=u\cM/D$, the topology induced from the $\tau$-topology on $u\cM$ is refined by the subspace topology inherited from $EL/{\equiv}=X$.
+		
+		Consequently, $\widehat j$ in the above diagram is continuous (with respect to the quotient $\tau$ topology on $u\cM/H(u\cM)D$.)
+	\end{lem}
+	\begin{proof}
+		We need to show that if $F\subseteq u\cM$ is $\tau$-closed and right $D$-invariant (i.e.\ $FD=F$), then there is a closed $\equiv$-invariant $\widetilde F\subseteq EL$ such that $\widetilde F\cap u\cM=F$. By the preceding remark, since $\equiv$ is closed, it is enough to check that $[\bar F]_{\equiv}\cap u\cM=F$, where $\bar F$ is the closure of $F$ in $EL$.
+		
+		Let $f'\in [\bar F]_{\equiv}\cap u\cM$. Then we have a net $(f_i)\subseteq F$ such that $f_i\to f$ and $f\equiv f'$. By Fact~\ref{fct:tau_top_pre}(4), in this case, $f_i$ converges in the $\tau$-topology to $uf$, which is an element of $F$ (because $F$ is $\tau$-closed). Since $F$ is right $D$-invariant (and hence $\equiv$-invariant in $u\cM$), it is enough to show that $f'\equiv uf$. But this is clear since
+		\[
+		R(uf)=u(R(f))=u(R(f'))=R(uf')=R(f').\qedhere
+		\]
+	\end{proof}
+	
+	As indicated before, we want to find diagrams similar to the one used in Lemma~\ref{lem:easy}, which we will later use to prove Theorem~\ref{thm:main_abstract} (and indirectly, Main~Theorems~\ref{mainthm:abstract_smt}, \ref{mainthm_group_types}, \ref{mainthm:smt} and \ref{mainthm:tdgroup}). As an intermediate step, we would like to complete the following diagram.
+	
+	\begin{center}
+		\begin{tikzcd}
+		EL\arrow[d]\arrow[r,swap,outer sep=3pt,"f\mapsto fu"] & \cM\arrow[d]\arrow[r,swap,outer sep=3pt,"f\mapsto uf"] & u\cM\arrow[d] \\
+		EL/{\equiv} \arrow[r,dashed]\arrow[d,equal] & \cM/{\equiv} \arrow[r,dashed]\arrow[d,equal] & u\cM/D\\[-1em]
+		X& R[\cM]& {}
+		\end{tikzcd}
+	\end{center}
+	The dashed arrow on the right exists: if $R(f_1)=R(f_2)$, then $u(R(f_1))=u(R(f_2))$, so, by Proposition~\ref{prop:commu}, also $R(uf_1)=R(uf_2)$, and hence, by Lemma \ref{lem:D_kernel_equiv}, $uf_1D = uf_2D$. Unfortunately, there is no reason for the arrow on the left to exist (i.e.\ $f_1\equiv f_2$ does not necessarily imply $f_1u\equiv f_2u$). However, we can remedy it by replacing $EL/{\equiv}$ with $EL/{\equiv'}$, where $\equiv'$ is given by $f_1\equiv' f_2$ when $R(f_1)=R(f_2)$ and $R(f_1u)=R(f_2u)$. This gives us a commutative diagram, substituting for the above one:
+	\begin{center}
+		\begin{tikzcd}
+		EL\arrow[d]\arrow[r,swap,outer sep=3pt,"f\mapsto fu"] & \cM\arrow[d]\arrow[r,swap,outer sep=3pt,"f\mapsto uf"] & u\cM\arrow[d] \\
+		EL/{\equiv'} \arrow[r]\arrow[d] & \cM/{\equiv} \arrow[r]\arrow[d,equal] & u\cM/D\\[-1em]
+		X& R[\cM]& {}
+		\end{tikzcd}
+	\end{center}
+	
+	\begin{prop}\label{prop: quotients of EL are Polish}
+		$EL/{\equiv}$ and $EL/{\equiv'}$ are both compact Hausdorff spaces.
+		
+		If $X$ is second-countable (by compactness, equivalently, Polish), so is $EL/{\equiv}$, as well as $EL/{\equiv'}$.
+	\end{prop}
+	\begin{proof}
+		Since $EL/{\equiv}$ is homeomorphic to $X$, the part concerning $EL/{\equiv}$ is clear.
+		
+		For $EL/{\equiv'}$, note first that $\cM/{\equiv}$ is a closed subspace of $EL/{\equiv}$, and hence it is Polish whenever $X$ is. To complete the proof, use compactness of $EL$, Hausdorffness of $EL/{\equiv}$ and $\cM/{\equiv}$, and continuity of the diagonal map $d \colon EL\to EL/{\equiv}\times \cM/{\equiv}$ given by $f\mapsto ([f]_\equiv,[fu]_\equiv)$ in order to deduce that $EL/{\equiv'}$ is homeomorphic to $d[EL]$ which is closed.
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:from_cluM}
+		The formula $[f]_\equiv=f(x_0)=R(f)\mapsto uf/H(u\cM)D$ describes a well-defined continuous surjection $R[\overline{u\cM}]\to u\cM/H(u\cM)D$,
+	\end{prop}
+	\begin{proof}$\,$
+		\begin{center}
+			\begin{tikzcd}
+			&[-1.5em] \overline{u\cM} \ar{r}\ar{d} & u\cM/H(u\cM)\ar{d} \\
+			R[\overline{u\cM}]\arrow[r,equals]&\overline{u\cM}/{\equiv}\ar{r} & u\cM/H(u\cM)D
+			\end{tikzcd}
+		\end{center}
+		
+		In the above diagram, the top arrow, given by $f\mapsto uf/H(u\cM)$, is continuous by Proposition~\ref{prop:strange_cont_pre}. The induced map $\overline{u\cM}\to u\cM/H(u\cM)D$ factors through the quotient map $\overline{u\cM} \to \overline{u\cM}/{\equiv}$ yielding a continuous map $\overline{u\cM}/{\equiv}\to u\cM/H(u\cM)D$: to see that, just notice that if $f_1\equiv f_2$, then $uf_1\equiv uf_2$, and then apply Lemma~\ref{lem:D_kernel_equiv}.
+	\end{proof}
+	
+	
+	\begin{cor}
+		\label{cor:uM/HuMD_Polish}
+		If $X$ is metrisable, then $u\cM/H(u\cM)D$ is a Polish space.
+	\end{cor}
+	\begin{proof}
+		Note that $\overline{u\cM}$ is a compact space (equipped with the subspace topology from $EL$). Consequently, $R[\overline{u\cM}]=\overline{u\cM}/{\equiv}$ is a compact Polish space.
+		
+		Hence, by Proposition~\ref{prop:from_cluM}, $u\cM/H(u\cM)D$ is a compact Hausdorff space which is a continuous image of a compact Polish space. As such, it must be Polish by Fact \ref{fct: preservation of metrizability}.
+	\end{proof}
+	
+	
+	
+	
+	
+	
+	
+	\subsection*{Tameness and Borel ``retractions"}
+	
+	\begin{prop}
+		\label{prop:last_borel}
+		Suppose $(G,X)$ is a tame metric dynamical system. Then for any $f_0\in EL$, the map $f\mapsto f_0f$ is $\equiv$-preserving and the induced transformation of $EL/{\equiv}$ is Borel.
+		
+		In particular, the map $\cM/{\equiv}\to u\cM/{\equiv}$ induced by $p\mapsto up$ is Borel, where both spaces are equipped with the subspace topology from $X=EL/{\equiv}$.
+	\end{prop}
+	\begin{proof}
+		Preserving $\equiv$ follows immediately from Proposition~\ref{prop:commu}.
+		The induced transformation of $EL/{\equiv}$ is the same as simply $f_0$ once we identify $X$ with $EL/{\equiv}$, and $f_0$ is Borel by Fact~\ref{fct:tame_borel}.
+	\end{proof}
+	
+	\begin{cor}
+		\label{cor:borel_map}
+		The map $\cM/{\equiv}\to u\cM/H(u\cM)D$ which takes each $[f]_\equiv$ to $uf/H(u\cM)D$ is Borel, where the former is equipped with subspace topology from $EL$, while the latter has topology induced from the $\tau$ topology.
+		
+		Similarly, the map $EL/{\equiv'}\to u\cM/H(u\cM)D$, given $[f]_{\equiv'}\mapsto ufu/H(u\cM)D$, is Borel.
+	\end{cor}
+	\begin{proof}
+		The first map is the composition of the continuous map $\hat j\colon u\cM/{\equiv}\to u\cM/H(u\cM)D$ from Lemma~\ref{lem:jhat_cont} and the Borel function from the second part of Proposition~\ref{prop:last_borel}. The second map is the composition of the first one with the continuous map $[f]_{\equiv'}\mapsto [fu]_{\equiv}$.
+	\end{proof}
+	
+	
+	
+	
+	
+	
+	
+	\subsection*{Polish group quotients of the Ellis group}
+	By Corollary~\ref{cor:uM/HuMD_Polish}, we already know that for metric dynamical systems, the quotient $u\cM/H(u\cM)D$ is a Polish space. However, we want to obtain a Polish group, and as we have seen in Example~\ref{ex:D_not_normal}, $DH(u\cM)$ may not be normal, so we need to slightly refine our approach.
+	
+	\begin{cor}\label{cor:Polish_quotient_Core(D)}
+		\index{Core(D)@$\Core(D)$}
+		For a metric dynamical system, $u\cM/H(u\cM)\Core(D)$ is a compact Polish group, where $\Core(D)$ is the normal core of $D$, i.e.\ the intersection of all conjugates of $D$ in $u\cM$.
+	\end{cor}
+	\begin{proof}
+		Immediate by the Proposition~\ref{prop:cont_action_factors_through_Polish}, as $u\cM/H(u\cM)$ is a compact Hausdorff group and $u\cM/H(u\cM)D$ is a compact Polish space (by Corollary~\ref{cor:uM/HuMD_Polish}).
+	\end{proof}
+	
+	In the case of \emph{tame} metric dynamical systems, the situation is a little cleaner. Namely, we will show that $u\cM/H(u\cM)$ itself is already Polish.
+	
+	\begin{dfn}
+		\index{space!countably tight}
+		A topological space $X$ has {\em countable tightness} (or is \emph{countably tight}) if for every $A\subseteq X$ and every $x\in \overline A$, there is a countable set $B\subseteq A$ such that $x\in \overline B$.
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{fct}[Engelking]\label{fct:tightness}
+		A compact Hausdorff topological group of countable tightness is metrisable.
+	\end{fct}
+	\begin{proof}
+		\cite[Corollary 4.2.2]{AT08}.
+	\end{proof}
+	
+	\begin{prop}
+		\label{prop:closed_image_is_tight}
+		The image of a countably tight space via a closed continuous map is countably tight.
+	\end{prop}
+	\begin{proof}
+		Let $X$ be a countably tight space, and let $f\colon X\to Y$ be a closed and continuous surjection. Choose an arbitrary $A\subseteq Y$ and $y\in \overline A$. Note that since $f$ is closed and onto, we have that $\overline A\subseteq f\left[\overline{f^{-1}[A]}\right]$, so there is some $x\in \overline{f^{-1}[A]}$ such that $f(x)=y$. Choose $B'\subseteq f^{-1}[A]$ countable such that $x\in \overline {B'}$, and let $B=f[B']$. Since $f$ is continuous, $f^{-1}\left[\overline B\right]\supseteq \overline{B'}$, so in particular, $x\in f^{-1}\left[\overline B\right]$, so $y\in \overline B$.
+	\end{proof}
+	
+	\begin{prop}\label{prop:NIP gives metrizability}
+		If $(G,X)$ is a tame metric dynamical system, then the group $u\cM/H(u\cM)$ is metrisable (and hence a Polish group).
+	\end{prop}
+	\begin{proof}
+		Note that if $(G,X)$ is tame, then, by Proposition~\ref{prop:dyn_BFT}, $\overline{u\cM}\subseteq EL$ is a Rosenthal compactum, so --- via the Fréchet-Urysohn property we have by Fact~\ref{fct: Rosnthal implies Frechet} --- it is countably tight. Furthermore, by Proposition~\ref{prop:strange_cont}, the function $f\mapsto uf/H(u\cM)$ defines a continuous surjection from $\overline{u\cM}$ to $u\cM/H(u\cM)$, and hence a continuous closed mapping. Hence, the result follows by Proposition~\ref{prop:closed_image_is_tight} and Fact~\ref{fct:tightness}.
+	\end{proof}
+	
+	
+	
+	\section{Independence, tameness and ambition}\label{section: independence, tameness and ambition}
+	In this section, we discuss the relationship between model-theoretic NIP and dynamical tameness. A relationship between the Bourgain-Fremlin-Talagrand dichotomy and NIP seems to have been first noticed independently in \cite{CS18}, \cite{Kha14}, and \cite{Ib16}; see also \cite{Sim15} and \cite{KhP17} for related research. Many parts of this section appear to be folklore, but I have not found them stated and proved in this form. Because of that, and because they are interesting in their own right, we present them along with their proofs. The introduced notions of tame models and ambitious models seem to be new. Ambitious models will be essential later.
+	
+	
+	\begin{dfn}
+		\index{independence property}
+		\index{NIP!formula}
+		\index{IP formula|see {NIP formula}}
+		\label{dfn:NIP_formula_theory}
+		If $A,B\subseteq \fC$, then we say that a formula $\varphi(x,y)$ has the \emph{independence property} (IP) on $A\times B$ if there is an infinite sequence $(b_n)$ of elements of $B$ such that $\varphi(\fC,b_n)\cap A$ are independent subsets of $A$. Otherwise, we say that it \emph{has NIP} on $A\times B$.
+		
+		We say that $\varphi$ \emph{has IP} if it has IP on the whole $\fC$, otherwise we say that it has NIP.
+		
+		\index{NIP!theory}
+		\index{IP theory|see{NIP theory}}
+		We say that \emph{$T$ has NIP} if every formula has NIP. Otherwise, we say that \emph{$T$ has IP}.
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		\label{rem:NIP_indiscernible}
+		Note that if $A$ and $B$ are type-definable, then in the above definition we can assume without loss of generality that the sequence $(b_n)$ is indiscernible over any given small set of parameters (by Ramsey's theorem and compactness).\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{dfn}
+		\index{tame!formula}
+		\label{dfn:tame_formula}
+		We say that a formula $\varphi(x,y)$ is \emph{tame} if for every small model $M$ and $b\in M$, the characteristic function of $[\varphi(x,b)]\subseteq S_x(M)$ is tame in $(\Aut(M),S_x(M))$ (in the sense of Definition~\ref{dfn:tame_function_system}).
+		
+		Similarly, if $A$, $B$ are type-definable sets, we say that $\varphi(x,y)$ is {\em tame} on $A\times B$ if for every small model $M$ over which $A$ and $B$ are type-definable, and every $b\in B(M)$, the characteristic function of $[\varphi(x,b)]\cap A_M\subseteq A_M$ is tame in $(\Aut(M),A_M)$ (where $A_M\subseteq S(M)$ is the space of types of the elements of $A$).
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	Note that tameness of $\varphi(x,y)$ does not change when we add dummy variables, even allowing infinite sequences of variables.
+	
+	\begin{lem}\label{lem:NIP_tame}
+		[For any type-definable sets $A,B$] $\varphi(x,y)$ is NIP [on $A\times B$] if and only if $\varphi(x,y)$ is tame [on $A\times B$].
+	\end{lem}
+	\begin{proof}
+		For simplicity, we will treat the absolute case here. The relative (i.e.\ $A\times B$) case is proved similarly.
+		
+		If $\varphi(x,y)$ has IP, there is an indiscernible sequence $(b_n)$ witnessing that, and we can find a small model $M$ which contains $(b_n)$, and such that
+		all $b_n$'s lie in a single orbit under $\Aut(M)$.
+		It follows from Fact~\ref{fct:ind_untame} that $\varphi$ is untame (which is witnessed in $(\Aut(M),S_x(M))$).
+		
+		In the other direction, suppose $\varphi(x,y)$ is untame. Fix a small model $M$ and $b\in M$ witnessing that. Then we have a sequence $(\sigma_n)_n$ in $\Aut(M)$ such that $\sigma_n\cdot \chi_{[\varphi(x,b)]}$ is an $\ell^1$ sequence.
+		
+		Let $\Sigma\leq \Aut(M)$ be the group generated by all $\sigma_n$'s and put $B_0:=\Sigma\cdot b$. Then $B_0$ is countable and $S_{\varphi}(B_0)$ is a totally disconnected, compact metric space. Moreover, the characteristic function of $[\varphi(x,b)]\subseteq S_\varphi(B)$ is untame with respect to $(\Sigma,S_{\varphi}(B))$. Then, by Prop~\ref{prop:dyn_BFT}, there is a $\varphi$-formula $\psi$ with IP. Since NIP is preserved by Boolean combinations, it follows that $\varphi$ has IP.
+	\end{proof}
+	
+	\begin{rem}
+		Lemma~\ref{lem:NIP_tame} is basically equivalent to \cite[Corollary 3.2]{Ib16} (though the latter uses a slightly different language).
+		There is also an analogous equivalence between stability and the so-called WAP property of a function in a dynamical system (see e.g.\ \cite{BT16}).\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{lem}
+		\label{lem:NIP_local}
+		Suppose $\varphi(x,y)$ has IP on $A\times B$, where $A,B$ are type-definable over a small set $C$ of parameters. Then there are $p,q\in S(C)$ such that $p\proves A$, $q\proves B$ and $\varphi(x,y)$ has IP on $p(\fC)\times q(\fC)$.
+	\end{lem}
+	
+	\begin{proof}
+		As noticed before, we can choose $(b_n)_{n \in \omega} \subseteq B$ indiscernible over $C$ and such that $\varphi(\fC,b_n) \cap A$ are independent subsets of $A$. So we can choose $a \in A$ such that $\varphi(a,b_n)$ holds if and only if $n$ is even. It is easy to check that $p := \tp(a/C)$ and $q:=\tp(b_0/C)$ satisfy our requirements.
+	\end{proof}
+	
+	
+	\begin{dfn}
+		\label{dfn:tame_model}
+		\index{model!tame}
+		\index{tame!model}
+		We say that $M$ is a \emph{tame model} if for some (equivalently, every) enumeration $m$ of $M$, the system $(\Aut(M),S_m(M))$ is tame.
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{cor}
+		\label{cor:NIP_char}
+		Let $T$ be any theory. Then the following are equivalent:
+		\begin{enumerate}
+			\item
+			\label{it:cor:NIP_char:NIP}
+			$T$ has NIP.
+			\item
+			\label{it:cor:NIP_char:tame_fla}
+			Every formula $\varphi(x,y)$ is tame.
+			\item
+			\label{it:cor:NIP_char:tame_vars}
+			For every small model $M$ and a small tuple $x$ of variables, the dynamical system $(\Aut(M),S_{x}(M))$ is tame.
+			\item
+			\label{it:cor:NIP_char:tame_elts}
+			For every small model $M$ and a small tuple $a$ of elements of $\fC$, the dynamical system $(\Aut(M),S_{a}(M))$ is tame.
+			\item
+			\label{it:cor:NIP_char:tame_models}
+			Every small model of $T$ is tame.
+		\end{enumerate}
+		Moreover, in \ref{it:cor:NIP_char:tame_vars}--\ref{it:cor:NIP_char:tame_models}, we can replace ``every small model" with ``every model of cardinality $\lvert T\rvert$", and ``small tuple" with ``finite tuple".
+	\end{cor}
+	\begin{proof}
+		The equivalence of \ref{it:cor:NIP_char:NIP} and \ref{it:cor:NIP_char:tame_fla} is immediate by Lemma~\ref{lem:NIP_tame}.
+		
+		To see that \ref{it:cor:NIP_char:tame_fla} is equivalent to \ref{it:cor:NIP_char:tame_vars}, note that by Corollary~\ref{cor:tame_dense}, tameness can be tested on characteristic functions of clopen sets, so tameness of $(\Aut(M),S_{x}(M))$ follows from tameness of formulas.
+		
+		Similarly, \ref{it:cor:NIP_char:tame_fla} is equivalent to \ref{it:cor:NIP_char:tame_elts}, because by Lemmas~\ref{lem:NIP_tame} and \ref{lem:NIP_local}, we can test tameness on complete types.
+		
+		Finally, \ref{it:cor:NIP_char:tame_elts} trivially implies \ref{it:cor:NIP_char:tame_models}.
+		In the other direction, if $(\Aut(M),S_a(M))$ is untame and we choose $N\succeq M$ such that $a\in N$ and $N$ is strongly $\lvert M\rvert^+$-homogeneous, then also $(\Aut(N),S_n(N))$ is untame (by Fact \ref{fct:tame_preserved}), where $n$ is an enumeration of $N$.
+		
+		For the ``moreover" part, for tuples, it is trivial (untameness is witnessed by formulas, and formulas have finitely many variables).
+		For models, suppose that $T$ has IP, i.e.\ some formula $\varphi(x,y)$ has IP. By Lemma~\ref{lem:NIP_local}, $\varphi(x,y)$ has IP on $p(\fC) \times \fC$ for some $p \in S(\emptyset)$. Take $a \models p$. The proof of $(\leftarrow)$ in Lemma~\ref{lem:NIP_tame} easily yields a model $M$ of cardinality $|T|$, containing $a$, and such that $(\Aut(M),S_a(M))$ is untame for $a \models p$. Then, by Fact \ref{fct:tame_preserved}, the systems $(\Aut(M),S_x(M))$ and $(\Aut(M),S_m(M))$ are untame as well, where $m$ is an enumeration of $M$.
+	\end{proof}
+	
+	
+	In the $\omega$-categorical case, we obtain a simpler characterization of NIP.
+	\begin{cor}
+		Suppose $T$ is a countable $\omega$-categorical theory. The following are equivalent:
+		\begin{itemize}
+			\item
+			$T$ has NIP,
+			\item
+			the countable model of $T$ is tame.
+		\end{itemize}
+		More generally, a theory $T$ is NIP if and only if it has a tame, $\aleph_0$-saturated, strongly $\aleph_0$-homogeneous model.
+	\end{cor}
+	\begin{proof}
+		The main part is immediate by Corollary~\ref{cor:NIP_char}.
+		Then implication $(\rightarrow)$ in the ``more general" case also follows from Corollary~\ref{cor:NIP_char} (and the existence of $\aleph_0$-saturated and strongly homogeneous models). In the other direction, we argue as in the ``moreover" part of Corollary~\ref{cor:NIP_char}, noticing that $\aleph_0$-saturation and strong $\aleph_0$-homogeneity of $M$ allow us to use $M$ in that argument.
+	\end{proof}
+	
+	\begin{dfn}
+		\label{dfn:NIP_set}
+		\index{NIP!set}
+		If $Y$ is a type-definable set (with parameters), we say that $Y$ is NIP if for every small product of sorts $Z$, every formula $\varphi(y,z)$ is NIP on $Y\times Z$. If $Y$ does not have NIP, we say that it has IP.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{cor}
+		\label{cor:NIP_implies_tame}
+		If $T$ has NIP, then for every small model $M\preceq \fC$ and tuple $a\in \fC$, the dynamical system $(\Aut(M),S_a(M))$ is tame.
+		
+		More generally, if $T$ is arbitrary, $M$ is a small model and $Y$ is type-definable over $M$ and NIP, then $(\Aut(M/\{Y\}),Y_M)$ is tame (where $\Aut(M/\{Y\}$ is the group of automorphisms of $M$ fixing the canonical parameter of $Y$ in $M$, or equivalently, fixing $Y_M$ setwise).
+	\end{cor}
+	\begin{proof}
+		The first part is contained in Corollary~\ref{cor:NIP_char}. The second part follows similarly from Lemma~\ref{lem:NIP_tame} and Corollary~\ref{cor:tame_dense}.
+	\end{proof}
+	
+	We introduce the following definition.
+	\begin{dfn}
+		\index{model!ambitious}
+		\label{dfn:ambitious_model}
+		We say that $M$ is an \emph{ambitious model} if for some (equivalently, for every) enumeration $m$ of $M$, the $\Aut(M)$-orbit of $\tp(m/M)$ is dense in $S_m(M)$ (i.e.\ $(\Aut(M),S_m(M),\tp(m/M))$ is an ambit).
+		
+		Given a subgroup $G^Y\leq \Gal(T)$, we say that $M$ is \emph{ambitious relative to $G^Y$} if it is ambitious and for $G^Y(M)=\{\sigma\in \Aut(M) \mid [\tp(\sigma(m)/M)]_{\equiv_\Lasc}\in G^Y \}$, the orbit $G^Y(M)\cdot \tp(m/M)$ is dense in $Y'_M$, where $Y':=\{n\in [m]_{\equiv}\mid [n]_{\equiv_\Lasc}\in G^Y \}$ (remember that we identify $[m]_\equiv/{\equiv_\Lasc}$ with $\Gal(T)$).
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{prop}
+		\label{prop:amb_exist}
+		Any set $A\subseteq \fC$ is contained in an ambitious model $M$ of cardinality $\lvert A\rvert+\lvert T\rvert+\aleph_0$.
+		
+		More generally, if $G^Y$ is a subgroup of $\Gal(T)$, then we can find such $M$ which is ambitious relative to $G^Y$.
+	\end{prop}
+	\begin{proof}
+		Put $\kappa=\lvert A\rvert+\lvert T\rvert+\aleph_0$. Extend $A$ to some $M_0\preceq \fC$ of cardinality $\kappa$, enumerated by $m_0$. The weight of $S_{m_0}(M_0)$ is at most $\kappa$, so it has a dense subset of size at most $\kappa$, so we can find a group $\Sigma_0\leq \Aut(\fC)$ of size $\kappa$ such that the types over $M_0$ of elements of $\Sigma_0\cdot m_0$ form a dense subset of $S_{m_0}(M_0)$.
+		
+		Then we extend $M_0$ to a setwise $\Sigma_0$-invariant $M_1\preceq \fC$: namely, we can extend $\Sigma_0\cdot M_0$ to a model $M_0^{1}\preceq \fC$, and then extend $\Sigma_0\cdot M_0^{1}$ to $M_0^2\preceq \fC$ and continue. After countably many steps, we take the union of the elementary chain $M_1=\bigcup_kM_0^k$, and it will be $\Sigma_0$-invariant.
+		
+		Then we continue, finding an appropriate $\Sigma_1 \supseteq \Sigma_0$ and a $\Sigma_1$-invariant $M_2\preceq \fC$, and so on. Then $M=\bigcup_n M_n$ satisfies the conclusion: if we take $\Sigma=\bigcup_n \Sigma_n$, then $M$ is $\Sigma$-invariant, so $\Sigma\restr_M\leq \Aut(M)$ and $\Sigma\restr_{M}\cdot \tp(m/M)$ is dense in $S_m(M)$.
+		
+		For the ``more generally'' part, the proof is analogous, only each time we choose $\Sigma_n$, we ensure that it contains enough $\sigma\in G^Y(\fC)$ to witness the appropriate density condition. It works in the end because if $\sigma'\in \Aut(\fC)$ restricts to an automorphism of $M$ (i.e.\ fixes $M$ setwise), then $\sigma'\Autf(\fC)\in G^Y$ if and only if $\sigma'\restr_M\in G^Y(M)$.
+	\end{proof}
+	
+	\begin{rem}
+		Alternatively, one can show that if $M$ is a model which together with some group $\Sigma$ acting on it by automorphisms satisfies $(M,\Sigma)\preceq (\fC,\Aut(\fC))$, then $M$ is ambitious, whence the first part of Proposition~\ref{prop:amb_exist} follows from the downward Löwenheim-Skolem theorem.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		One can also show that every strongly $\aleph_0$-homogeneous and $\aleph_0$-saturated model is ambitious.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	One might ask whether we can extend Corollary~\ref{cor:NIP_char} to say that $T$ has NIP if and only if $T$ has a tame ambitious model --- we know that this is the case if $T$ is $\omega$-categorical, but the following example shows that it is not enough in general.
+	
+	\begin{ex}
+		Suppose $M=\dcl(\emptyset)$ is a model (this is possible in an IP theory: for instance if we name all elements of a fixed model of an arbitrary IP theory).
+		
+		Then $S_{m}(M)$ is a singleton, so $M$ is trivially tame and ambitious.\xqed{\lozenge}
+	\end{ex}
+	However, any example of this sort will be G-compact, so in this case the the main result (Theorem~\ref{thm:main_galois}) essentially reduces to Theorem~\ref{thm:main_over_KP}, which is simpler by far to prove, and as such, not interesting from the point of view of the following analysis. This leads us to the following question.
+	\begin{ques}
+		\label{ques:non-g-cpct_tame}
+		Is there a countable theory $T$ which is IP but not G-compact, such that some countable $M\models T$ is tame and ambitious?
+		\xqed{\lozenge}
+	\end{ques}
+	

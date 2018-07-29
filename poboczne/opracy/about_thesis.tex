@@ -1,0 +1,96 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_GB
+\documentclass[12pt,a4paper]{article}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[marginratio=1:1]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=10,shrink=10]{microtype}
+\SetTracking{encoding=*, shape=sc}{50}
+\microtypecontext{spacing=nonfrench}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{amssymb}
+\usepackage{csquotes}
+\usepackage[draft=false]{hyperref}
+\usepackage{xcolor}
+%\usepackage{tikz-cd}
+%\usepackage{float}
+%\usepackage{graphicx}
+%\usepackage{tikz}
+%\usepackage{thmtools}
+%\usepackage{thm-restate}
+%%\usepackage{mathrsfs}
+%\usepackage{enumitem}
+%%\usepackage{mathtools}
+%%\usepackage[overload]{textcase}
+%%\usepackage[numindex,numbib]{tocbibind}
+%\setenumerate{label=(\arabic*),topsep=.1\baselineskip,itemsep=-0.1\baselineskip}
+%\setitemize{topsep=.1\baselineskip,itemsep=-0.1\baselineskip}
+\usepackage[backend=biber,
+url=false,
+isbn=false,
+citestyle=alphabetic,
+bibstyle=alphabetic,
+autocite=inline,
+maxnames=99,
+minalphanames=4,
+maxalphanames=4,
+sorting=nyt,]{biblatex}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+
+
+\NewBibliographyString{toappear}
+\DefineBibliographyStrings{english}{%
+	toappear = {to appear},
+}
+\DefineBibliographyStrings{polish}{%
+	toappear = {praca przyjęta},
+}
+\DefineBibliographyStrings{english}{%
+submitted = {submitted},
+}
+\DefineBibliographyStrings{polish}{%
+toappear = {praca wysłana},
+}
+
+
+\addbibresource{thesis_bibliography.bib}
+
+
+
+\title{About ``Bounded invariant equivalence relations''}
+\author{Tomasz Rzepecki}
+\date{}
+
+
+
+
+\begin{document}
+	\maketitle
+	The main motivation for the doctoral thesis is the question about equivalence of smoothness (in the sense of descriptive set theory) and type-definability of the so-called strong types in model theory.
+	
+	The original conjecture about the equivalence of smoothness and type-definability of the Lascar strong type, posed in \cite{KPS13} (whose authors gave a precise meaning to the Borel cardinality of the model-theoretic Galois group and the Lascar strong types, based on general suggestions from \cite{CLPZ01}), was proved in \cite{KMS14}, and then extended to the so-called orbital $F_\sigma$ strong types in \cite{KM14} and \cite{KR16} (the second of which was based on my master's thesis).
+	
+	Both of those papers left open questions about possible extensions of  the equivalence to broader classes of strong types.
+	
+	The main results of the thesis come from three papers: \cite{KPR15}, \cite{Rz16} and \cite{KR18}, which together give an essentially optimal description of the situations in which the aforementioned equivalence holds (in particular, including each strong type on the set of realisations of a single complete type, as well as each orbital strong type).
+	
+	In the thesis, I have abstracted several relatively natural properties of the equivalence relations in dynamical systems occurring in model theory, which were used in the prior papers. This allowed me to prove analogous theorems in this abstract context, without direct reference to any model-theoretical facts or assumptions, based on topological dynamics (and its connections to the Bourgain-Fremlin-Talagrand dichotomy), properties of compact groups and descriptive set theory.
+	
+	Then, using those abstract theorems, we obtain (mainly by relatively simple verification of the axioms) all the results of \cite{KPR15}, \cite{Rz16} and \cite{KR18}, even improving some of them. Furthermore, it seems that likewise, the abstract theorems can be used to deduce similar facts in essentially all model-theoretic contexts where one can expect these sorts of results, and I give some examples of that.
+	
+	Besides the equivalence of smoothness and type-definability (expressed in the form of an elegant trichotomy), the main result is presenting some strong type spaces, and in particular the model-theoretic Galois group, as the quotient of a compact Polish group by a subgroup --- in general, as a topological space with a group action (and for the Galois group also as a topological group), and --- under NIP --- also in the sense of Borel cardinality.
+	
+	This allows for a precise calculation of the Borel cardinality of the Galois group, the Lascar strong type, and in general, any strong type, by determining the appropriate Polish group, along with the subgroup by which we divide. In the thesis I give an example how this can be used to compute the Galois group (along with its Borel cardinality) in concrete examples (considered before in \cite{CLPZ01} and \cite{KPS13}). We also obtain a partial answer to the question posed in \cite{KPS13} about the possible Borel cardinalities of the Lascar strong type and the Galois group: under NIP it is the same as the Borel cardinality of some quotient of a compact Polish group by an $F_\sigma$ subgroup. One may also expect that the obtained results will be helpful in answering other questions posed in \cite{KPS13} (e.g.\ about the monotonicity of the Borel cardinality of the Lascar strong type), as well as other related questions (e.g.\ about the possible Borel cardinalities of arbitrary strong types).
+	\AtNextBibliography{\small}
+	\vspace{-1em}
+	\printbibliography
+\end{document}
+	

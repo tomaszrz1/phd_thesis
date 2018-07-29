@@ -1,0 +1,210 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pl_PL
+\documentclass[12pt,a4paper]{article}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[marginratio=1:1]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage[draft=false]{hyperref}
+\usepackage{xcolor}
+\usepackage{makeidx}
+\usepackage{showkeys}
+\usepackage{showidx}
+%\usepackage[modulo,pagewise,displaymath,mathlines]{lineno}
+%\linenumbers
+\usepackage{amsfonts}
+%\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\setenumerate{label=(\arabic*),topsep=.1\baselineskip}
+%\usepackage[backend=biber,
+%url=false,
+%isbn=true,
+%backref=true,
+%citestyle=alphabetic,
+%bibstyle=alphabetic,
+%autocite=inline,
+%maxnames=99,
+%minalphanames=4,
+%maxalphanames=4,
+%sorting=nyt,]{biblatex}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{matrix, arrows}
+
+\makeatletter
+\tikzset{
+	edge node/.code={%
+		\expandafter\def\expandafter\tikz@tonodes\expandafter{\tikz@tonodes #1}}}
+\makeatother
+\tikzset{
+	subseteq/.style={
+		draw=none,
+		edge node={node [sloped, allow upside down, auto=false]{$\subseteq$}}},
+	Subseteq/.style={
+		draw=none,
+		every to/.append style={
+			edge node={node [sloped, allow upside down, auto=false]{$\subseteq$}}}
+	}
+}
+
+%\addbibresource{thesis_bibliography.bib}
+
+\makeindex
+
+%\setcounter{section}{-1}
+
+
+%\makeatletter
+%\providecommand*{\twoheadrightarrowfill@}{%
+%	\arrowfill@\relbar\relbar\twoheadrightarrow
+%}
+%\providecommand*{\twoheadleftarrowfill@}{%
+%	\arrowfill@\twoheadleftarrow\relbar\relbar
+%}
+%\providecommand*{\xtwoheadrightarrow}[2][]{%
+%	\ext@arrow 0579\twoheadrightarrowfill@{#1}{#2}%
+%}
+%\providecommand*{\xtwoheadleftarrow}[2][]{%
+%	\ext@arrow 5097\twoheadleftarrowfill@{#1}{#2}%
+%}
+%\makeatother
+
+\newcommand{\fC}{{\mathfrak C}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\bN}{{\mathbf{N}}}
+\newcommand{\bR}{{\mathbf{R}}}
+\newcommand{\bZ}{{\mathbf{Z}}}
+\newcommand{\bQ}{{\mathbf{Q}}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\restr}{\mathord{\upharpoonright}}
+\newcommand{\EZ}{\mathrel{ { {\mathbf E}_0 } } }
+\newcommand{\Er}{\mathrel{E}}
+\newcommand{\Fr}{\mathrel{F}}
+\newcommand{\lang}{{\mathcal L}}
+\newcommand{\catg}{{\mathcal C}}
+\newcommand{\powerset}{{\mathcal P}}
+\newcommand{\liff}{\mathrel{\leftrightarrow}}
+\newcommand{\limplies}{\mathrel{\rightarrow}}
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\proves}{\vdash}
+\newcommand{\Rr}{\mathrel{R}}
+\DeclareMathOperator{\SO}{{SO}}
+\DeclareMathOperator{\GL}{{GL}}
+\DeclareMathOperator{\st}{{st}}
+\DeclareMathOperator{\cl}{{cl}}
+\DeclareMathOperator{\tp}{{tp}}
+\DeclareMathOperator{\acl}{{acl}}
+\DeclareMathOperator{\dcl}{{dcl}}
+\DeclareMathOperator{\Th}{{Th}}
+\DeclareMathOperator{\Gal}{{Gal}}
+\DeclareMathOperator{\Baire}{{Baire}}
+\DeclareMathOperator{\Id}{{Id}}
+\DeclareMathOperator{\id}{{id}}
+\DeclareMathOperator{\Aut}{{Aut}}
+\DeclareMathOperator{\Homeo}{{Homeo}}
+\DeclareMathOperator{\Autf}{{Aut\mkern 0.5\thinmuskip f}}
+\DeclareMathOperator{\CLO}{{CLO}}
+\DeclareMathOperator{\dom}{{dom}}
+\DeclareMathOperator{\Core}{{Core}}
+\DeclareMathOperator{\Stab}{{Stab}}
+\DeclareMathOperator{\Souslin}{{\mathcal A}}
+
+
+
+
+%\newtheorem{mainthm}{Main Theorem}
+%\renewcommand*{\themainthm}{\Alph{mainthm}}
+%\newtheorem{thm}{Theorem}[chapter]
+%\newtheorem{conj}[thm]{Conjecture}
+%\newtheorem{ques}[thm]{Question}
+%\newtheorem{problem}[thm]{Problem}
+%\newtheorem{lem}[thm]{Lemma}
+%\newtheorem{fct}[thm]{Fact}
+%\newtheorem{cor}[thm]{Corollary}
+%\newtheorem{prop}[thm]{Proposition}
+%\newtheorem{qu}[thm]{Question}
+%\newtheorem{con}[thm]{Conjecture}
+%
+%\theoremstyle{remark}
+%\newtheorem{rem}[thm]{Remark}
+%\theoremstyle{definition}
+%\newtheorem{dfn}[thm]{Definition}
+%\newtheorem*{sbclm}{Subclaim}
+%\newtheorem*{clm*}{Claim}
+%\newtheorem{ex}[thm]{Example}
+%\newcounter{claimcounter}[thm]
+%\newenvironment{clm}{\stepcounter{claimcounter}{\noindent {\textbf{Claim}} \theclaimcounter:}}{}
+%\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
+%\newenvironment{sbclmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(subclaim)}}{\endproof}
+%
+%\newcommand{\xqed}[1]{%
+%	\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+%	\quad\hbox{\ensuremath{#1}}}
+
+\let\Gamma\varGamma
+\let\Delta\varDelta
+\let\Theta\varTheta
+\let\Lambda\varLambda
+\let\Xi\varXi
+\let\Pi\varPi
+\let\Sigma\varSigma
+\let\Upsilon\varUpsilon
+\let\Phi\varPhi
+\let\Psi\varPsi
+\let\Omega\varOmega
+\let\phi\varphi
+
+\title{Bounded Invariant Equivalence Relations\\(streszczenie)}
+\author{Tomasz Rzepecki}
+\date{}
+%\usepackage{datetime}
+%\date{\today}
+
+
+
+
+\begin{document}
+	\maketitle
+	
+%	\section*{Abstract}
+	Badamy silne typy i grupy Galois w teorii modeli z punktu widzenia topologii i deskryptywnej teorii mnogości.
+	
+	Główne wyniki pracy doktorskiej to:
+	\begin{itemize}
+		\item 
+		przedstawienie grupy Galois (Lascara) dowolnej przeliczalnej teorii pierwszego rzędu (zarówno jako grupy topologicznej, jak i --- w pewnym zakresie --- jako ,,borelowskiego ilorazu'') jako ilorazu zwartej grupy polskiej (będącej ilorazem grupy Ellisa pewnego układu dynamicznego powiązanego z grupą automorfizmów odpowiedniego przeliczalnego modelu) przez normalną podgrupę $F_\sigma$; pokazujemy też że wszystkie przestrzenie silnych typów są ,,lokalnie'' ilorazami tej samej grupy przez podgrupę (która jest niekoniecznie normalna, ale jest borelowska, o ile dany silny typ jest borelowski);
+		\item 
+		pokazujemy że ograniczona niezmiennicza relacja równoważności na zbiorze realizacji pojedyńczego zupełnego typu jest relatywnie definiowalna (więc ma skończenie wiele klas), typowo definiowalna o co najmniej continuum wielu klasach, lub (zakładając że teoria jest przeliczalna) niegładka (wówczas dodatkowo, jeżeli relacja jest analityczna, również ma ona co najmniej continuum wiele klas);
+		\item 
+		wskazujemy wystarczający warunek dla ograniczonej niezmienniczej relacji równoważności, przy którym jej typowa definowalność jest równoważna typowej definowalności wszystkich jej klas; to pozwala na pokazanie że (pod tym warunkiem) gładkość jest równoważna typowej definiowalności.
+	\end{itemize}
+	Pierwszy wynik jest wspólny z Krzysztofem Krupińskim. Drugi jest wspólny z Krzysztofem Krupińskim i Anandem Pillayem. Trzeci wynik jest mój własny.
+	
+	W niniejszej pracy doktorskiej rozważam bardziej abstrakcyjny kontekst relacji równoważności niezmienniczych na działanie grupowe, spełniających rozmaite dodatkowe założenia. To pozwala na udowodnienie ogólnych twierdzeń, które implikują fakty wymienione powyżej, jak również podobne wyniki w różnych kontekstach w teorii modeli i poza nią, m.in.\ w kontekście teoriomodelowych składowych spójnych oraz działań grup zwartych.
+	
+	W ten sposób rozszerzamy wcześniejszy wynik Kaplana i Millera i (niezależnie) mój oraz Krupińskiego o równoważności typowej definiowalności i gładkości dla pewnych silnych typów klasy $F_\sigma$ (rozstrzygając otwarte problemy postawione we wcześniejszych pracach), jak również twierdzenie Krupińskiego i Pillaya o przedstawieniu ilorazu grupy definiowalnej przez teoriomodelową składową spójną jako ilorazu grupy zwartej przez podgrupę.
+	
+	Ponadto otrzymane wyniki dają nowe spojrzenie na kilka otwartych problemów związanych z mocami borelowskimi silnych typów w teorii modeli, zaś użyte metody wykorzystują i podkreślają związki między teorią modeli, dynamiką topologiczną i teorią przestrzeni Banacha, rozszerzając wcześniejsze wyniki w tym obszarze.
+
+\end{document}

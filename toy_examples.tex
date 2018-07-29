@@ -1,0 +1,216 @@
+
+	\chapter{Basic examples}
+	\label{chap:toy}
+	In this chapter, we discuss some cases where the analogues of some of the main theorems of the thesis are relatively easy to obtain. Roughly speaking, in proving the general theorems in later parts of this thesis, we will try to imitate the proofs from this chapter. The main problem will be ``getting into the position'' from which we can imitate successfully. The results of the third section in this chapter originate from \cite{KR18} (joint with Krzysztof Krupiński).
+	\section{Transitive action of a compact group}
+	\begin{prop}
+		\label{prop:toy_main}
+		Consider a compact Hausdorff group $G$ acting transitively and continuously on a Hausdorff space $X$ (which is also compact, as the continuous image of $G$).
+		
+		Let $E$ be a $G$-invariant relation on $X$.
+		
+		Choose any point $x_0\in X$ and let $H$ be the setwise stabiliser of $[x_0]_E$.
+		
+		Then $G/H$ is homeomorphic to $X/E$ (via the map induced by the orbit map $g\mapsto g\cdot x_0$).
+		
+		Moreover, whenever one of $H$, $E$ is open, closed, $F_\sigma$, Borel or analytic, so is the other one.
+		
+		Furthermore, if $G$ and $X$ are Polish, then $G/H\sim_B X/E$ (i.e.\ the Borel cardinality of the relation of lying in the same left coset of $H$ is the same as the Borel cardinality of $E$, cf.\ Definition~\ref{dfn:borel_cardinality}).
+	\end{prop}
+	\begin{proof}
+		Consider the orbit map $R\colon G\to X$, $R(g)=gx_0$. Since $G$ acts transitively, $R$ is onto, and because $G$ is compact and $X$ is Hausdorff, it is a closed map, and as such, a topological quotient map (cf.\ Remark~\ref{rem: continuous surjection is closed}). It follows that the composed map $r\colon G\to X/E$, $r(g)=[gx_0]_E$ is also a quotient map (as the composition of two quotient maps).
+		
+		Then, since $E$ is $G$-invariant, $G$ acts on $X/E$, so whenever $g_1x_0\Er g_2x_0$, we have $x_0\Er g_1^{-1}g_2 x_0$, or equivalently, $g_1^{-1}g_2\in H$, which means just that $g_1H=g_2H$. It follows that fibres of $r$ are exactly the left cosets of $H$, so by the preceding paragraph, $G/H$ is homeomorphic to $X/E$.
+		
+		For the ``moreover" part, note that the relation $E_H$ of lying in the same left coset of $H$ is the preimage of $E$ by the continuous surjection $R\times R\colon G\times G\to X\times X$, and it is also the preimage of $H$ by the map $(g_1,g_2)\mapsto g_1^{-1}g_2$, $G^2\to G$, and apply Proposition~\ref{prop:preservation_properties}.
+		
+		Finally, since the fibres of $r$ are the left cosets of $H$, $R$ is a reduction of the coset equivalence relation $E_H$ to $E$, and since it is also continuous and surjective, using Fact~\ref{fct:borel_section}, we obtain $E\sim_BE_H$.
+	\end{proof}
+	
+	The following lemma is a fairly simple example showing how Proposition~\ref{prop:trichotomy_for_groups} can be used to prove similar results in wider contexts.
+	\begin{lem}
+		\label{lem:abstract_trich}
+		Suppose we have a compact Polish space $X$, an equivalence relation $E$ on $X$, and a compact Polish group $G$ acting transitively on $X/E$, such that for some $x_0\in X$ we have the following:
+		\begin{itemize}
+			\item
+			the orbit map $g\mapsto g[x_0]_E$ is a topological quotient map,
+			\item
+			the stabiliser $H\leq G$ of $[x_0]_E$ is analytic if $E$ is analytic,
+			\item
+			if $E$ is smooth (in the sense of Definition~\ref{dfn:smt}), then so is $G/H$ (this is true e.g.\ if $E\geq_B G/H$).
+		\end{itemize}
+		Then exactly one of the following holds:
+		\begin{enumerate}
+			\item
+			$X/E$ is finite and $E$ is clopen,
+			\item
+			$|X/E|=2^{\aleph_0}$ and $E$ is closed,
+			\item
+			$E$ is non-smooth; in this case, if $E$ is analytic, then $|X/E|=2^{\aleph_0}$.
+		\end{enumerate}
+		In particular, $E$ is smooth if and only if it is closed.
+	\end{lem}
+	\begin{proof}
+		Apply Proposition~\ref{prop:trichotomy_for_groups} to $H\leq G$.
+		
+		If $H$ is open, then (by Fact~\ref{fct:quotient_by_closed_subgroup}) $G/H$ is discrete, and so is $X/E$. By Fact~\ref{fct:quot_T2_iff_closed}, it follows that $E$ is open (and by compactness of $X$, this implies that $E$ is clopen and $X/E$ is finite).
+		
+		If $H$ is closed and $[G:H]=2^{\aleph_0}$, then $G/H$ is Hausdorff (by Fact~\ref{fct:quotient_by_closed_subgroup}) and thus so is $X/E$, so $E$ is closed by Fact~\ref{fct:quot_T2_iff_closed}, and of course $\lvert X/E\rvert=[G:H]=2^{\aleph_0}$.
+		
+		Otherwise, $G/H$ is not smooth, so $E$ is not smooth.
+		
+		If $G/H$ is not smooth but $E$ is analytic, then $H$ is analytic, so it has the property of Baire, and $\lvert X/E\rvert=\lvert G/H\rvert=2^{\aleph_0}$.
+	\end{proof}
+	
+	\begin{cor}
+		\label{cor:toy_trich}
+		If $G, X, E$ are as in Proposition~\ref{prop:toy_main}, and $X$ is Polish, then $E$ is smooth (according to Definition~\ref{dfn:smt}) if and only if $E$ is closed (as a subset of $X^2$).
+		
+		In fact, exactly one of the following holds:
+		\begin{enumerate}
+			\item
+			$E$ is clopen and has finitely many classes,
+			\item
+			$E$ is closed and has exactly $2^{\aleph_0}$ classes,
+			\item
+			$E$ is not closed and not smooth. In this case, if $E$ is analytic, then $E$ has exactly $2^{\aleph_0}$ classes.
+		\end{enumerate}
+	\end{cor}
+	\begin{proof}
+		Note that by Proposition~\ref{prop:cont_action_factors_through_Polish} we may assume without loss of generality that $G$ is Polish (replacing it by the compact Polish group the action factors through, if necessary).
+		
+		Then the corollary is immediate by Proposition~\ref{prop:toy_main} and Lemma~\ref{lem:abstract_trich}.
+	\end{proof}
+	
+	\section{Orbital equivalence relations}
+	\begin{prop}
+		\label{prop:toy_orbital}
+		Suppose $G$ is a compact Hausdorff group acting continuously on a Hausdorff space $X$.
+		
+		Let $E$ be the orbit equivalence relation of some $H\leq G$ (i.e.\ $x_1\Er x_2$ if and only if for some $h\in H$ we have $hx_1=x_2$).
+		
+		Then $E$ is closed if and only if each class of $E$ is closed.
+	\end{prop}
+	\begin{proof}
+		If $E$ is closed, then trivially each class of $E$ is closed.
+		
+		In the other direction, suppose all $E$-classes are closed and let $\tilde H$ be the group of all elements $h\in G$ such that for all $x\in X$ we have $hx \Er x$. Then it is easy to see that $\tilde H\supseteq H$, so $E$ is the orbit equivalence relation of $\tilde H$.
+		
+		Note that $\tilde H=\bigcap_{x\in X} \{h\mid hx\in [x]_E \}$, so it closed in $G$. As such, $\tilde H$ is a compact Hausdorff group, and so, by Fact~\ref{fct:cpct_action}, $X/E=X/\tilde H$ is Hausdorff, which implies that $E$ is closed (as the preimage of the diagonal in $X/E$ via the natural continuous map $X^2\to (X/E)^2$).
+	\end{proof}
+	The following corollary is a toy version of Corollary~\ref{cor:smt_cpct}.
+	\begin{cor}
+		\label{cor:toy_orbital}
+		Suppose $G,X,E$ are as in Proposition~\ref{prop:toy_orbital}, and in addition $X$ is Polish and $H$ is normal. Then $E$ is closed if and only if it is smooth.
+	\end{cor}
+	\begin{proof}
+		In one direction, if $E$ is closed, then it is smooth by Fact~\ref{fct:clsd_smth}.
+		
+		Now, suppose $E$ is smooth.
+		It is easy to see that $E$ is $G$-invariant, as the orbit equivalence relation of a normal subgroup of $G$. By Corollary~\ref{cor:toy_trich}, for each $X'=G\cdot x$, $E\restr_{X'}$ is smooth if and only if it is closed. But we have trivially $E\restr_{X'}\leq_B E$, so each $E\restr_{X'}$ is smooth, and therefore closed. This implies that each $E$-class is closed, so by Proposition~\ref{prop:toy_orbital}, $E$ itself is closed as well.
+	\end{proof}
+	
+	
+	\section{Relations coarser than the Kim-Pillay strong type}\label{section: relations coarser than the Kim-Pillay strong type}
+	In this section, we will discuss the model-theoretic case of bounded invariant relations coarser than the Kim-Pillay strong type, and prove an analogue of Theorem~\ref{thm:main_galois} (which is also Main~Theorem~\ref{mainthm_group_types}) and of Corollary~\ref{cor:smt_type} (i.e.\ Main~Theorem~\ref{mainthm:smt}). The main point is that --- unlike the general case --- we do not need to construct any group using topological dynamics: we can just use $\Gal_\KP(T)$ instead. This makes the problem much simpler (and quite analogous to Proposition~\ref{prop:toy_main}). Note that this approach applies to all strong types if the underlying theory is G-compact (which includes all stable and, more generally, simple theories).
+	
+	\begin{lem}
+		\label{lem:easy}
+		Suppose we have a commutative diagram
+		\begin{center}
+			\begin{tikzcd}
+			A\ar[d, two heads]\ar[r, two heads]&G\ar[d] \\
+			C\ar[r]&Q
+			\end{tikzcd}
+		\end{center}
+		
+		where:
+		\begin{itemize}
+			\item
+			$A$, $C$ and $G$ are compact Polish spaces,
+			\item
+			the surjections $A \to C$ and $A \to G$ are continuous.
+		\end{itemize}
+		Denote by $E|_C$ and $E|_G$ the equivalence relations on $C$ and $G$ (respectively) induced by equality on $Q$. Then:
+		\begin{enumerate}
+			\item
+			\label{it:lem:easy_transfer}
+			$E|_G$ is closed [resp. Borel, or analytic, or $F_\sigma$, or clopen (equivalently, with open classes)] if and only if $E|_C$ is such,
+			\item
+			\label{it:lem:easy_reduc}
+			$E|_G\sim _B E|_C$.
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		Denote by $E|_A$ the equivalence relation on $A$ induced by equality on $Q$ via the composed map $A\to Q$.
+		
+		\ref{it:lem:easy_transfer} Since $E|_A$ is the preimage of each of $E|_C$ and $E|_G$ by a continuous surjection between compact Polish spaces, by Proposition~\ref{prop:preservation_properties}, we conclude that closedness [resp. Borelness, or analyticity, or being $F_\sigma$, or being clopen] of $E|_A,E|_C$ and $E|_G$ are all equivalent.
+		
+		\ref{it:lem:easy_reduc}
+		It is clear that the top and the left arrow are continuous, surjective reductions of $E|_A$ to $E|_G$ and $E|_A$ to $E|_C$, respectively. So $E|_G \sim_B E|_A \sim_B E|_C$ by Fact~\ref{fct:borel_section}.
+	\end{proof}
+	
+	The following theorem is a prototype for Theorem~\ref{thm:main_galois}.
+	\begin{thm}
+		\label{thm:main_over_KP}
+		Suppose $E$ is a strong type defined on $p(\fC)$ for some $p\in S(\emptyset)$ (in countably many variables, in an arbitrary countable theory) and $E$ is refined by $\equiv_\KP$. Fix any $a\models p$.
+		
+		Consider the orbit map $r_{[a]_E}\colon \Gal_\KP(T)\to p(\fC)/E$ given by $\sigma\Autf_\KP(\fC)\mapsto [\sigma(a)]_E$ (the orbit map of the natural action of $\Gal_\KP(T)$ on $p(\fC)/E$ introduced in Proposition~\ref{prop:gal_action}), and put $H=\ker r_{[a]_E}:=r_{[a]_E}^{-1}[[a]_E]$. Then:
+		\begin{enumerate}
+			\item
+			$H\leq \Gal_\KP(T)$ and the fibres of $r_{[a]_E}$ are the left cosets of $H$,
+			\item
+			$r_{[a]_E}$ is a topological quotient mapping, and so $p(\fC)/E$ is homeomorphic to $\Gal_\KP(T)/H$,
+			\item
+			$E$ is type-definable [resp. Borel, or analytic, or $F_\sigma$, or relatively definable on $p(\fC) \times p(\fC)$] if and only if $H$ is closed [resp. Borel, or analytic, or $F_\sigma$, or clopen],
+			\item
+			$E_H\sim_B E$, where $E_H$ is the relation of lying in the same left coset of $H$.
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		The first two points follow from Proposition~\ref{prop:gal_action}, as $H$ is just the stabiliser of $[a]_E\in p(\fC)/E$
+		
+		Let $M$ be a countable model containing $a$, and let $m\supseteq a$ be an enumeration of $M$. Then we have a commutative diagram, as in the proof of Proposition~\ref{prop:gal_action}.
+		\begin{center}
+			\begin{tikzcd}
+			S_m(M) \ar[r,two heads] \ar[d,two heads] & \Gal_\KP(T) \ar[d,"r_{[a]_E}",two heads] \\
+			S_a(M) \ar[r,two heads] & {[a]}_\equiv/E
+			\end{tikzcd}
+		\end{center}
+		The top arrow is defined in the same way as the map to $\Gal(T)$ given by Fact~\ref{fct:sm_to_gal}. The left arrow is the restriction map, and the bottom one is the quotient map given by Fact~\ref{fct:logic_by_type_space}.
+		
+		It is easy to check that this diagram is commutative and consists of continuous maps. Moreover, $S_m(M), S_a(M)$ and $\Gal_\KP(T)$ are all compact Polish (see Remark \ref{rem: GalKP is Polish}).
+		
+		Since $\Gal_\KP(T)$ is a compact Hausdorff group, we may apply Remark~\ref{rem:group_to_cosets} and Proposition~\ref{prop:preservation_properties} to deduce that $H$ is closed, clopen, Borel, $F_\sigma$, analytic if and only if $E_H$ is such.
+		
+		By Lemma~\ref{lem:easy}, this is equivalent to $E^M$ having the same property, and $E^M\sim_B E_H$. By Fact~\ref{fct: Borel in various senses}, we obtain (3), and by the definition of Borel cardinality of a bounded invariant equivalence relation (Definition~\ref{dfn:bier_borelcard}), we also have (4).
+	\end{proof}
+	
+	
+	It is worth noting that with some work, we can actually deduce Theorem~\ref{thm:main_over_KP} from Proposition~\ref{prop:toy_main}.
+	
+	More precisely, one can show that if $E$ is refined by $\equiv_\KP$, then $\Gal_\KP(T)$ acts continuously on $p(\fC)/{\equiv_\KP}$, and note that $E$ and $E|_{p(\fC)/{\equiv_\KP}}$ (i.e.\ the induced equivalence relation on ${p(\fC)/{\equiv_\KP}}$) are Borel equivalent, that $E$ is type-definable if and only if $E|_{p(\fC)/{\equiv_\KP}}$ is closed, and so on, and then apply Proposition~\ref{prop:toy_main} to $\Gal_\KP(T)$ acting on $p(\fC)/{\equiv_\KP}$.
+	
+	However, the general case (when $E$ is not refined by $\equiv_\KP$) does not have such a straightforward reduction, as we do not have any obvious choice of a compact Hausdorff group acting on the strong type space. To prove Theorem~\ref{thm:main_abstract} (which will be the main ingredient of the proof of Main Theorem~\ref{mainthm_group_types}), we construct another compact Polish group $\hat G$ acting on a class space instead of $\Gal_\KP(T)$, with properties similar to the action of $\Gal_\KP(T)$ above.
+	
+	
+	
+	The following corollary may be considered a toy version of Main~Theorem~\ref{mainthm:abstract_smt}.
+	
+	\begin{cor}
+		\label{cor:main_over_KP}
+		Assume $T$ is countable. Let $E$ be a strong type on $p(\fC)$ for some $p\in S(\emptyset)$ (in countably many variables). Assume that $E$ is coarser than $\equiv_\KP$. Then exactly one of the following conditions holds:
+		\begin{enumerate}
+			\item
+			$p(\fC)/E$ is finite and $E$ is relatively definable,
+			\item
+			$|p(\fC)/E|=2^{\aleph_0}$ and $E$ is type-definable and smooth,
+			\item
+			$E$ is non-smooth; in this case, if $E$ is analytic, then $|p(\fC)/E|=2^{\aleph_0}$.
+		\end{enumerate}
+		In particular, $E$ is smooth if and only it it is type-definable.
+	\end{cor}
+	\begin{proof}
+		Fix any $a\models p$, and let $X=p(\fC)$. Note that by Theorem~\ref{thm:main_over_KP}, we have an action of $\Gal_\KP$ on $X/E$ such that that the stabiliser $H$ of $[a]_E$ is analytic if $E$ is, the orbit map of $[a]_E$ is a quotient map, and $E\sim_B G/H$. On the other hand, for any countable model $M$, $X_M$ is a compact Polish space, the quotients $X/E$ and $X_M/E^M$ are homeomorphic, $E^M$ is analytic (by Fact~\ref{fct: Borel in various senses}) if and only if $E$ is and by definition, $E^M\sim_B E$. Thus, the assumptions of Lemma~\ref{lem:abstract_trich} are satisfied for $X=X_M$, $E=E^M$ and $x_0=\tp(a/M)$. Since relative definability, type-definability and smoothness of $E$ are equivalent to $E^M$ being clopen, closed or smooth (respectively) and $X/E$ and $X_M^/E^M$ have the same cardinality, the conclusion follows.
+	\end{proof}
+	

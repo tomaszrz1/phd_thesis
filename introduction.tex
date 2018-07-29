@@ -1,0 +1,185 @@
+
+	\chapter{Introduction}
+	
+	\section{Strong types in model theory}
+	Strong types originally arose from the study of forking, which is one of the most important notions in modern model theory.
+	
+	In his classification theory (see \cite{Sh90} for the second edition), Shelah introduced the notion of a \emph{strong type} of a tuple $a$ over a set $A$ (which, for $A=\emptyset$ corresponds to a single class of the relation $\equiv_\Sh$ defined in Definition~\ref{dfn:class_stp}), which turned out to be a central notion in the study of stable theories, as these strong types correspond exactly to types which have unique global nonforking extensions (see \cite[Corollary 2.9]{Sh90}).
+	
+	In his paper \cite{Las82}, Lascar introduced the notion of a model-theoretic Galois group (see Definition~\ref{definition: Galois groups}), as well as what is now called the Lascar strong type (see $\equiv_\Lasc$ in Definition~\ref{dfn:class_stp}). Loosely speaking, they were used to recover the theory of some $\omega$-categorical structures from the categories of their models (with elementary maps as morphisms).
+	
+	In stable theories, the Lascar strong types and the Shelah strong types coincide. In the more general class of simple theories, the Lascar strong types coincide with so-called Kim-Pillay strong types. Like the Shelah strong types in stable theories, they turned out to be useful in the study of simple theories (particularly for the general formulation of the independence theorem, which is one of the most important fundamental results in simplicity theory; see \cite[Corollary 10.9]{Cas11}).
+	
+	Furthermore, Lascar strong types also appear in the study of forking in generalisations of stability and simplicity (especially in NIP and NTP$_2$ theories, see e.g.\ \cite{BC14} and \cite[Proposition 2.1]{HP11}).
+	
+	In the context of definable groups, there is a theory of model-theoretic connected components, largely parallel to strong types, and playing an important role in the study of stable and NIP groups. The main results concerning connected components are related to the celebrated Pillay's conjecture (see \cite{peterzil_survey}).
+	
+	\section{History of the problem}
+	The main problem tackled in this thesis is understanding the Galois groups and strong type spaces in arbitrary theories, and in particular, estimating their Borel cardinalities, and exploring the connection between descriptive-set-theoretic smoothness and model-theoretic type-definability of a strong type.
+	
+	It is well-known that the type-definable strong type spaces can be well understood as compact Hausdorff topological spaces (see Fact~\ref{fct:logic_top_cpct_T2}). If, in a given theory, the Lascar strong type $\equiv_\Lasc$ is type-definable, then the same is true about the Galois group, namely, it is a compact Hausdorff topological group. However, in general, the corresponding topology need not be Hausdorff, and in particular, the topology on the Galois group may be trivial.
+	
+	The paper \cite{CLPZ01} essentially began this line of study. There, the authors gave the first example of a theory where the Lascar strong type $\equiv_\Lasc$ is not type-definable. They suggested that in such cases, it would be prudent to treat the Galois group (and, by extension, the class spaces of $\equiv_\Lasc$) as ``descriptive set theoretic'' objects, and they asked about the possible ``Borel cardinality'' one may obtain in this way (see Definition~\ref{dfn:bier_borelcard} for precise definition). They suggested that when $\equiv_\KP$ and $\equiv_\Lasc$ differ (i.e.\ when the latter is not type-definable), this ``Borel cardinality'' should be nontrivial, which would mean that the class space of $\equiv_\Lasc$ is very complex.
+	
+	In \cite{Ne03}, it was shown that if for some tuple $a$ we have $[a]_{\equiv_\Lasc}\neq [a]_{\equiv_\KP}$, then the $\equiv_\KP$-class of $a$ splits into at least $2^{\aleph_0}$ $\equiv_\Lasc$-classes (see Fact~\ref{fct:newelski}), which supported that conjecture.
+	
+	Later, in \cite{KPS13}, the authors described precisely in what sense the Borel cardinality of $\Gal(T)$ is a well-defined invariant of the theory (see Definition~\ref{dfn:bcard_galois} for the precise definition), and similarly for the Borel cardinality of $\equiv_\Lasc$ (even restricted to a single $\equiv_\KP$-class; see Fact~\ref{fct:cartdf}). They also made a more precise conjecture about the Borel cardinality: they conjectured that if a $\equiv_\KP$-class is not a single $\equiv_\Lasc$-class, then the Borel cardinality of $\equiv_\Lasc$ (restricted to that $\equiv_\KP$-class) is non-smooth (in the sense of Definition~\ref{dfn:smt}).
+	
+	In \cite{KMS14}, the authors proved that this is indeed true (see Fact~\ref{fct:KMS_theorem}), showing that the Lascar strong type $\equiv_\Lasc$ is smooth (in the sense of Borel cardinality) if and only if it is type-definable. In a later paper \cite{KM14} and, independently, in \cite{KR16} (which was based on my master's thesis), the result was extended to arbitrary ``orbital $F_\sigma$ strong types" (see Fact~\ref{fct:mainA}).
+	
+	All of the definitions and results mentioned in the previous three paragraphs have their counterparts in the context of the model-theoretic group components.
+	
+	The methods of \cite{KMS14}, \cite{KM14} and \cite{KR16} were similar, but there seems to be no hope to extend them to arbitrary strong types (which are not $F_\sigma$). Moreover, they do not seem to be capable of giving any precise estimates of the Borel cardinalities of the Galois groups or strong types. In this thesis, we use completely different methods, developing and taking advantage of a deep topological dynamical apparatus with roots in \cite{KP17}, paired with the so-called Bourgain-Fremlin-Talagrand dichotomy from the theory of Rosenthal compacta.
+	\section{Results}
+	The main results of the thesis are essentially contained in three papers: \cite{KPR15} (joint with Krzysztof Krupiński and Anand Pillay), \cite{Rz16} (which was my own) and \cite{KR18} (joint with Krzysztof Krupiński).
+	
+	
+	The essential contribution of this thesis, which did not appear in these papers (and is of my own conception) is the introduction of weakly uniformly properly group-like equivalence relations on an ambit. Using that notion, we redevelop the topological dynamical machinery based on \cite{KP17} (which was later refined in \cite{KPR15} and \cite{KR18}) in a much more general and abstract context. This allows us to prove the following theorem.
+	\begin{mainthm}
+		\label{mainthm:abstract_card}
+		Suppose $E$ is weakly uniformly properly group-like, analytic equivalence relation on an ambit $(G,X,x_0)$ (where $X$ is an arbitrary compact Hausdorff space).
+		
+		Then $X/E$ is the topological quotient of a compact Hausdorff group by an analytic subgroup.
+		
+		We conclude that $E$ is either clopen (as a subset of $X^2$), or it has $2^{\aleph_0}$ classes.
+		
+		Moreover, if $E$ is not closed, then for every closed and $E$-invariant $Y\subseteq X$, $E\restr_Y$ has at least $2^{\aleph_0}$ classes.
+	\end{mainthm}
+	(See Lemma~\ref{lem:weakly_grouplike}, Lemma~\ref{lem:new_preservation_E_to_H}, Theorem~\ref{thm:general_cardinality_intransitive}, and Theorem~\ref{thm:general_cardinality_transitive} for precise statements.)
+	
+	In the metrisable case, we can obtain a stronger conclusion.
+	\begin{mainthm}
+		\label{mainthm:abstract_smt}
+		Suppose $E$ is weakly uniformly properly group-like equivalence relation on an ambit $(G,X,x_0)$, where $X$ is a compact Polish space.
+		
+		Then $X/E$ is the topological quotient of a compact Polish group by a subgroup.
+		
+		Moreover, exactly one of the following holds:
+		\begin{enumerate}
+			\item
+			$E$ is clopen and has finitely many classes,
+			\item
+			$E$ is closed and has exactly $2^{\aleph_0}$ classes,
+			\item
+			$E$ is not closed and not smooth. In this case, if $E$ is analytic, then $E$ has exactly $2^{\aleph_0}$ classes.
+		\end{enumerate}
+		In particular, $E$ is smooth (according to Definition~\ref{dfn:smt}) if and only if $E$ is closed.
+	\end{mainthm}
+	(See Theorem~\ref{thm:main_abstract} and Corollary~\ref{cor:metr_smt_cls})
+	
+	The main results of the thesis (which are also the main theorems of \cite{KPR15} and \cite{KR18}) can be deduced from the Main~Theorems~\ref{mainthm:abstract_card} and \ref{mainthm:abstract_smt}. The main advantage of the abstract formulation is that we can obtain similar results in many distinct contexts, which previously required careful repetitions of similar, but complicated arguments. In contrast, to apply Main~Theorems~\ref{mainthm:abstract_card} and \ref{mainthm:abstract_smt}, it is enough to check that that several basic axioms are satisfied in each case, which is relatively straightforward. Besides the other main theorems listed below, this allows us to recover (or even improve) virtually all similar results in model theory, in addition to providing corollaries in other contexts, occurring naturally in model theory. In Section~\ref{sec:other_apps}, we briefly discuss some examples, including the topological connected components of \cite{KP16} and the relative Galois groups of \cite{DKL17}.
+	
+	The principal result in the thesis is the following theorem. It is essentially Theorem 7.13 in \cite{KR18} (joint with Krzysztof Krupiński). Here, we deduce it from Main~Theorem~\ref{mainthm:abstract_smt} (or rather, the more precise statement in Theorem~\ref{thm:main_abstract}).
+	\begin{mainthm}
+		\label{mainthm_group_types}
+		The Galois group of a countable first order theory is the quotient of a compact Polish group by an $F_\sigma$ normal subgroup, as a topological group, and, if the theory has NIP, in terms of Borel cardinality.
+		
+		The space of classes of a bounded invariant equivalence relation $E$ defined on single complete type over $\emptyset$ (in a countable theory) is the quotient of a compact Polish group by some subgroup (which inherits the good descriptive set theoretic properties of $E$), topologically, and under NIP, also in terms of Borel cardinality.
+	\end{mainthm}
+	(For precise statements, see Theorem~\ref{thm:main_galois} and Corollary~\ref{cor:galois_quotient}. See also Theorem~\ref{thm:main_aut} for a related fact with relaxed NIP assumption for the second part.)
+	
+	As a corollary, we obtain the following theorem, which essentially supersedes the main results of both  \cite{KMS14} and \cite{KM14}/\cite{KR16} (see Fact~\ref{fct:KMS_theorem} and Fact~\ref{fct:mainA}). It originally appeared as Corollary~4.2 and Corollary~6.1 in \cite{KPR15}, and is basically the main result of that paper (joint with Krzysztof Krupiński and Anand Pillay).
+	\begin{mainthm}
+		\label{mainthm:smt}
+		Suppose that the theory is countable, while $E$ is a strong type, and $Y$ is type-definable, $E$-saturated, and such that $\Aut(\fC/\{Y\})$ acts transitively on $Y$ (e.g.\ $Y$ is the set of realisations of a single complete type over $\emptyset$, or a single Shelah or Kim-Pillay strong type). Then exactly one of the following is true:
+		\begin{enumerate}
+			\item
+			$E\restr_Y$ is relatively definable (as a subset of $Y^2$) and has finitely many classes,
+			\item
+			$E\restr_Y$ is type-definable and has exactly $2^{\aleph_0}$ classes,
+			\item
+			$E\restr_Y$ is not type-definable and not smooth. In this case, if $E\restr_Y$ is analytic, then $E\restr_Y$ has exactly $2^{\aleph_0}$ classes.
+		\end{enumerate}
+		In particular, $E\restr_Y$ is smooth if and only if $E\restr_Y$ is type-definable. (And this is true even if $\Aut(\fC/\{Y\})$ does not act transitively on $Y$.)
+	\end{mainthm}
+	(This is Corollary~\ref{cor:trich_plus} and Corollary~\ref{cor:smt_type}.)
+	
+	If we do not assume that the theory is countable, the relevant spaces of types are not metrisable, and so Main~Theorem~\ref{mainthm:abstract_smt} does not apply. However, we can still apply Main~Theorem~\ref{mainthm:abstract_card}, yielding the following theorem, which generalises the main theorem of \cite{Ne03} (Fact~\ref{fct:newelski}). It originally appeared as Theorem 5.1 in \cite{KPR15}.
+	\begin{mainthm}
+		\label{mainthm:nwg}
+		Suppose $E$ is an analytic strong type defined on $[a]_{\equiv}$, while $Y\subseteq [a]_{\equiv}$ is type-definable and $E$-saturated, such that $\lvert Y/E\rvert<2^{\aleph_0}$.
+		
+		Then $E$ is type-definable, and if, in addition, $\Aut(\fC/\{Y\})$ acts transitively on $Y/E$, then $E\restr_Y$ is relatively definable (as a subset of $Y^2$).
+	\end{mainthm}
+	(This is Theorem~\ref{thm:nwg}.)
+	
+	Besides Main~Theorems~\ref{mainthm_group_types}, \ref{mainthm:smt} and \ref{mainthm:nwg}, we recover analogous results for type-definable group actions, which also significantly improve the previous results from \cite{KM14} and \cite{KR16}. One of them is the following trichotomy, which supersedes the corresponding statements from \cite{Ne03} and \cite{KM14} (Fact~\ref{fct:new_group} and Fact~\ref{fct:KM_about_groups}). It appeared originally in \cite{KPR15} in the case when $G$ is a type-definable subgroup of a definable group (as Corollaries 5.4 and 6.2); for type-definable groups, this appeared as \cite[Corollary 8.6]{KR18} (under the assumption that the language is countable).
+	\begin{mainthm}
+		\label{mainthm:tdgroup}
+		Suppose $G$ is a type-definable group, while $H\leq G$ is an analytic subgroup, invariant over a small set. Then exactly one of the following holds:
+		\begin{itemize}
+			\item
+			$[G:H]$ is finite and $H$ is relatively definable in $G$,
+			\item
+			$[G:H]\geq 2^{\aleph_0}$, but is bounded, and $H$ is not relatively definable.
+			\item
+			$[G:H]$ is unbounded (i.e.\ not small).
+		\end{itemize}
+		In particular, $[G:H]$ cannot be infinite and smaller than $2^{\aleph_0}$.
+		
+		Moreover, in the second case, if the language is countable, and $G$ consists of countable tuples, then either $H$ is type-definable, or $G/H$ is not smooth.
+	\end{mainthm}
+	(This is Corollary~\ref{cor:trich_tdgroups}.)
+	
+	
+	
+	The final series of results comes from my own paper \cite{Rz16}, and is represented by the following theorem (which was originally \cite[Corollary 4.10]{Rz16}).
+	\begin{mainthm}
+		\label{mainthm_worb}
+		Suppose $E$ is a strong type whose domain is a $\emptyset$-type-definable set $X$. Suppose, moreover, that $E$ is orbital, or, more generally, weakly orbital by type-definable. Then the following are equivalent:
+		\begin{itemize}
+			\item
+			$E$ is type-definable,
+			\item
+			each class of $E$ is type-definable (equivalently, for every $p\in S(\emptyset)$ such that $p\vdash X$, $E\restr_{p(\fC)}$ is type-definable),
+			\item
+			$E$ is smooth.
+		\end{itemize}
+	\end{mainthm}
+	(See Corollary~\ref{cor:smt_aut}.)
+	
+	The essential part of Main~Theorem~\ref{mainthm_worb} is the implication from type-definability of classes (a ``local" property) to the ``global" type-definability of the relation itself. The other implications are straightforward or follow from Main~Theorem~\ref{mainthm:smt}. When $X=p(\fC)$ for $p\in S(\emptyset)$, this is a simple exercise (see Proposition~\ref{prop:type-definability_of_relations}), but in general, it is not true. We show that the hypotheses of Main~Theorem~\ref{mainthm_worb} provide a general context in which the implication holds.
+	
+	Also, just like Main~Theorems~\ref{mainthm_group_types}, \ref{mainthm:smt} and \ref{mainthm:nwg}, Main~Theorem~\ref{mainthm_worb} has counterparts in different contexts, including type-definable group actions (see e.g.\ Corollary~\ref{cor:smt_def}). It is also the most general known description of the (sufficient) conditions under which the smoothness of a strong type implies its type-definability.
+	
+	Main~Theorem~\ref{mainthm_group_types} (at least under NIP assumption) provides a way to identify the Galois group, along with its Borel cardinality. Section~\ref{sec:examples} (which is the appendix of \cite{KR18}, expanded to provide more details) contains precise examples of such calculation. Namely, we determine the Galois group in the standard example of a non-G-compact theory from \cite{CLPZ01} and its modification from \cite{KPS13} (in both cases, the group and the Borel cardinality were given in \cite{KPS13}, but with very few details of the proof, and using different methods). In order to do that, we compute the Ellis groups associated with certain dynamical systems.
+	
+	For virtually all the results mentioned above, we show or deduce analogues which apply in the context of continuous actions of compact Hausdorff groups.
+	
+	Besides the main theorems mentioned above, in Chapter~\ref{chap:nonmetrisable_card}, we discuss the analogues of Main~Theorem~\ref{mainthm:abstract_smt} which provide a degree of ``non-smoothness'' in the non-metrisable/uncountable language case (giving more information than Main~Theorem~\ref{mainthm:abstract_card}). This is based on \cite{KPR15}, but put into the general context introduced here (the corresponding results of \cite{KPR15} are recovered). In Section~\ref{section: semigroup operation} (which is the appendix of \cite{KPR15}), we show that the stability of any given theory is equivalent to the existence of a canonical semigroup operation on a certain type space, associated with a monster model of that theory.
+	
+	\section{Structure of the thesis}
+	Chapter~\ref{chap:prelims} contains the preliminaries, including basic facts and conventions. It is divided into the following parts:
+	\begin{itemize}
+		\item
+		topology,
+		\item
+		descriptive set theory,
+		\item
+		topological dynamics,
+		\item
+		Rosenthal compacta and tame dynamical systems,
+		\item
+		model theory, and
+		\item
+		a short section containing the formal statements of previous results which we improve in the thesis.
+	\end{itemize}
+	They contain mostly known facts (published or folklore) and their straightforward generalisations. Nevertheless, for convenience of the reader, we recall complete proofs for many of them.
+	
+	Chapter~\ref{chap:toy} (partly based on Section~3 of \cite{KR18}) contains some basic examples coming from compact Hausdorff groups and their continuous actions on compact Hausdorff spaces, and the relatively easy model-theoretic case of $\Gal_\KP(T)$ and strong types coarser than $\equiv_\KP$. It is supposed to show some of the major ideas of the proofs of all the main theorems, while avoiding the need to use the difficult topological dynamical machinery, and other technical difficulties which are treated in the later chapters.
+	
+	In Chapter~\ref{chap:toolbox} (almost entirely based on Sections~4 and 5 of \cite{KR18}), we develop new tools in topological dynamics, and on the intersection of model theory and topological dynamics. Some of them are folklore, but many seem to be completely new.
+	
+	In Chapter~\ref{chap:grouplike} (which is new, but borrows many ideas from \cite{KP17} and \cite{KPR15}), we introduce and study and the notion of a group-like equivalence relation and its variants. In particular, we prove Main~Theorem~\ref{mainthm:abstract_card} and Main~Theorem~\ref{mainthm:abstract_smt}.
+	
+	In Chapter~\ref{chap:applications}, we specialise the results of Chapter~\ref{chap:grouplike} in various situations. In particular, we prove Main~Theorems~\ref{mainthm_group_types}, \ref{mainthm:smt}, \ref{mainthm:nwg}, and \ref{mainthm:tdgroup}. In Section~\ref{sec:examples}, we compute the Galois groups in a couple of examples by applying Main~Theorem~\ref{mainthm_group_types} (and computing certain Ellis groups).
+	
+	In Chapter~\ref{chap:intransitive}, we develop the notions of orbitality and weak orbitality in an abstract framework, and then apply them to prove Main~Theorem~\ref{mainthm_worb} (along with several related statements in various contexts).
+	
+	In Chapter~\ref{chap:nonmetrisable_card}, we discuss possible extensions of Main~Theorem~\ref{mainthm:abstract_smt} and (by extension) \ref{mainthm:smt} to non-metrisable dynamical systems (corresponding to uncountable languages in model theory), with the aim to obtain the equivalence between closedness and some sort of ``smoothness'' of an equivalence relation in such context. In particular, we pose Question~\ref{qu:broad_nonmetrisable} (the positive answer to which would give such an extension), and we show provide some partial results around it.
+	
+	In Appendix~\ref{app:topdyn}, we prove facts related to elementary topological dynamics which, while folklore, apparently cannot be found in the literature (in sufficient generality).
+	
+	Appendix~\ref{app:side} contains some tangential results which appeared in the course of the study. In particular, we give the criteria for the type space $S_{\bar c}(\fC)$ to have a natural left topological semigroup structure (namely, its existence is equivalent to stability), and --- using non-standard analysis --- we show that a closed group-like equivalence relation is always properly group-like (see Definitions~\ref{dfn:glike} and \ref{dfn:prop_glike}).
+	
+	

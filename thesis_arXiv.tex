@@ -1,0 +1,320 @@
+\documentclass[12pt,a4paper,final]{book}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[marginratio=1:1]{geometry}
+\date{\today}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=10,shrink=10]{microtype}
+\SetTracking{encoding=*, shape=sc}{50}
+\microtypecontext{spacing=nonfrench}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[draft=false]{hyperref}
+\usepackage{xcolor}
+\usepackage{imakeidx}
+%\usepackage[notref,notcite]{showkeys}
+%\usepackage{showidx}
+%\usepackage[modulo,pagewise,mathlines]{lineno}
+%\linenumbers
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{fancyhdr,textcase}
+\usepackage{isomath}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\headrulewidth}{0pt}
+
+\makeatletter
+\fancyhf{}
+\fancyhead[LE,RO]{\microtypesetup{tracking=false,protrusion=false}\footnotesize\scshape\thepage}
+\fancyhead[CE]{\microtypesetup{tracking=false,protrusion=false}\scshape\MakeTextLowercase{\leftmark}}
+\fancyhead[CO]{\microtypesetup{tracking=false,protrusion=false}\scshape\MakeTextLowercase{\@chapapp~\thechapter}}
+\makeatother
+\setlength{\headheight}{15pt}
+\setenumerate{label=(\arabic*),topsep=.1\baselineskip,itemsep=-0.1\baselineskip}
+\setitemize{topsep=.1\baselineskip,itemsep=-0.1\baselineskip}
+\usepackage[backend=biber,
+	url=false,
+	isbn=false,
+	backref=true,
+	citestyle=alphabetic,
+	bibstyle=alphabetic,
+	autocite=inline,
+	maxnames=99,
+	minalphanames=4,
+	maxalphanames=4,
+	sorting=nyt,]{biblatex}
+\addbibresource{thesis_bibliography.bib}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{matrix, arrows}
+\makeindex[title=List of symbols and definitions]
+\usepackage{hyperref}
+
+\makeatletter
+\tikzset{
+	edge node/.code={%
+		\expandafter\def\expandafter\tikz@tonodes\expandafter{\tikz@tonodes #1}}}
+\makeatother
+\tikzset{
+	subseteq/.style={
+		draw=none,
+		edge node={node [sloped, allow upside down, auto=false]{$\subseteq$}}},
+	Subseteq/.style={
+		draw=none,
+		every to/.append style={
+			edge node={node [sloped, allow upside down, auto=false]{$\subseteq$}}}
+	}
+}
+
+
+\newcommand{\fC}{{\mathfrak C}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\bN}{{\mathbf{N}}}
+\newcommand{\bR}{{\mathbf{R}}}
+\newcommand{\bZ}{{\mathbf{Z}}}
+\newcommand{\bQ}{{\mathbf{Q}}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\topo}{{\mathrm{top}}}
+\newcommand\Lasc{{\mathrm{L}}}
+\newcommand\KP{{\mathrm{KP}}}
+\newcommand\Sh{{\mathrm{Sh}}}
+\newcommand{\restr}{\mathord{\upharpoonright}}
+\newcommand{\EZ}{\mathrel{ { {\mathbf E}_0 } } }
+\newcommand{\Er}{\mathrel{E}}
+\newcommand{\Fr}{\mathrel{F}}
+\newcommand{\lang}{{\mathcal L}}
+\newcommand{\catg}{{\mathcal C}}
+\newcommand{\powerset}{{\mathcal P}}
+\newcommand{\liff}{\mathrel{\leftrightarrow}}
+\newcommand{\limplies}{\mathrel{\rightarrow}}
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\proves}{\vdash}
+\newcommand{\Rr}{\mathrel{R}}
+\DeclareMathOperator{\SO}{{SO}}
+\DeclareMathOperator{\GL}{{GL}}
+\DeclareMathOperator{\st}{{st}}
+\DeclareMathOperator{\cl}{{cl}}
+\DeclareMathOperator{\tp}{{tp}}
+\DeclareMathOperator{\acl}{{acl}}
+\DeclareMathOperator{\dcl}{{dcl}}
+\DeclareMathOperator{\Th}{{Th}}
+\DeclareMathOperator{\Gal}{{Gal}}
+\DeclareMathOperator{\Baire}{{Baire}}
+\DeclareMathOperator{\Id}{{Id}}
+\DeclareMathOperator{\id}{{id}}
+\DeclareMathOperator{\Aut}{{Aut}}
+\DeclareMathOperator{\Homeo}{{Homeo}}
+\DeclareMathOperator{\Autf}{{Aut\mkern 0.5\thinmuskip f}}
+\DeclareMathOperator{\CLO}{{CLO}}
+\DeclareMathOperator{\dom}{{dom}}
+\DeclareMathOperator{\Core}{{Core}}
+\DeclareMathOperator{\Stab}{{Stab}}
+\DeclareMathOperator{\Souslin}{{\mathcal A}}
+\let\unlhd\trianglelefteq
+
+
+
+
+\newtheorem{mainthm}{Main Theorem}
+\renewcommand*{\themainthm}{\Alph{mainthm}}
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{fct}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{qu}[thm]{Question}
+\newtheorem{con}[thm]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem*{sbclm}{Subclaim}
+\newtheorem*{clm*}{Claim}
+\newtheorem{ex}[thm]{Example}
+\newcounter{claimcounter}[thm]
+\newenvironment{clm}{\stepcounter{claimcounter}{\noindent {\textbf{Claim}} \theclaimcounter:}}{}
+\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
+\newenvironment{sbclmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(subclaim)}}{\endproof}
+
+\newcommand{\xqed}[1]{%
+	\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+	\quad\hbox{\ensuremath{#1}}}
+
+%\let\Gamma\varGamma
+%\let\Delta\varDelta
+%\let\Theta\varTheta
+%\let\Lambda\varLambda
+%\let\Xi\varXi
+%\let\Pi\varPi
+%\let\Sigma\varSigma
+%\let\Upsilon\varUpsilon
+%\let\Phi\varPhi
+%\let\Psi\varPsi
+%\let\Omega\varOmega
+%\let\phi\varphi
+
+\title{Bounded Invariant Equivalence Relations}
+\author{Tomasz Rzepecki}
+\usepackage{datetime}
+\date{\today}
+
+
+
+
+\begin{document}
+%	\maketitle
+	\newpage
+	\thispagestyle{empty}
+	\makeatletter
+	\begin{center}
+		\textbf{\large Uniwersytet Wrocławski\\
+			Wydział Matematyki i Informatyki\\
+			Instytut Matematyczny}\\
+		\vspace{4cm}
+		\textbf{\textit{\large \@author}\\
+			\vspace{0.5cm}
+			{\Large \@title}}\\
+	\end{center}
+	\vspace{3cm}
+	{\large \hspace*{6.5cm}doctoral thesis\\
+		\hspace*{6.5cm}supervised by\\
+		\hspace*{6.5cm}prof. Krzysztof Krupiński}\\
+	\vfill
+	\begin{center}
+		{\large Wrocław 2018}\\
+	\end{center}
+	\makeatother
+	\newpage
+	\thispagestyle{empty}
+	\makeatletter
+	\begin{center}
+		\textbf{\large Uniwersytet Wrocławski\\
+			Wydział Matematyki i Informatyki\\
+			Instytut Matematyczny}\\
+		\vspace{4cm}
+		\textbf{\textit{\large \@author}\\
+			\vspace{0.5cm}
+			{\Large Ograniczone, niezmiennicze relacje równoważności}}\\
+	\end{center}
+	\vspace{3cm}
+	{\large \hspace*{6.5cm}praca doktorska\\
+		\hspace*{6.5cm}promotor:\\
+		\hspace*{6.5cm}prof. dr hab. Krzysztof Krupiński}\\
+	\vfill
+	\begin{center}
+		{\large Wrocław 2018}\\
+	\end{center}
+	\makeatother
+	\newpage
+	
+	
+	
+	\section*{Abstract}
+	\thispagestyle{headings}
+	\vspace{-.5\baselineskip}
+	We study strong types and Galois groups in model theory from a topological and descriptive-set-theoretical point of view.
+	
+	The main results of the thesis are the following:
+	\begin{itemize}
+		\item
+		we present the (Lascar) Galois group of an arbitrary countable first-order theory (as a topological group, and --- to a degree --- as a ``Borel quotient") as the quotient of a compact Polish group (which is a certain quotient of the Ellis group of a dynamical system associated with the automorphism group of a suitable countable model) by a normal $F_\sigma$ subgroup; we also show that all strong type spaces are ``locally" the quotient of the same group by a subgroup (which is not necessarily normal, but is Borel if the strong type is Borel);
+		\item
+		we show that a bounded invariant equivalence relation on the set of realisations of a single complete type is either relatively definable (and thus has finitely many classes), type-definable with at least continuum many classes, or (assuming that the theory is countable) non-smooth in the descriptive-set-theoretic sense (in which case, if it is analytic, it also has at least continuum many classes);
+		\item
+		we find a sufficient condition for a bounded invariant equivalence relation under which its type-definability is equivalent to type-definability of all of its classes; this is enough to show that (under this condition) smoothness is equivalent to type-definability.
+	\end{itemize}
+	The first result is joint with Krzysztof Krupiński, the second one is joint with Krzysztof Krupiński and Anand Pillay, while the third is mine alone.
+	
+	In this thesis, I consider the more abstract case of an equivalence relation invariant under a group action, satisfying various additional assumptions. This allows us to prove general principles which imply the results mentioned above, as well as similar results in several different contexts in model theory and beyond, e.g.\ related to model-theoretic group components and compact group actions.
+	
+	Thus we extend a previous result of Kaplan and Miller and (independently) of mine and Krupiński about equivalence of smoothness and type-definability for certain $F_\sigma$ strong types (solving some open problems from earlier papers), as well as the theorem of Krupiński and Pillay about presenting the quotient of a definable group by its model-theoretic connected component as the quotient of a compact group by a subgroup.
+	
+	Furthermore, the obtained results bring new perspective on several open problems related to Borel cardinalities of strong types in model theory, and the methods developed both exploit and highlight the connections between model theory, topological dynamics and Banach space theory, extending previously known results in that area.
+	
+	\newpage
+	\thispagestyle{empty}
+	\section*{Thanks}
+	{\setlength{\parskip}{1em}\setlength{\parindent}{0em}
+		To my advisor, Krzysztof Krupiński, for his patience and invaluable help in polishing this thesis, as well as his enormous support (moral and mathematical) throughout my doctoral studies.
+		
+		To both Krzysztof and Anand Pillay for all the insights and the work they have done on our papers.
+		
+		To Itay Kaplan and the anonymous referees for helpful comments about my papers.
+		
+		To my colleagues in Wrocław, for the stimulating seminars, interesting discussions and all the great time we have had over the years.
+		
+		To the model theory group at the Hebrew University in Jerusalem, for providing a supportive environment in which I finished the thesis.
+		
+		To my mathematics teachers, in particular to Barbara Obremska and Grzegorz Lichwa, for giving me the opportunity to broaden my horizons and for encouraging me to pursue mathematical career.
+		
+		To all the friends and colleagues I did not mention.
+		
+		To my parents, for always being there for me.
+		
+		To Karolina, for everything.
+		
+		Thanks to all of you.
+	}
+	
+	
+	
+	\microtypesetup{protrusion=false}
+	\tableofcontents
+	\microtypesetup{protrusion=true}
+	
+	
+	
+	
+	\input{introduction.tex}
+	
+	\input{preliminaries.tex}
+	
+	
+	\input{toy_examples.tex}
+	
+	\input{toolbox.tex}
+	
+	\input{group_like.tex}
+	
+	\input{applications.tex}
+	
+	\input{intransitive.tex}
+	
+	\input{nonmetrisable.tex}
+	
+	
+	\input{appendix.tex}
+	
+	
+	\printbibliography
+	\addcontentsline{toc}{chapter}{Bibliography}
+	\printindex
+	\addcontentsline{toc}{chapter}{List of symbols and definitions}
+\end{document}

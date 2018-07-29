@@ -1,0 +1,872 @@
+
+	\chapter{Group-like equivalence relations}
+	\label{chap:grouplike}
+	In this chapter, we introduce the notions of group-like and weakly group-like equivalence relations, along with various strengthenings of both. We prove many of their properties, including abstract Theorems~\ref{thm:general_cardinality_intransitive}, \ref{thm:general_cardinality_transitive} and \ref{thm:main_abstract}, which are the formal statements behind Main~Theorems~\ref{mainthm:abstract_card} and \ref{mainthm:abstract_smt}, and which will be later used to prove (the precise versions of) Main~Theorems~\ref{mainthm_group_types}, \ref{mainthm:smt} and \ref{mainthm:nwg}.
+	
+	Throughout the chapter, unless noted otherwise, we have a fixed $G$-ambit $(X,x_0)$ along with an equivalence relation $E$ on $X$. $EL=E(G,X)$ is the enveloping semigroup of $(G,X)$, $\cM$ is a fixed minimal (left) ideal in $EL$, and $u\in \cM$ is an idempotent.
+	
+	\section{Closed group-like equivalence relations}
+	\begin{dfn}
+		\label{dfn:glike}
+		\index{equivalence relation!group-like}
+		Let $E$ be an equivalence relation on $X$. We say that $E$ is \emph{$G$-group-like} (or just \emph{group-like}) if it is $G$-invariant and the partial operation given by formula
+		\[
+		[gx_0]_E\cdot [x]_E=g[x]_E,
+		\]
+		for all $g\in G$ and $x\in X$, extends to a group operation on $X/E$, turning it into (possibly non-Hausdorff) topological group (with the quotient topology).
+		
+		In other words, $X/E$ is a topological group (with the quotient topology) and $g\mapsto [gx_0]_E$ is a well-defined group homomorphism.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		Note that the definition of group-likeness implies that $[x_0]_E=[e\cdot x_0]_E$ is the identity in $X/E$.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{ex}
+		\label{ex:group_glike}
+		Consider the action of a compact Hausdorff group $G$ on itself by left translations, so that $X=G$ and take $x_0=e$. Then given any normal $N\unlhd G$, the relation $E=E_N$ of lying in the same coset of $N$ is group-like, and it is closed if and only if $N$ is closed. (See Example~\ref{ex:cpct_glike} for more details.)\xqed{\lozenge}
+	\end{ex}
+	
+
+	\begin{prop}
+		An equivalence relation $E$ is $G$-group-like if and only if $X/E$ has a topological group structure (with the induced topology) and for every $x$ we have $gx\in [gx_0]_E\cdot [x]_E$.
+	\end{prop}
+	\begin{proof}
+		Suppose $E$ is group-like, so we have a group structure on $X/E$ witnessing it. Choose any $g,x$. Then by the assumption $[gx]_E=g[x]_E=[gx_0]_E\cdot [x]_E$, which means that $gx\in [gx_0]_E\cdot [x]_E$.
+		
+		In the other direction, suppose for all $g,x$ we have that $gx\in [gx_0]_E\cdot [x]_E$. Then, in particular, whenever $[x_1]_E=[x_2]_E$, we have that $gx_1\in [gx_0]_E\cdot [x_1]_E$ and $gx_2\in [gx_0]_E\cdot[x_2]_E$, and since the classes on the right hand side are equal, it follows that $gx_2\Er gx_1$, so $E$ is $G$-invariant. Thus $g[x]_E=[gx]_E$, so $g [x]_E\subseteq [gx_0]_E\cdot [x]_E$, and in fact $g[x]_E=[gx_0]_E\cdot [x]_E$ (because the latter is a single $E$-class).
+	\end{proof}
+	
+	\begin{prop}
+		If $E$ is group-like, then for all $g\in G$ we have that whenever $gx_0\Er x_0$, then $gx\Er x$ for all $x\in X$. In particular, the stabilizer of $[x_0]_E$ is normal in $G$.
+	\end{prop}
+	\begin{proof}
+		If $[gx_0]=[x_0]_E=[e_G x_0]_E$, then by group-likeness $g [x]_E=[e_G x_0]_E\cdot [x]_E=e_G[x]_E=[x]_E$.
+	\end{proof}
+	
+	\begin{prop}
+		\label{prop:closed_invariant}
+		If $E$ is a closed, $G$-invariant equivalence relation on $X$, then it is also $EL$-invariant.
+	\end{prop}
+	\begin{proof}
+		If $f=\lim g_i$, then for any $x_1 \Er x_2$ we have that $g_i(x_1)\Er g_i(x_2)$, so by closedness $f(x_1)\Er f(x_2)$.
+	\end{proof}
+	
+	\begin{dfn}
+		\index{r@$r$}
+		\index{R@$R$}
+		In the remainder of this chapter, we will denote by $R$ the orbit map $EL\to X$, $R(f)=f(x_0)$, an by $r$ the induced map $EL\to X/E$, $r(f)=[f(x_0)]_E$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{lem}
+		\label{lem:closed_group_like}
+		Suppose $E$ is a closed, group-like equivalence relation on $X$.
+		
+		Then:
+		\begin{enumerate}
+			\item
+			$E$ is $EL$-invariant,
+			\item
+			$r\colon EL\to X/E$, $r(f)=[f(x_0)]_E$ is a semigroup homomorphism,
+			\item
+			$r\restr_{u\cM}$ is onto and a topological quotient mapping (with $u\cM$ equipped with the $\tau$-topology),
+			\item
+			$H(u\cM)\leq \ker r$ and the induced map $u\cM/H(u\cM)\to X/E$ is a topological group quotient mapping.
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		Note that because $E$ is closed, by Fact~\ref{fct:quot_T2_iff_closed}, $X/E$ is Hausdorff, so convergent nets have unique limits.
+		
+		(1) is immediate by Proposition~\ref{prop:closed_invariant}.
+		
+		To see that $r$ is a homomorphism, choose any $f_1,f_2\in EL$. We know that $R(f_1f_2)=f_1R(f_2)$. By (1), it follows that $r(f_1f_2)=f_1r(f_2)$. Let $g_i$ converge to $f_1$. Then $f_1r(f_2)=\lim (g_i\cdot r(f_2))$. But by the assumption $g_i\cdot r(f_2)=r(g_i)\cdot r(f_2)$, so by continuity of multiplication and $r$ we have that $\lim(g_ir(f_2))=\lim(r(g_i)r(f_2))=(\lim r(g_i))r(f_2)=r(f_1)r(f_2)$.
+		
+		Note that $r\restr_{u\cM}$ is surjective, because $u\cM=uELu$, $X/E$ is a group and $r$ is surjective (so $r(u\cM)=r(u)\cdot (X/E)\cdot r(u)=X/E$).
+		
+		To prove that $r\restr_{u\cM}$ is continuous in the $\tau$ topology, we show that if $F\subseteq X/E$ is closed, then $(u\circ r^{-1}[F])\cap u\cM=r^{-1}[F]\cap u\cM$. Note first that of course $r$ is continuous (as a map $EL\to X/E$). Take any net $(f_i)_i$ in $r^{-1}[F]$ and $g_i\to u$ such that $(g_if_i)_i$ converges to some $h\in u\cM$. We want to show that $r(h)\in F$. Passing to a subnet if necessary, we can assume that $f_i$ converges to some $f\in r^{-1}[F]$. Then we have (by continuity) that $r(h)=\lim r(g_if_i)=\lim (r(g_i)r(f_i))=r(u)r(f)=r(f)$ (because $r(u)$ is the identity, since it is the only idempotent in a group).
+		
+		In conclusion, $r\restr_{u\cM}\to X/E$ is a continuous surjection from a compact space to a Hausdorff space, and thus it is closed, and in particular a quotient mapping.
+		
+		The last point follows immediately from Corollary~\ref{cor:H(G)_universal} and the second and third points above.
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:closure_grouplike}
+		Suppose $E$ is group-like. Then $\bar E$ defined as $x_1\mathrel{\bar E} x_2$ when $\overline{\{[x_1]_E\}}=\overline{\{[x_2]_E\}}\subseteq X/E$ is a closed group-like equivalence relation Furthermore, $\bar E$ is the finest closed equivalence relation coarser than $E$.
+	\end{prop}
+	\begin{proof}
+		Note that $X/{\bar E}$ is simply the quotient of the topological group $X/E$ by the closure of the identity $[x_0]_E$. As such (by Fact~\ref{fct:quotient_by_closed_subgroup}), it is a Hausdorff group and $X/E\to X/{\bar E}$ is a homomorphism. The conclusion follows.
+		
+		For the ``furthermore'' part, note that if $F\supseteq E$ is closed, then by Fact~\ref{fct:quot_T2_iff_closed}, $X/F$ is Hausdorff. It follows that the preimage of any point by the map $X/E\to X/F$ is closed in $X/E$, which implies that any class of $F$ contains a class of $\bar E$, which completes the proof.
+	\end{proof}
+	
+	\begin{cor}
+		\label{cor:r_uM_cont}
+		If $E$ is a group-like equivalence relation (not necessarily closed), then $r\restr_{u\cM}$ is continuous.
+	\end{cor}
+	\begin{proof}
+		Let $\bar E$ be as in Proposition~\ref{prop:closure_grouplike}. Write $r_{\bar E}$ for the induced map $EL\to X/{\bar E}$. Consider the commutative diagrams:
+		\begin{center}
+			\begin{tabular}{lcr}
+				\begin{tikzcd}
+				u\cM\arrow[d,"r\restr_{u\cM}"]\arrow[dr,"r_{\bar E}\restr_{u\cM}"] & \\
+				X/E\arrow[r] & X/{\bar E}
+				\end{tikzcd}
+				&&
+				\begin{tikzcd}
+				EL\arrow[d,"r"]\arrow[dr,"r_{\bar E}"] & \\
+				X/E\arrow[r] & X/{\bar E}
+				\end{tikzcd}
+			\end{tabular}
+		\end{center}
+		Let $F\subseteq X/E$ be closed. Then $F$ is $\overline{[x_0]_E}$-invariant (because it contains the closure of each of its points), so $F/\overline{[x_0]_E}$ is closed, and $r^{-1}[F]=r_{\bar E}^{-1}[F/\overline{[x_0]_E}]$. But since (by Proposition~\ref{prop:closure_grouplike}) $\bar E$ is closed and group-like, we know by Lemma~\ref{lem:closed_group_like} that $r_{\bar E}\restr_{u\cM}$ is continuous, so $r\restr_{u\cM}^{-1}[F]=r_{\bar E}\restr_{u\cM}^{-1}[F/\overline{[x_0]_E}]$ is closed.
+	\end{proof}
+	
+	
+	\section{Properly group-like equivalence relations}
+	It is not hard to see that if $E$ is closed group-like, then the group structure on $X/E$ is determined uniquely (because the image of $G$ in $X/E$ forms a dense subgroup). In general, this need not be true (so in particular, we cannot hope to have a homomorphism as in Lemma~\ref{lem:closed_group_like}), as the following example shows.
+	
+	\begin{ex}
+		\label{ex:nonunique_structure}
+		Let $G={\bQ}$ act on the circle $X=\bR/\bZ$ with $x_0=0+\bZ$ by addition; clearly,  $(G,X,x_0)$ is an ambit. Then if we take for $E$ the relation of lying in the same orbit of $G$, then as a topological space, $X/E=X/G=\bR/\bQ$ is a space of cardinality $2^{\aleph_0}$ with trivial (antidiscrete) topology, and $[gx_0]_E=\bQ$ for all $g\in G$. Thus, any group structure on $\bR/\bQ$ such that $\bQ$ is the identity witnesses group-likeness of $E$, and of course there is a large number of such structures.\xqed{\lozenge}
+	\end{ex}
+	
+	Since we do want to treat relations which are not necessarily closed, and still recover something like Lemma~\ref{lem:closed_group_like}, we impose further restrictions on the group structure of the quotient.
+	
+	\begin{dfn}
+		\label{dfn:prop_glike}
+		\index{equivalence relation!group-like!properly}
+		We say that an equivalence relation $E$ on $X$ is \emph{properly group-like} if it is group-like and there is a group $\tilde G$, an equivalence relation $\equiv$ on it, an identification of $X$ with $\tilde G/{\equiv}$, such that:
+		\index{G@$\tilde G$}
+		\begin{figure}[H]
+			\begin{tikzcd}
+				G \arrow[r]\arrow[dr]& EL=EL(G,X)\arrow[d,"R"]\arrow[dr,"r"]& \\
+				\tilde G \arrow[r,"\tilde g\mapsto {[\tilde g]}_\equiv"] & X=\tilde G/{\equiv} \arrow[r] & \tilde G/N=X/E
+			\end{tikzcd}
+		\end{figure}
+		\begin{itemize}
+			\item
+			$\tilde g\mapsto [[\tilde g]_\equiv]_E$ is a group homomorphism (for brevity, we will denote it by $\tilde r$),
+			\item
+			(pseudocompleteness) whenever $(g_i)$ and $(p_i)$ are nets in $G$ and $X$ (respectively) such that $g_i\cdot x_0\to x_1$, $p_i\to x_2$ and $g_i\cdot p_i\to x_3$ for some $x_1,x_2,x_3\in X$, there are $\tilde g_1,\tilde g_2\in \tilde G$ such that $[\tilde g_1]_\equiv=x_1$, $[\tilde g_2]_\equiv=x_2$ and $[\tilde g_1\tilde g_2]_\equiv=x_3$,
+			\item $F_0=\{[\tilde g_1^{-1}\tilde g_2]_{\equiv}\mid \tilde g_1\equiv \tilde g_2\}$ is closed in $X$.\xqed{\lozenge}
+		\end{itemize}
+	\end{dfn}
+	
+	\begin{ex}
+		The $E_N$ from Example~\ref{ex:group_glike} is actually properly group-like: indeed, we can just take $\tilde G=G$ with ${\equiv}$ being just equality in $\tilde G=G$. (See Example~\ref{ex:cpct_glike} for more details.).\xqed{\lozenge}
+	\end{ex}
+	
+	\begin{ex}
+		\label{ex:closed_glike_is_properly_glike}
+		If $E$ is closed group-like, then it is properly group-like. (See Proposition~\ref{prop:closed_glike_is_properly_glike}.)\xqed{\lozenge}
+	\end{ex}
+	
+	In the remainder of this section, unless we specify otherwise, $E$ is a properly group-like equivalence relation on $X$, and we fix $\tilde G$ and $\equiv$ witnessing that.
+	
+	\begin{prop}
+		\label{prop:approx}
+		For every $f\in EL$ and $x\in X$ there are $\tilde g_1,\tilde g_2\in \tilde G$ such that we have $[\tilde g_2]_\equiv=x$, $f(x)=[\tilde g_1\tilde g_2]_\equiv$ and $[\tilde g_1]_\equiv=f(x_0)$.
+	\end{prop}
+	\begin{proof}
+		Immediate by pseudocompleteness: take for $(g_i)_i$ a net convergent to $f$ and for $(p_i)_i$ a constant net with all $p_i$ equal to $x$.
+	\end{proof}
+	
+	
+	
+	
+	\begin{lem}
+		\label{lem:r_is_homomorphism}
+		$r\colon EL\to X/E$ is a semigroup epimorphism.
+	\end{lem}
+	\begin{proof}
+		The fact that $r$ is onto is trivial, because $R$ is onto.
+		
+		Take any $f_1,f_2\in EL$. Let $\tilde g_1,\tilde g_2\in \tilde G$ be such that $[\tilde g_1]_\equiv=f_1(x_0)$, $[\tilde g_1\tilde g_2]_{\equiv}=f_1(f_2(x_0))$ and $[\tilde g_2]_\equiv=f_2(x_0)$ (they exist by Proposition~\ref{prop:approx}). Then we have $r(f_i)=\tilde g_iN$ for $i=1,2$. At the same time, $r(f_1f_2)=[R(f_1f_2)]_E=[f_1(f_2(x_0))]_E=[[\tilde g_1\tilde g_2]_\equiv]_E=\tilde g_1\tilde g_2N=\tilde g_1N\tilde g_2N=r(f_1)r(f_2)$.
+	\end{proof}
+	Note that because $X/E$ is a group, Lemma~\ref{lem:r_is_homomorphism} immediately implies from that for any idempotent $u\in EL$ we have that $u\in \ker r$. Furthermore, Lemma~\ref{lem:r_is_homomorphism} immediately implies that if $E$ is a properly group-like equivalence relation, then the group structure witnessing it is unique, so we won't have anything like Example~\ref{ex:nonunique_structure}
+	
+	
+	We have the following proposition, generalising Proposition~\ref{prop:closed_invariant}.
+	\begin{cor}
+		\label{cor:prop_glike_ellis_invariant}
+		If $E$ is closed group-like or properly group-like, then it is $E(G,X)$-invariant. In fact, we have for every $f\in EL$ and $x\in X$ that $f[x]_E=r(f)[x]_E=[f(x)]_E$. Moreover, we have a ``mixed associativity'' law: for every $f\in E(G,X)$ and every $x_1,x_2\in X$, $(f[x_1]_E)[x_2]_E=f([x_1]_E[x_2]_E)$.
+	\end{cor}
+	\begin{proof}
+		Note that in each case, the function $r$ is a semigroup homomorphism (either by Lemma~\ref{lem:closed_group_like} or by Lemma~\ref{lem:r_is_homomorphism}).
+		
+		Choose any $f\in EL$ and $x\in X$. Then for some $f'\in EL$, $x=R(f)$. Now, note that $[f(x)]_E=[fR(f')]_E=[R(ff')]_E=r(ff')$. Since $r$ is a homomorphism, $[f(x)]_E=r(f)r(f')=r(f)[x]_E$. But the right hand side depends only on $[x]_E$, so $E$ is $EL$-invariant. Since clearly $f(x)\in [f(x)]_E$, it follows that $f[x]_E=[f(x)]_E=r(f)[x]_E$.
+		
+		For the mixed associativity, just note that by what we have already shown, for every $f\in EL$ and $x_1,x_2\in X$, we have that $(f[x_1]_E)[x_2]_E=(r(f)[x_1]_E)[x_2]_E$ and apply the associativity in $X/E$.
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:homom}
+		$r\restr_{u\cM}\colon u\cM\to X/E$ is a group epimorphism.
+	\end{prop}
+	\begin{proof}
+		Since $u\cM=uELu$ and $X/E$ is a group, it follows that $r(u\cM)=r(u)r(EL)r(u)=r(u)X/E r(u)=X/E$.
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:restr_quot}
+		$r\restr_{\cM}\colon \cM\to \Gal(T)$ is a topological quotient map.
+	\end{prop}
+	\begin{proof}
+		$EL$ is compact and $X$ is Hausdorff, so $R\colon EL\to X$ is a quotient map (because it is closed), and thus so is $r$ (as the composition of $R$ and the quotient $X\to X/E$).
+		
+		Since the map $f\mapsto fu$ is a quotient map $EL\to \cM$ (by Remark~\ref{rem: continuous surjection is closed}) and $r(f)=r(fu)$ (because $r(u)$ is the identity in $X/E$), $r\restr \cM$ is a factor of $r$ via $f\mapsto fu$, and hence it is also a quotient map, by Remark~\ref{rem:commu_quot} (with $A=EL$, $B=\cM$ and $C=X/E$).
+	\end{proof}
+	
+	\begin{prop}[Corresponding to {\cite[Lemma 4.7]{KP17}}]
+		\label{prop:id_clsd}
+		Denote by $J$ the set of idempotents in $\cM$. Then $\overline{J}\subseteq \ker r\cap \cM$.
+	\end{prop}
+	\begin{proof}
+		For any given $v\in J$, we have that
+		\[
+		R(v)\in F_0=\{[\tilde g_1^{-1}\tilde g_2]_{\equiv}\mid \tilde g_1\equiv \tilde g_2\} \}.
+		\]
+		Indeed, let us fix $v\in J$, and then take $\tilde g_1,\tilde g_2$ according to Proposition~\ref{prop:approx} for $f=v$ and $x=R(v)$. Then
+		\[
+			[\tilde g_1\tilde g_2]_\equiv=vR(v)=v^2x_0=vx_0=R(v),
+		\]
+		so $[\tilde g_1\tilde g_2]_\equiv=[\tilde g_1]_\equiv=[\tilde g_2]_\equiv=R(v)$. Since $\tilde g_2=\tilde g_1^{-1}(\tilde g_1\tilde g_2)$, it follows that $R(v)=[\tilde g_2]_\equiv\in F_0$.
+		
+		On the other hand, if $\tilde g_1\equiv \tilde g_2$, then of course $\tilde r(\tilde g_1)=\tilde r(\tilde g_2)$, so $\tilde g_1^{-1}\tilde g_2\in \ker \tilde r$, and hence $R^{-1}[F_0]\subseteq \ker r$, which (by the assumption in Definition~\ref{dfn:prop_glike}
+		that $F_0$ is closed) shows that $\overline{J}\subseteq \ker r$. Since $J\subseteq \cM$ and $\cM$ is closed, we are done.
+	\end{proof}
+	
+	
+	\begin{lem}
+		\label{lem:r_restr_to_top_quot}
+		$r\restr_{u\cM}\colon u\cM\to X/E$ is a topological group quotient map (where $u\cM$ is equipped with the $\tau$ topology).
+	\end{lem}
+	\begin{proof}
+		In light of Proposition~\ref{prop:homom}, it is enough to show that $r\restr_{u\cM}$ is a topological quotient map.
+		
+		We already know that $r\restr_{u\cM}$ is continuous (by Corollary~\ref{cor:r_uM_cont}).
+		
+		Put $P_v:=\ker r\cap v\cM(=\ker (r\restr_{v\cM}))$ for each idempotent $v\in \cM$, and let $S:=u(u\circ P_u)=\cl_\tau(P_u)$. We will need the following claim.
+		
+		\begin{clm*}
+			$r^{-1}[r[S]]\cap \cM$ is closed.
+		\end{clm*}
+		By the claim, $r^{-1}[r[S]]\cap \cM$ is closed in $\cM$, so by Proposition~\ref{prop:restr_quot}, $r[S]$ is a closed subset of $X/E$. In particular, it must contain the closure of the identity in $X/E$, i.e.\ $\overline{[x_0]_E}$. On the other hand, by continuity of $r\restr_{u\cM}$, the preimage of $\overline{[x_0]_E}$ by $r\restr_{u\cM}$ is a $\tau$-closed set containing $P_u$, and thus also $S$. It follows that $r[S]=\overline{[x_0]_E}$.
+		
+		Note that because $X/E$ is a compact topological group and $[x_0]_E$ is the identity, $(X/E)/\overline{[x_0]_E}=X/{\overline E}$ (cf.\ Proposition~\ref{prop:closure_grouplike}) is a compact Hausdorff group.
+		
+		Now, suppose $F\subseteq X/E$ is such that $r\restr_{u\cM}^{-1}[F]=r^{-1}[F]\cap u\cM$ is $\tau$-closed. Then the preimage is also $S$-invariant (because it is $P_u$-invariant). Since $r[S]=\overline{[x_0]_E}$ and $r$ is a homomorphism, it follows that $F$ is $\overline{[x_0]_E}$-invariant, i.e.\ $F=F\overline{[x_0]_E}$. Thus, $F$ is closed if and only if $F/\overline{[x_0]_E}$ is closed in $X/\overline{E}$. On the other hand, we already know (by Proposition~\ref{prop:closure_grouplike} and Lemma~\ref{lem:closed_group_like}) that the composed map $\bar r\colon u\cM\to X/{\overline E}$ is a quotient map. Since the preimage of $F/\overline{[x_0]_E}$ by $\bar r$ is the same as the preimage of $F$ by $r\restr_{u\cM}$, it follows that $F/\overline{[x_0]_E}$ is closed, and hence so is $F$. Thus, we only need to prove the claim.
+		
+		\begin{clmproof}[Proof of claim]
+			Roughly, we follow the proof of \cite[Lemma 4.8]{KP17}. Denote by $J$ the set of idempotents in $\cM$. First note that (using Fact~\ref{fct:circ_calculations} and Fact~\ref{fct:idempotents_ideals_Ellis}):
+			\begin{itemize}
+				\item
+				For any $v,w\in J$, we have $wP_v=P_w$. Indeed, since $v,w\in \ker r\cap \cM$, we have $vP_w\subseteq P_v$ and $wP_v\subseteq P_w$, and because $wv=w$, we have $P_w=wP_w=wvP_w\subseteq wP_v\subseteq P_w$, and hence $wP_v=P_w$.
+				\item
+				$S=S\cdot P_u$: for any $f\in P_u$ we have $Sf=u(u\circ P_u) f=u(u\circ (P_uf))$ and clearly $P_uf=P_u$.
+				\item
+				Since $P_u=\ker (r\restr_{u\cM})$, it follows immediately from the preceding point that $S=r^{-1}[r[S]]\cap u\cM$.
+				\item
+				$r^{-1}[r[S]]\cap \cM=J\cdot S$: to see $\subseteq$, take any $f\in r^{-1}[r[S]]\cap \cM$. Then $f\in r^{-1}[r[S]]\cap v\cM$ for some $v\in J$, and $r(f)=r(uf)\in r[S]$, so, by the preceding point, $uf\in S$, and thus $f=vf=vuf\in vS$, so $f\in J\cdot S$; the reverse inclusion is clear, as $J\subseteq \ker r$.
+				\item
+				$r^{-1}[r[S]]\cap \cM=\bigcup_{v\in J} v\circ P_u$. To see $\subseteq$, note that (using Fact~\ref{fct:tau_top_pre}(2)), for every $v\in J$ we have $vS=vu(u\circ P_u)\subseteq (vuu)\circ P_u=v\circ P_u$, so, by the preceding point, $v\circ P_u\supseteq r^{-1}[r[S]]\cap v\cM$, and thus $\bigcup_v v\circ P_u\supseteq r^{-1}[r[S]]\cap (\bigcup_v v\cM)=r^{-1}[r[S]]\cap \cM$. For $\supseteq$, note that because $u\in \ker r$, we have $r[v\circ P_u]=r[u(v\circ P_u)]\subseteq r[(uv)\circ P_u]=r[u\circ P_u]=r[u(u\circ P_u)]=r[S]$.
+			\end{itemize}
+			
+			In summary, to prove the claim, we need only to show that ${\bigcup_v v\circ P_u}$ is closed in $\cM$.
+			
+			Let $f\in \overline{\bigcup_v v\circ P_u}$. Then we have nets $(v_i)_i$ in $J$ and $(f_i)_i$ in $\cM$ such that $f_i\in v_i\circ P_u$ and $f_i\to f$. By compactness, we can assume without loss of generality that the net $(v_i)$ converges to some $v\in \overline J$. Then, by considering neighbourhoods of $v$ and $f$, we can find nets $(g_j)_j$ in $G$ and $(p_j)_j$ in $P_u$ such that $g_j\to v$ and $g_jp_j\to f$, so $f\in v\circ P_u$. By Proposition~\ref{prop:id_clsd}, $v\in \ker r\cap \cM$, so by the first bullet above, $v\in P_w=wP_u$ for some $w\in J$, so $v=wp$ for some $p\in P_u$. Furthermore, $P_u$ is a group (as the kernel of a group homomorphism), so (using Fact~\ref{fct:tau_top_pre}(2))
+			\[
+			f\in v\circ P_u=v\circ (p^{-1}P_u)\subseteq v\circ (p^{-1}\circ P_u)\subseteq (vp^{-1})\circ P_u=w\circ P_u
+			\]
+			(where $p^{-1}$ is the inverse of $p$ in $u\cM$), and we are done.
+		\end{clmproof}
+	\end{proof}
+	
+	\begin{dfn}
+		\label{dfn:unif_prop_glike}
+		\index{equivalence relation!group-like!uniformly properly}
+		A properly group-like $E$ is \emph{uniformly properly group-like} if $E=\bigcup \mathcal E$, where $\mathcal E$ is a family of closed, symmetric subsets of $X^2$ containing the diagonal, with the property that (for some $\tilde G$ witnessing proper group-likeness) for any $D\in \mathcal E$ we have some $D'\in \mathcal E$ such that whenever $(x_0,[\tilde g]_\equiv)\in D$, we have that for every $\tilde g'$ also $([\tilde g']_\equiv,[\tilde g\tilde g']_\equiv)\in D'$, and $D\circ D\subseteq D'$ (here, $\circ$ denotes composition of relations; note that since $D$ contains the diagonal, this implies that $D\subseteq D'$).\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{prop}
+		\label{prop:approx2}
+		If $F\subseteq X$ is closed, then for every $f\in EL$ and $f'\in f\circ R^{-1}[F]$, there are $\tilde g_1,\tilde g_2\in \tilde G$ such that $[\tilde g_1]_\equiv=R(f)$, $[\tilde g_2]_\equiv\in F$ and $[\tilde g_1\tilde g_2]_\equiv=R(f')$.\qed
+	\end{prop}
+	\begin{proof}
+		Take $(g_i), (f_i)$ such that $g_i\to f$, $f_i\in R^{-1}[F]$, and $g_if_i\to f'$. Without loss of generality we can assume that $(f_i)$ is convergent to some $f''$. Then $R(f_i)\to R(f'')$ and $g_iR(f_i)=R(g_if_i)\to R(f')$ and by pseudocompleteness (applied to $(g_i)_i$ and $(R(f_i))_i$), we have $\tilde g_1,\tilde g_2$ such that $[\tilde g_1]_\equiv=R(f)$, $[\tilde g_2]_\equiv=R(f'')$ and $[\tilde g_1\tilde g_2]_\equiv=R(f')$. But since $F$ is closed, $R(f'')\in F$ and we are done.
+	\end{proof}
+	The proof of the following proposition is based on the proofs of \cite[Theorem 0.1]{KP17} and \cite[Theorem 2.7]{KPR15} (the latter paper is joint with Krzysztof Krupiński and Anand Pillay). Recall that $H(u\cM)$ is the intersection of closures of the $\tau$-neighbourhoods of $u\in u\cM$  (see Fact~\ref{fct:tau_top_pre}(8)).
+	\begin{prop}
+		\label{prop:H(uM)_in_ker}
+		Suppose $E$ is uniformly properly group-like.
+		
+		Then $H(u\cM)\leq \ker(r)$.
+	\end{prop}
+	\begin{proof}
+		Note that $R[\ker r]$ is precisely $[x_0]_E\subseteq X$.
+		
+		Let $S\in \mathcal E$ be such that $R(u)\in S_{x_0}$ (i.e.\ $(x_0,R(u))\in S$ --- it exists because $u\in \ker r$). Choose $S',S''=(S')'\in \mathcal E$ as in Definition~\ref{dfn:unif_prop_glike}.
+		
+		Let $U\subseteq X$ be an arbitrary open set such that $K:=\overline U$ is disjoint from $S''_{x_0}$ (i.e.\ for no $k\in K$ we have $(x_0,k)\in S''$). Consider $F_U=R^{-1}[K]\cap u\cM$ and $A_U=R^{-1}[(X\setminus U)\circ S']$ ($\circ$ denotes relation composition, so this makes sense, as $(X\setminus U)\circ S'\subseteq X^1\circ X^2=X^1=X$).
+		
+		\begin{clm*}\begin{itemize}
+				\item $u\notin \cl_\tau(F_U)$,
+				\item $\cl_\tau(u\cM\setminus \cl_\tau(F_U))\subseteq A_U$,
+				\item $H(u\cM)\subseteq A_U$.
+			\end{itemize}
+		\end{clm*}
+		\begin{clmproof}
+			Suppose towards contradiction that $u\in \cl_\tau(F_U)$. Then by Proposition~\ref{prop:approx2} applied to $u\in u\circ R^{-1}[K]$, we have $\tilde g_1,\tilde g_2$ such that $[\tilde g_1]_\equiv=[\tilde g_1\tilde g_2]_\equiv=R(u)$ and $[\tilde g_2]_\equiv\in K$. In particular $[\tilde g_1]_\equiv= R(u)\in S_{x_0}$, so $([\tilde g_2]_\equiv,[\tilde g_1\tilde g_2]_\equiv)\in S'$. Thus, since $[\tilde g_1\tilde g_2]_\equiv=R(u)\in S_{x_0}\subseteq S'_{x_0}$, we have $[\tilde g_2]_\equiv\in S''_{x_0}$ so $[\tilde g_2]_\equiv \in K\cap S''_{x_0}$, a contradiction.
+			
+			For the second bullet, it is enough to show that $\cl_\tau(u\cM\setminus R^{-1}[U])\subseteq A_U$. Take any $f\in \cl_\tau(u\cM\setminus R^{-1}[U])=\cl_\tau(u\cM\cap R^{-1}[X\setminus U])$. By applying Proposition~\ref{prop:approx2} to $f\in u\circ R^{-1}[X\setminus U]$, we find $\tilde g_1,\tilde g_2$ such that $[\tilde g_1]_\equiv=R(u)$, $[\tilde g_1\tilde g_2]_\equiv=R(f)$ and $[\tilde g_2]_\equiv\in X\setminus U$. Then, as before, $R(f)=[\tilde g_1\tilde g_2]_\equiv\in S'_{[\tilde g_2]_\equiv}\subseteq (X\setminus U)\circ S'$.
+			
+			For the third bullet, note that $H(u\cM)$ is, by its definition and the first bullet, contained in $\cl_\tau(u\cM\setminus \cl_\tau(F_U))$, and then apply the second bullet.
+		\end{clmproof}
+		
+		By the claim, $\bigcap_U A_U\supseteq H(u\cM)$, where the intersection runs over all $U$ with closures disjoint from $S''_{x_0}$. We will show that the opposite inclusion holds as well, so the two sides are equal.
+		
+		Notice that $R[A_U]=(X\setminus U)\circ S'$, so for any $f\in A_U$, we have that $S'_{R(f)}\cap (X\setminus U)\neq \emptyset$, and so by compactness, if $f\in \bigcap_U A_U$, then $S'_{R(f)}\cap \bigcap_U (X\setminus U)\neq \emptyset$.
+		
+		Moreover, because $X$ is normal (as a compact Hausdorff space) and $S''_{x_0}$ is closed, $S''_{x_0}=\bigcap_U X\setminus U$ (where $U$ are as above; this means just that $S''_{x_0}$ is the intersection of all closed sets containing $S''_{x_0}$ in their interior). It follows that for $f\in\bigcap_U A_U$, we have $S'_{R(f)}\cap S''_{x_0}\neq \emptyset$, whence $R(f)\in (S'\circ S'')_{x_0}\subseteq S'''_{x_0}\subseteq [x_0]_E\subseteq R[\ker r]$ (where $S'''=(S'')'\in \mathcal E$ is chosen according to Definition~\ref{dfn:unif_prop_glike}). Thus $f\in \ker r$.
+	\end{proof}
+
+	The following lemma summarises the results of this chapter up to this point.
+	\begin{lem}
+		\label{lem:main_abstract_grouplike}
+		Suppose $E$ is a group-like equivalence relation on $X$. Let $\cM$ be a minimal left ideal in $EL=E(G,X)$, and let $u\in \cM$ be an idempotent.
+		Consider $r\restr_{u\cM}\colon u\cM\to X/E$ defined by $r(f)=[f(x_0)]_E$.
+		Then:
+		\begin{enumerate}
+			\item
+			$r\restr_{u\cM}$ is continuous (where $u\cM$ is equipped with the $\tau$ topology),
+			\item
+			if $E$ is closed or properly group-like, then it is $E(G,X)$-invariant, $r$ is a homomorphism and $r\restr_{u\cM}$ is a topological quotient map (once more, with $u\cM$ equipped with the $\tau$ topology),
+			\item
+			if $E$ is closed or uniformly properly group-like, then  $r\restr_{u\cM}$ factors through $u\cM/H(u\cM)$ and induces a topological group quotient mapping from the compact Hausdorff group $u\cM/H(u\cM)$ onto $X/E$.
+			
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1) is Corollary~\ref{cor:r_uM_cont}. (2) follows from Corollary~\ref{cor:prop_glike_ellis_invariant} and Lemmas~\ref{lem:closed_group_like}, \ref{lem:r_is_homomorphism} and \ref{lem:r_restr_to_top_quot}. (3) follows from Lemma~\ref{lem:closed_group_like} and Proposition~\ref{prop:H(uM)_in_ker}.
+	\end{proof}
+	
+	\section{Weakly group-like equivalence relations}
+	The following notation will be very convenient throughout this section.
+	\begin{dfn}
+		\label{dfn:induced_relation}
+		\index{EZ@$E"|_Z$}
+		Suppose $X$ is a set and $E$ is an equivalence relation on $X$, while $Z$ is another set with some distinguished map $f\colon Z\to X/E$ (which is usually left implicit, but clear from the context, e.g.\ if we have a distinguished map $Z\to X$, the map $Z\to X/E$ would be its composition with the quotient map $X\to X/E$). Then by $E|_Z$ we mean the pullback of $E$ by $f$, i.e.\ $y_1 \mathrel{E|_Z} y_2$ when $f(y_1)\Er f(y_2)$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		In the context of the above definition, if $f$ is surjective, we have a canonical bijection between $X/E$ and $Z/E|_Z$.
+		
+		Furthermore, if $f$ is induced by a continuous surjection $Z\to X$, while $Z$ is compact and $X$ is Hausdorff (which will usually be the case), then $X/E$ and $Z/E|_Z$ are homeomorphic (by Remarks~\ref{rem:commu_quot} and \ref{rem: continuous surjection is closed}).
+		
+		In both cases, we will freely identify the two quotients.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{center}
+		\begin{tikzcd}
+			Z\ar[d, two heads]\ar[r, two heads] & Z/F\ar[d, two heads] \ar[r, two heads]& (Z/F)/E|_{Z/F}=Z/{E|_Z}\ar[dl, two heads,"1-1"]\\
+			X\ar[r, two heads] & X/E
+		\end{tikzcd}
+	\end{center}
+	\begin{dfn}
+		\index{domination}
+		If $(Z,z_0)$ is a $G$-ambit and $F$ is a group-like equivalence relation on $Z$, while $E$ is an equivalence relation on $X$, we say that $F$ \emph{dominates} $E$ if there is a $G$-ambit morphism $Z\to X$ such that $F$ refines $E|_Z$ and the induced map $Z/F\to X/E$ is $Z/F$-equivariant with respect to some left action of $Z/F$ on $X/E$, i.e.\ $E|_{Z/F}$ is left invariant. (This makes sense because if $F$ refines $E|_Z$, then the morphism $Z\to X$ induces a surjection $Z/F\to X/E$.)\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		\label{rem:domin_orbit}
+		Note that if $F$ dominates $E$, as witnessed by $\varphi\colon Z\to X$, then the induced map $Z/F\to X/E$ is not only a topological quotient map (because $\varphi$ is a quotient map, as a continuous surjection between compact spaces), but also an orbit map (at $[x_0]_E$) of the action of $Z/F$ on $X/E$.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{dfn}
+		\label{dfn:wkglike}
+		\index{equivalence relation!group-like!weakly}
+		\index{equivalence relation!group-like!weakly closed}
+		\index{equivalence relation!group-like!weakly properly}
+		\index{equivalence relation!group-like!weakly uniformly properly}
+		We say that an equivalence relation $E$ on the ambit $(X,x_0)$ is \emph{weakly [closed/properly/uniformly properly] ($G$-)group-like} if it is dominated by some [closed/properly/uniformly properly, respectively] ($G$-)group-like equivalence relation.\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{ex}
+		\label{ex:group_wgl}
+		If $G$ is a compact Hausdorff group, acting on $X=G$ by left translations, while $H\leq G$, then the relation $E_H$ of lying in the same left coset of $H$ is weakly uniformly group-like, as it is dominated by equality on $X$, which is closed, and it is not hard to see that it is uniformly group-like in this case. Thus, $E_H$ is weakly uniformly properly group-like and weakly closed group-like.\xqed{\lozenge}
+	\end{ex}
+	
+	\begin{ex}
+		\label{ex:noteventhen}
+		Recall Example~\ref{ex:nonunique_structure}. There, $X=\bR/\bZ$ is a compact Hausdorff group and $E=E_H$ for $H=\bQ/\bZ$, so this is a special case of Example~\ref{ex:group_wgl}. Thus, $E$ is weakly closed group-like and weakly uniformly properly group-like. This shows that even if $E$ is an equivalence relation which is simultaneously group-like and weakly uniformly properly group-like and weakly closed group-like, there may be multiple group structures on $X/E$ witnessing group-likeness.\xqed{\lozenge}
+	\end{ex}
+	
+	In the definition of a weakly group-like equivalence relation, we did not specify that it needs to be invariant. The following proposition shows that it actually follows from the definition.
+	\begin{prop}
+		A weakly group-like equivalence relation is
+		invariant.
+	\end{prop}
+	\begin{proof}
+		Let $E$ be weakly group-like on $X$, dominated by a group-like $F$ on some $Z$. It is easy to see that $E$ is invariant if and only if $E|_Z$ is, so we can assume without loss of generality that $X=Z$.
+		
+		Now, for any $g\in G$ and $x_1,x_2\in X$, if $x_1\Er x_2$, then by weak group-likeness, $[x_1]_F \mathrel{E|_{X/F}} [x_2]_F$ and $[gx_1]_F=[gx_0]_F\cdot [x_1]_F\mathrel{E|_{X/F}} [gx_0]_F\cdot [x_2]_F=[gx_2]_F$, so $gx_1\Er gx_2$.
+	\end{proof}
+	
+	
+	The following proposition describes some basic topological properties of weakly group-like equivalence relations. In particular, it generalises Proposition~\ref{prop:top_gp_R1} for compact Hausdorff groups, and as we will see later (in Remark~\ref{rem:wglike_closedness_to_typdef}), also Proposition~\ref{prop:type-definability_of_relations}.
+	\begin{prop}
+		\label{prop:top_props_of_wglike}
+		Suppose $E$ is a weakly group-like equivalence equivalence relation on $X$. Then:
+		\begin{enumerate}
+			\item
+			$X/E$ is an $R_1$-space (see Definition~\ref{dfn:R0_R_1}),
+			\item
+			$E$ is closed if and only if it has a closed class, if and only if $X/E$ is Hausdorff.
+		\end{enumerate}
+	\end{prop}
+	\begin{proof}
+		Let $F$ be a group-like equivalence relation on $Z$ dominating $E$.
+		
+		By Remark~\ref{rem:domin_orbit}, if $H\leq Z/F$ is the stabiliser of $[x_0]_E\in X/E$, we have that $X/E$ is homeomorphic to $(Z/F)/H$, which is an $R_1$-space by the Proposition~\ref{prop:top_gp_R1}, which gives us (1).
+		
+		It follows immediately from (1) that $X/E$ is Hausdorff if and only if all $E$-classes are closed, and by Fact~\ref{fct:quot_T2_iff_closed}, $X/E$ is Hausdorff if and only if $E$ is closed. On the other hand, it is not hard to see that $Z/F$ acts on $X/E$ transitively by homeomorphisms, so if one class of $E$ is closed, then all of them are, which gives us (2).
+	\end{proof}
+	
+	
+	In general, a product of quotient maps need not be a quotient map. The following proposition establishes a sufficient condition for that to hold, which we will use in a moment.
+	\begin{prop}
+		\label{prop:product_quotient}
+		Suppose $X_1,X_2, Y_1,Y_2$ are compact spaces, and $Y_1,Y_2$ are $R_1$-spaces.
+		
+		Then if $f_i\colon X_i\to Y_i$ are quotient maps (for $i=1,2$), then the product $f_1\times f_2\colon X_1\times X_2\to Y_1\times Y_2$ is also a quotient map.
+	\end{prop}
+	\begin{proof}
+		Let $\overline{Y_1},\overline{Y_2}$ be the Hausdorff quotients of $Y_1,Y_2$ (respectively) which we have by the $R_1$ condition.
+		
+		Consider the natural maps $\bar f_i\colon X_i\to \overline{Y_i}$ induced by $f_i$ for $i=1,2$. They are clearly continuous and surjective, and hence so is $\bar f_1\times \bar f_2\colon X_1\times X_2\to \overline{Y_1}\times \overline{Y_2}$. $X_1\times X_2$ is compact and $\overline{Y_1}\times \overline{Y_2}$ is Hausdorff, so by Remark~\ref{rem: continuous surjection is closed}, $\bar f_1\times \bar f_2$ is a quotient map, fitting into the following commutative diagram:
+		\begin{center}
+			\begin{tikzcd}
+			X_1\times X_2\ar[r,two heads,"f_1\times f_2"]\ar[d,two heads,swap,"\bar f_1\times \bar f_2"] & Y_1\times Y_2\ar[dl, two heads]\\
+			\overline{Y_1}\times \overline{Y_2}&
+			\end{tikzcd}
+		\end{center}
+		We need to show that if $A\subseteq Y_1\times Y_2$ has closed preimage $A'=(f_1\times f_2)^{-1}[A]\subseteq X_1\times X_2$, then it is closed. Note that since $A'$ is closed, it has closed fibres (both in $X_1$ and in $X_2$). Since $f_1,f_2$ are quotient maps, it follows that fibres of $A$ are closed, so they are preimages of subsets of $\overline{Y_1}$ and $\overline{Y_2}$. Thus $A$ itself is the preimage of some $A''\subseteq \overline{Y_1}\times \overline{Y_2}$. But then it follows that $A'=(\bar f_1\times \bar f_2)^{-1}[A'']$, so, since $\bar f_1\times \bar f_2$ is a quotient map, $A''$ is closed, and thus so is $A$ (as its continuous preimage).
+	\end{proof}
+	
+	Similarly, as mentioned in the introduction, a quotient map need not be open in general. However, suitable algebraic assumptions can force that to be true, as in the following proposition.
+	\begin{prop}
+		\label{prop:quotient_is_open}
+		If $G$ is a left topological group (i.e.\ for any fixed $g_0\in G$, the left multiplication $g\mapsto gg_0$ is continuous), then for any $H\leq G$, the quotient map $\varphi\colon G\to G/H$ is an open mapping.
+	\end{prop}
+	\begin{proof}
+		Note that the assumption implies immediately that for every $g_0$, the left multiplication by $g_0$ is a homeomorphism $G\to G$, and in particular, it is open.
+		
+		Let $U\subseteq G$ be open. Then $UH=\bigcup_{h\in H} Uh$ is also open (as a union of open sets). Since clearly $\varphi^{-1}[\varphi[U]]=UH$, it follows that $\varphi[U]$ is open.
+	\end{proof}
+	
+	\begin{prop}
+		\label{prop:action_factor_is_continuous}
+		Suppose we have:
+		\begin{itemize}
+			\item
+			left topological semigroups $S,T$,
+			\item
+			topological spaces $A,B$,
+			\item
+			a continuous semigroup action $\mu\colon S\times A\to A$,
+			\item
+			a topological quotient homomorphism $q_S\colon S\to T$ and a topological quotient map $q_A\colon A\to B$ such that $\mu$ induces an action $\mu_T\colon T\times B\to B$ (satisfying the natural commutativity conditions; see the diagram in the proof).
+		\end{itemize}
+		Then if either:
+		\begin{enumerate}
+			\item
+			$T$ and $B$ are $R_1$, or
+			\item
+			$S$ and $T$ are groups and $q_A$ is an open mapping (e.g.\ $B=A$ and $q_A=\id_A$),
+		\end{enumerate}
+		then $\mu_T$ is continuous.
+	\end{prop}
+	\begin{proof}
+		Note that by the assumption, we have a commutative diagram:
+		\begin{center}
+			\begin{tikzcd}
+				S\times A\ar[d,swap,"q_S\times q_A", two heads]\ar[r,"\mu", two heads]\ar[dr, two heads] & A\ar[d,"q_A", two heads]\\
+				T\times B\ar[r,swap,"\mu_T", two heads] & B.
+			\end{tikzcd}
+		\end{center}
+		Since $\mu$ and $q_A$ are continuous, it follows that the diagonal arrow is continuous. Thus, by Remark~\ref{rem:commu_quot} (applied to the lower left triangle), it is enough to show that $q_S\times q_A$ is a topological quotient map.
+		
+		If we assume (1), this follows from Proposition~\ref{prop:product_quotient}. Under (2), it follows from Proposition~\ref{prop:quotient_is_open} that $q_S$ is open, so $q_S\times q_A$ is open (as a product of open maps). Since it is trivially a continuous surjection, it follows that it is a quotient map.
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:grouplike_cont_action}
+		If $F$ dominates $E$, then the action of $Z/F$ on $X/E$ is (jointly) continuous.
+	\end{prop}
+	\begin{proof}
+		Since $F$ is group-like, the multiplication $Z/F\times Z/F\to Z/F$ is continuous and $Z/F$ is a topological group (so in particular, it is a left topological group).
+		
+		The conclusion follows immediately by Proposition~\ref{prop:action_factor_is_continuous} to $S=T=Z/F$, $A=Z/F$ and $B=X/E$. In fact, both (1) and (2) apply ((1) by Proposition~\ref{prop:top_props_of_wglike}, and (2) by Proposition~\ref{prop:quotient_is_open}).
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:epim_ideals_idempotents}
+		Suppose $S$ and $T$ are compact Hausdorff left topological semigroups and $\varphi\colon S\to T$ is a continuous epimorphism.
+		
+		Then for any minimal (left) ideal $\cN\unlhd S$ and idempotent $v\in \cN$, $\cM:=\varphi[\cN]$ is a minimal left ideal in $T$ and $u:=\varphi(v)$ is an idempotent in $\cM$.
+		
+		Conversely, given a minimal (left) ideal $\cM\unlhd T$ and an idempotent $u\in \cM$, we can find a minimal ideal $\cN\unlhd S$ and an idempotent $v\in \cN$ such that $\varphi(v)=u$ and $\varphi[\cN]=\cM$.
+	\end{prop}
+	\begin{proof}
+		The fact that $\varphi(v)$ is an idempotent is immediate by the fact that $\varphi$ is a homomorphism. By continuity and compactness, $\varphi[\cN]$ is a closed subset of $T$, and because $\varphi$ is an epimorphism, it is a left ideal. In particular, it contains a minimal left ideal $\cM$ of $T$. Similarly, $\varphi^{-1}[\cM]$ is a closed ideal in $S$ containing $\cN$. In particular, $\cM=\varphi[\cN]$.
+		
+		For the ``conversely" part, notice that $\varphi^{-1}[\cM]$ is an ideal in $S$, so it contains a minimal ideal $\cN$. By the preceding paragraph, $\varphi[\cN]$ is a minimal ideal contained in $\cM$, so it must be equal to $\cM$. It follows that there is some idempotent $v\in \cN$ such that $u\in \varphi[v\cN]=\varphi(v)\cM$. Since $\varphi(v)$ is an idempotent, and since $u$ is the only idempotent in $u\cM$, it follows that $\varphi(v)=u$.
+	\end{proof}
+	
+	\begin{prop}
+		\label{prop:preimage_of_derived}
+		If $G_1,G_2$ are compact $T_1$ semitopological groups and $\varphi\colon G_1\to G_2$ is both a homomorphism and a topological quotient map, then $\varphi^{-1}[H(G_2)]=H(G_1)\ker \varphi$ (where $H(G_1)$ and $H(G_2)$ are the derived subgroups, see Fact~\ref{fct:semitop_T2_quot}).
+	\end{prop}
+	\begin{proof}
+		Write $K$ for $\ker\varphi$. Consider the composed map $\varphi'\colon G_1\to G_2/H(G_2)$. Clearly, its kernel is $\varphi^{-1}[H(G_2)]$, and it contains $K$. Furthermore, $G_2/H(G_2)$ is Hausdorff (by Fact~\ref{fct:semitop_T2_quot}), so by Corollary~\ref{cor:H(G)_universal}, it also contains $H(G_1)$.
+		
+		On the other hand, since $G_2$ is $T_1$, $K$ is closed in $G_1$. Since $G_1/H(G_1)$ is Hausdorff and $G_1$ is compact, $KH(G_1)$ is a closed normal subgroup of $G/H(G_1)$, and by Fact~\ref{fct:quotient_by_closed_subgroup} it follows that $G_1/KH(G_1)$ is a Hausdorff topological group. But the map $G_1\to G_1/KH(G_1)$ factors through $G_2=G_1/K$, so by Corollary~\ref{cor:H(G)_universal}, the factor map $G_2\to G_1/KH(G_1)$ factors through $G_2/H(G_2)$, so $\varphi^{-1}[H(G_2)]$ is contained in $KH(G_1)$.
+	\end{proof}
+	
+	The following proposition will allow us to translate the properties of group-like equivalence relations (mainly those from Lemma~\ref{lem:main_abstract_grouplike}) to the weakly group-like quotient.
+	\begin{prop}
+		\label{prop:induced_epimorphism}
+		If $\varphi\colon (Z,z_0)\to (X,x_0)$ is a $G$-ambit morphism, then $\phi$ induces a continuous epimorphism $\varphi_*\colon E(G,Z)\to E(G,X)$ (by the formula $\varphi_*(f)(\varphi(z))=\varphi(f(z))$).
+		
+		Moreover, for any minimal ideal $\cN$ in $E(G,Z)$, with idempotent $v\in \cN$, the restriction $\varphi_*\restr_{v\cN}$ is a topological quotient map (with respect to $\tau$ topologies), and it induces a topological group quotient map $v\cN/H(v\cN)\to u\cM/H(u\cM)$, where $u=\varphi_*(v)$ and $\cM=\varphi_*[\cN]$ (note that $u\cM$ is an Ellis group in $E(G,X)$ by Proposition~\ref{prop:epim_ideals_idempotents}).
+	\end{prop}
+	\begin{proof}
+		To see that $\varphi_*$ is well-defined, take any $f\in E(G,Z)$ and $z_1,z_2\in Z$ such that $\varphi(z_1)=\varphi(z_2)$. We need to show that $\varphi(f(z_1))=\varphi(f(z_2))$.
+		
+		Recall that for $g\in G$, by $\pi_{Z,g}$ we denote the function $Z\to Z$ given by $z\mapsto gz$, and by $\pi_{X,g}$ we denote the analogous function $X\to X$.
+		
+		Take any net $(g_i)_i$ such that $\pi_{Z,g_i}\to f$. Then for all $i$ we have $\varphi(g_i(z_1))=g_i(\varphi(z_1))=g_i(\varphi(z_2))=\varphi(g_i(z_2))$. Since $\varphi$ is continuous, it follows that $\varphi(f(z_1))=\lim_i g_i(\varphi(z_1))=\varphi(f(z_2))$ (which also shows that $\varphi_*(f)=\lim_i \pi_{X,g_i}\in E(G,X)$).
+		
+		To see that $\varphi_*$ is onto, note that for every $f\in E(G,X)$ we can find some $(g_i)_i$ such that if $\pi_{X,g_i}\to f$. Then by compactness, we can assume without loss of generality that $(\pi_{Z,g_i})_i$ is also convergent to some $f'\in E(G,Z)$. By the parenthetical remark in the last paragraph, $\varphi_*(f')=f$.
+		
+		To see that $\varphi_*$ is continuous, it is enough to show that the preimage of a subbasic open set of the form $B_{x,U}=\{f\in E(G,X) \mid f(x)\in U \}$ (where $x\in X$ an $U\subseteq X$ is open) is open. But $\varphi_*(f)(x)\in U$ if and only if for some $z$ such that $\varphi(z)=x$ we have that $f(z)\in \varphi^{-1}[U]$, which is an open condition about $f$.
+		
+		To see that $\varphi_*\restr_{v\cN}$ is continuous, take any $\tau$-closed set $F\subseteq u\cM$, i.e.\ such that $F=u(u\circ F)$, put $F'=\varphi_*^{-1}[F]\cap v\cN$ and take any $f\in (v\cN)\cap (v\circ F')$. We need to show that $f\in F'$. Take any nets $(g_i)_i$ and $(f_i)_i$ such that $g_if_i\to f$, $\pi_{Z,g_i}\to v$ and $f_i\in F'$. Then by continuity of $\varphi_*$, we have $\pi_{X,g_i}\to u$ and $g_i\varphi_*(f_i)=\varphi_*(g_if_i)\to \varphi_*(f)$, and thus $\varphi_*(f)\in u\circ F$. Since $f=vf$ and $\varphi_*(v)=u$, we have $\varphi_*(f)=\varphi_*(vf)=u\varphi_*(f)\in u(u\circ F)$, whence $f\in F'$.
+		
+		To see that $\varphi_*\restr_{v\cN}$ is a quotient map, take any $F\subseteq u\cM$ such that $F':=\varphi_*^{-1}[F]\cap v\cN$ is $\tau$-closed, and take any $f\in u\circ F$, along with nets $(g_i),(f_i)$ witnessing it, i.e.\ such that $\pi_{X,g_i}\to u$, $f_i\in F$ and $g_if_i\to f$.
+		
+		We need to show that $uf\in F$. For each $i$, fix some $f_i'\in F'$ such that $\varphi_*(f_i')=f_i$. By compactness, can assume without loss of generality that $\pi_{Z,g_i}\to v'$ and $g_if_i'\to f'$ for some $v',f'\in E(G,Z)$. Note that by continuity of $\varphi_*$, $\varphi_*(v')=u$ and $\varphi_*(vf')=\varphi_*(v)\varphi_*(f')=uf$, so it is enough to show that $\varphi_*(vf')\in F$.
+		
+		We certainly have $vf'\in v(v'\circ F)$. But using Fact~\ref{fct:tau_top_pre}(2), we have:
+		\[
+			v(v'\circ F')= vv(v'\circ (vF'))\subseteq v(v\circ (v'\circ(v\circ F')))\subseteq v((vv'v)\circ F').
+		\]
+		Note that $v''=vv'v\in v\cN$. Thus we have
+		\[
+			v(v''\circ F')=vv''(v'')^{-1}(v''\circ F')\subseteq vv''(((v'')^{-1}v'')\circ F')=v''v(v\circ F')=v''F'.
+		\]
+		Since $\varphi_*(v'')=u$, it follows that $\varphi_*[v(v'\circ F')]\subseteq uF=F$, so $\varphi_*(vf')\in F$ and we are done.
+		
+		
+		The fact that $\varphi_*\restr_{v\cN}$ is continuous implies (immediately by definition, or by Proposition~\ref{prop:preimage_of_derived}) that $\varphi_*^{-1}[H(u\cM)]\supseteq H(v\cN)$, which gives us an induced mapping $v\cN/H(v\cN)\to u\cM/H(u\cM)$. Since $\varphi_*\restr_{v\cN}$ is a quotient map, so is the induced map.
+	\end{proof}
+	
+	\begin{rem}
+		\label{rem:induced_hom_by_D}
+		In Proposition~\ref{prop:induced_epimorphism}, if we take $D_Z:=\{f\in v\cN\mid f(z_0)=v(z_0) \}$ and $D=D_X=\{f\in u\cM\mid f(x_0)=u(x_0) \}$, then clearly $\varphi_*^{-1}[D]\supseteq D_Z$, so $\varphi_*$ induces also (among others) a quotient mapping $v\cN/H(v\cN)D_Z\to u\cM/H(u\cM)D$, as well as a topological group quotient mapping from $v\cN/H(v\cN)\Core(D_Z)$ to $u\cM/H(u\cM)\Core(D)$.\xqed{\lozenge}
+	\end{rem}
+	
+	The following Lemma is crucial, and will be one of the most important ingredients in the proofs of all main results in this chapter (and by extension, the main results of the next chapter).
+	
+	\begin{lem}
+		\label{lem:weakly_grouplike}
+		Suppose $E$ is weakly group-like. If we let $r\colon EL\to X/E$ be $r(f):=[R(f)]_E(=[f(x_0)]_E)$, then for every minimal ideal $\cM\unlhd E(G,X)$ and idempotent $u\in \cM$:
+		\begin{enumerate}
+			\item
+			$r\restr_{u\cM}$ is continuous (with $u\cM$ equipped with the $\tau$ topology);
+			\item
+			if $E$ is weakly closed or weakly properly group-like, then:
+			\begin{itemize}
+				\item
+				the action of $G$ on $X/E$ extends to a (jointly) continuous action of $E(G,X)$ by homeomorphisms (given by $f([x]_E)=[f(x)]_E$), and $r$ is its orbit map (at $[x_0]_E$),
+				\item
+				that action, restricted to $u\cM$, is also jointly continuous (and a group action, i.e.\ with $u$ acting as identity), and $r\restr_{u\cM}$ is its orbit map, and also a topological quotient map;
+			\end{itemize}
+			\item
+			if $E$ is weakly closed or weakly uniformly properly group-like, then the action of ${u\cM}$ on $X/E$ factors through a continuous action of ${u\cM}/H(u\cM)$. Furthermore, $r\restr_{u\cM}$ factors through $u\cM/H(u\cM)$, yielding an orbit map of this action, which is also a topological quotient map.
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		The main idea of the proof is to combine Propositions~\ref{prop:epim_ideals_idempotents} and \ref{prop:induced_epimorphism} to translate Lemma~\ref{lem:main_abstract_grouplike} into the weakly group-like context.
+		
+		Let $\varphi\colon (Z,z_0)\to (X,x_0)$ be the $G$-ambit morphism witnessing that $F$ dominates $E$, where $F$ is group-like (and also closed, properly group-like, or uniformly properly group-like, if possible).
+		
+		By Propositions~\ref{prop:epim_ideals_idempotents} and \ref{prop:induced_epimorphism}, we have a minimal left ideal $\cN\unlhd E(G,Z)$ and an idempotent $v\in \cN$ such that $\varphi_*(v)=u$ and $\varphi_*[\cN]=\cM$, so that $\varphi_*\restr_{v\cN}$ is an epimorphism and a topological quotient $v\cN\to u\cM$.
+		
+		Let $r_F\colon E(G,Z)\to Z/F$ be the map $r_F(f)=[f(z_0)]_F$, and let $r_Z:= r\circ \varphi_*$. Then we have a commutative diagram
+		\begin{center}
+			\begin{tikzcd}
+				E(G,Z)\ar[d,"\varphi_*"] \ar[r,"r_F"] \ar[dr,"r_Z"] & Z/F \ar[d,"\varphi_F"] \\
+				E(G,X)\ar[r,"r"] & X/E
+			\end{tikzcd}
+		\end{center}
+		(the arrow $\varphi_F$ on the right exists because $\varphi$ witnesses that $F$ dominates $E$, and it is a quotient map, because $\varphi$ is a quotient map).
+		
+		Now, $r_F\restr_{v\cN}$ is continuous (with respect to the $\tau$ topology on $v\cN$) by Lemma~\ref{lem:main_abstract_grouplike}, and hence so is $r_Z\restr_{v\cN}$. Since $\varphi_*\restr_{v\cN}$ is a quotient map onto $u\cM$, it follows (by Remark~\ref{rem:commu_quot} with $A=v\cN$, $B=u\cM$ and $C=X/E$) that $r\restr_{u\cM}$ is also continuous, which gives us (1).
+		
+		For (2), note that if $F$ is closed or properly group-like, then by Lemma~\ref{lem:main_abstract_grouplike}, $r_F$ and $r_F\restr_{v\cN}$ are semigroup epimorphisms and topological quotients and $F$ is $E(G,Z)$-invariant. Since $\varphi_F$ is the orbit map of a jointly continuous action (see Proposition~\ref{prop:grouplike_cont_action}), it follows that so are $r_Z$ and $r_Z\restr_{v\cN}$ (where the action factors is the composition of action of $Z/F$ with epimorphisms $r_F$, $r_F\restr_{v\cN}$). Then, notice that not only does $r_Z$ factor through $\varphi_*$, but so do the actions on $X/E$: indeed, we have that for every $f\in E(G,Z)$ and $x\in X$, there is some $z\in Z$ such that $\varphi(z)=x$, and then, by commutativity of the above diagram and Corollary~\ref{cor:prop_glike_ellis_invariant} (applied to $F$), we have, for every $f\in E(G,Z)$ (having in mind the identification of $X/E$, $Z/E|_Z$ and $(Z/F)/(E|_{Z/F})$):
+		\begin{multline*}
+			f[x]_E=r_F(f)[x]_E=[f(z_0)]_F[x]_E=[f(z_0)]_F[z]_{E|_Z}=[[f(z_0)]_F[z]_F]_{E|_{Z/F}}=\\ =[f[z_0]_F[z]_F]_{E|_{Z/F}}=[[f(z)]_F]_{E|_{Z/F}}=[f(z)]_{E|_Z}=[\varphi_*(f)(\varphi(z))]_E=[\varphi_*(f)(x)]_E.
+		\end{multline*}
+		Since $\varphi_*$ an epimorphism, this means that $f[x]_E=[f(x)]_E$ describes a well-defined semigroup action of $E(G,X)$ on $X/E$. Furthermore, since $r_F(v)$ is the identity in $Z/F$, $v$ acts as identity, and hence so does $u=\varphi_*(v)$. We need to show that the action is jointly continuous.
+		
+		First, the action of $Z/F$ on $X/E$ is jointly continuous by Proposition~\ref{prop:grouplike_cont_action}, which immediately implies that the action of $E(G,Z)$ on $X/E$ is also jointly continuous. Then, since $E(G,X)$ is $R_1$ as a Hausdorff space, and $X/E$ is $R_1$ by Proposition~\ref{prop:top_props_of_wglike}, we can apply Proposition~\ref{prop:action_factor_is_continuous}(1) (with $S=E(G,Z)$, $T=E(G,X)$, $A=B=X/E$) to conclude the joint continuity of the action of $E(G,X)$ on $X/E$.
+		
+		
+		Since $\varphi_*[v\cN]=u\cM$, it follows that the action of $v\cN$ on $X/E$ (induced by the quotient map $r_F\restr_{v\cN}$) factors through an action of $u\cM$ on $X/E$. As in the preceding paragraph, we easily conclude that $v\cN$ acts continuously on $X/E$. Since $v\cN$ and $u\cM$ are (semitopological) groups, we can then apply Proposition~\ref{prop:action_factor_is_continuous}(2) (with $S=v\cN$, $T=u\cM$ and $A=B=X/E$) to conclude that the factor action of $u\cM$ on $X/E$ is jointly continuous.
+		
+		
+		Likewise, since $\varphi_*\restr_{v\cN}$ and $r_Z\restr_{v\cN}=r\restr_{u\cM}\circ\varphi_*\restr_{v\cN}$ are quotient maps, by Remark~\ref{rem:commu_quot} (applied to $A=v\cN$, $B=u\cM$ and $C=X/E$), it follows that $r\restr_{u\cM}$ is also quotient map.
+		
+		For (3), note that since (by (2)) $u$ acts on $X/E$ as identity, so does $\ker \varphi_*\restr_{v\cN}$. Under the hypotheses of (3), $H(v\cN)$ also acts trivially (by Lemma~\ref{lem:main_abstract_grouplike}(3)) Since --- by Proposition~\ref{prop:preimage_of_derived} --- $\varphi_*\restr_{v\cN}^{-1}[H(u\cM)]=H(v\cN)\ker \varphi_*\restr_{v\cN}$, we conclude that $H(u\cM)$ acts trivially as well. Therefore, both $r\restr_{u\cM}$ and the action of $u\cM$ on $X/E$ factor through $u\cM/H(u\cM)$. The action of $u\cM/H(u\cM)$ is continuous by another application of Proposition~\ref{prop:action_factor_is_continuous} (with $S=u\cM$, $T=u\cM/H(u\cM)$ and $A=B=X/E$). Also as before, the map $u\cM/H(u\cM)\to X/E$ induced by $r\restr_{u\cM}$ is a quotient map by Remark~\ref{rem:commu_quot}. This completes the proof.
+	\end{proof}
+	If $E$ is group-like, we can ask whether the map $r$ is a homomorphism. The following proposition establishes reasonable sufficient condition for that. Note that in general, this need not be true, not even if $E$ is dominated by an equivalence relation which is both closed and uniformly properly group-like, as Example~\ref{ex:noteventhen} shows.
+	\begin{prop}
+		\label{prop:wgl_homom}
+		In Lemma~\ref{lem:weakly_grouplike}, if $E$ itself is group-like, and $F$ is a properly group-like or closed group-like relation dominating $E$, such that the induced map $Z/F\to X/E$ (denoted by $\varphi_F$ in the proof of Lemma~\ref{lem:weakly_grouplike}) is a homomorphism, then $r$ is also a homomorphism (and thus so is $r\restr_{u\cM}$).
+	\end{prop}
+	\begin{proof}
+		Consider the diagram in the fourth paragraph of the proof of Lemma~\ref{lem:weakly_grouplike}.
+		
+		Note that $r\circ \varphi_*=\varphi_F\circ r_F$. Since $F$ is properly group-like or closed group-like, $r_F$ is a homomorphism, and by assumption, $\varphi_F$ is also a homomorphism, so $r \circ \varphi_*$ is a homomorphism.
+		
+		But because $\varphi_*$ is an epimorphism, it follows easily that $r$ must be a homomorphism.
+	\end{proof}
+	Note that the hypotheses of Proposition~\ref{prop:wgl_homom} are trivially satisfied if $E$ itself is closed group-like or properly group-like, so it extends Lemma~\ref{lem:r_is_homomorphism} and Lemma~\ref{lem:closed_group_like}(2).
+	
+	We have the following simple property of abstract group actions.
+	\begin{prop}
+		\label{prop:action_factorization}
+		If $G$ is a group acting transitively on a set $X$, and $D\leq G$ stabilises some point $x_0\in X$, then the action factors through $G/\Core(D)$, where $\Core(D)$ is the normal core of $D$, i.e.\ the intersection of all conjugates of $D$.
+	\end{prop}
+	\begin{proof}
+		Since $D$ stabilises $x_0$, for any $g\in G$, it is easy to see that $gDg^{-1}$ stabilises $gx_0$. Since $G$ acts transitively on $X$, it follows that $\Core(D)$ stabilises every point of $X$. The conclusion follows.
+	\end{proof}
+	
+	In the last case described in Lemma~\ref{lem:weakly_grouplike}, we have some additional factorisations. Recall that by $D\leq u\cM$, we denoted the $\tau$-closed group of all $f\in u\cM$ such that $f(x_0)=u(x_0)$ (cf.\ Lemma~\ref{lem:D_closed}).
+	\begin{lem}
+		\label{lem:factorisation_lemma}
+		Suppose $E$ satisfies the conclusion of Lemma~\ref{lem:weakly_grouplike}(3), i.e.\ we have a natural continuous group action of $u\cM/H(u\cM)$ on $X/E$, and its orbit map at $[x_0]_E$ (induced by $r$) is a topological quotient map.
+		
+		Then $\hat r_1$ factors through a map $\hat r_2\colon u\cM/H(u\cM)D\to X/E$, and also through $\hat r_3\colon u\cM/H(u\cM)\Core(D)$, and both factors are topological quotient maps.
+		
+		Furthermore, the action of $u\cM/H(u\cM)$ on $X/E$, factors through a continuous action of $u\cM/H(u\cM)\Core(D)$ (consequently, $\hat r_3$ is the orbit map of the factor action, also at $[x_0]_E$).
+	\end{lem}
+	\begin{proof}
+		To obtain the first factorisation, note that if the two cosets $f_1H(u\cM)D$ and $f_2H(u\cM)D$ are equal, then for some $f_1'\in f_1H(u\cM)$ and $f_2'\in f_2H(u\cM)$ we have that the cosets $f_1'D$ and $f_2'D$ are equal as well. Therefore, by Lemma~\ref{lem:D_kernel_equiv}, $f_1'(x_0)=f_2'(x_0)$, so in particular,
+		\[
+			\hat r_1(f_1)=[f_1(x_0)]_E=[f_1'(x_0)]_E=[f_2'(x_0)]_E=[f_2(x_0)]_E=\hat r_1(f_2).
+		\]
+		Factoring through $u\cM/H(u\cM)\Core(D)$ follows immediately, as $\Core(D)\leq D$. (Note that because $\hat r_1$ is a topological quotient map, so are $\hat r_2$ and $\hat r_3$.)
+		
+		For the ``furthermore'' part, note that by the first paragraph, $DH(u\cM)$ stabilises $[x_0]_E\in X/E$. On the other hand, since $\hat r_1$ is a surjective orbit map, $u\cM/H(u\cM)$ acts transitively on $X/E$. Thus, by Proposition~\ref{prop:action_factorization}, that action factors through $(u\cM/H(u\cM))/\Core(DH(u\cM))=u\cM/H(u\cM)\Core(D)$. Continuity of the factor action is an easy consequence of the continuity of action of $u\cM/H(u\cM)$ and Proposition~\ref{prop:action_factor_is_continuous}.
+	\end{proof}
+	
+	
+	Lemma~\ref{lem:factorisation_lemma} can be further extended with the following ``niceness preservation'' properties, which will be very important for the proofs of the main theorems.
+	\begin{lem}
+		\label{lem:new_preservation_E_to_H}
+		In Lemma~\ref{lem:factorisation_lemma}, let $H_1\subseteq u\cM/H(u\cM)$, $H_2\subseteq u\cM/H(u\cM)D$ and $H_3\subseteq u\cM/H(u\cM)\Core(D)$ be the preimages of $\{[x_0]_E\}$ by the respective $\hat r_1$, $\hat r_2$ or $\hat r_3$. Then:
+		\begin{itemize}
+			\item
+			$E$ is clopen or closed if and only if some (equivalently, all) $H_i$ are such,
+			\item
+			if $E$ is $F_\sigma$, Borel or analytic, then so is each $H_i$.
+		\end{itemize}
+	\end{lem}
+	\begin{proof}
+		For the first bullet, note that since $\hat r_1$ is a quotient map, $X/E$ is homeomorphic to $(u\cM/H(u\cM))/H_1$. Hence, by Fact~\ref{fct:quot_T2_iff_closed} and Fact~\ref{fct:quotient_by_closed_subgroup}, $E$ is closed or clopen if and only if $H_1$ is (respectively). The fact that $\hat r_1$ factors through $\hat r_2,\hat r_3$ easily implies that if one of $H_1,H_2,H_3$ is closed or clopen, so are the other two (e.g.\ by Proposition~\ref{prop:preservation_properties}).
+		
+		If $E$ is $F_\sigma$, Borel or analytic, then so is $[x_0]_E$, and thus also $[x_0]_E\cap R[\overline{u\cM}]$. But, by the hypotheses, $[x_0]_E\cap R[\overline{u\cM}]$ is the preimage of $H_2$ via the continuous map $R[\overline{u\cM}]\to u\cM/H(u\cM)D$ from Proposition~\ref{prop:from_cluM}. Since $H_1$ and $H_3$ are also continuous preimages of $H_2$, the second bullet follows by several applications of Proposition~\ref{prop:preservation_properties}.
+	\end{proof}
+	
+	\begin{rem}
+		\label{rem:homom_factor}
+		Note that under the assumptions of of Proposition~\ref{prop:wgl_homom}, if we have $\hat r_1$ as in Lemma~\ref{lem:factorisation_lemma} (e.g.\ $E$ is weakly uniformly properly group like or weakly closed group-like), then $\hat r_1$ is  homomorphism, and thus so is $\hat r_3$. It follows that both are topological group quotient maps, and the subgroups $H_1$ and $H_3$ in Lemma~\ref{lem:new_preservation_E_to_H} are both normal.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{rem}
+		\label{rem:tame_preservation}
+		In fact, we can extend Lemma~\ref{lem:new_preservation_E_to_H} to also say that if $(G,X)$ is tame and metrisable, then if one of $E, H_1,H_2,H_3$ is Borel or analytic, then so are the other three. The proof is mostly straightforward, but somewhat technical. (It uses Proposition~\ref{prop:NIP gives metrizability}, Fact~\ref{fct:borel_section}, Corollary~\ref{cor:borel_map}, and the fact that the preimage of an analytic set by a Borel map between Polish spaces is analytic.)
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\section{Cardinality dichotomies}
+	\label{sec:dichot_cardinality}
+	
+	In this section, we apply the results of the preceding sections, along with properties of compact Hausdorff groups, to deduce two dichotomies related to weakly group-like equivalence relations. In contrast to the next section, we \emph{do not} assume metrisability. Theorems of this section, along with Lemma~\ref{lem:new_preservation_E_to_H}, and Lemma~\ref{lem:weakly_grouplike}, yield Main~Theorem~\ref{mainthm:abstract_card}.
+	
+	\begin{thm}
+		\label{thm:general_cardinality_intransitive}
+		Suppose $E$ is analytic and either weakly uniformly properly group-like or weakly closed group-like. Then either $E$ is closed, or for every $Y\subseteq X$ which is closed and $E$-saturated, we have $\lvert Y/E\rvert\geq 2^{\aleph_0}$.
+	\end{thm}
+	\begin{proof}
+		Suppose $E$ is not closed.
+		
+		Let $\hat G=u\cM/H(u\cM)$ and $\hat r\colon \hat G\to X/E$ be the induced quotient map we have by Lemma~\ref{lem:weakly_grouplike}(3) (so that in particular, $\hat r$ is an orbit mapping and $\hat r(e_{\hat G})=[x_0]_E$). Because $E$ is not closed, by Lemma~\ref{lem:new_preservation_E_to_H}, $\ker \hat r:=\hat r^{-1}\{[x_0]_E\}$ is not closed, so it is not open (note that it is a subgroup of $\hat G$, as it is just the stabiliser of $[x_0]_E\in X/E$).
+		
+		Since $Y$ is closed and $E$-saturated, $Y/E\subseteq X/E$ is closed and so is $Y':=\hat r^{-1}[Y/E]$.
+		
+		We can assume without loss of generality that $e_{\hat G}\in Y'$. Otherwise, for any $g_0\in Y'$, we have $e_{\hat G}\in Y'':=g_0^{-1}Y'$, and then $Y''$ is a closed right $\ker \hat r$-invariant set and we have a bijection between $Y/E=Y'/{\ker \hat r}$ and $Y''/{\ker \hat r}$ (which can be identified with $\hat r[Y'']\subseteq X/E$).
+		
+		Under this assumption, we also have that $\ker \hat r\subseteq Y'$, and because $Y'$ is closed, $\overline{\ker \hat r}\subseteq Y'$. Since $\ker \hat r$ is not closed, it is not open in $\overline {\ker \hat r}$. On the other hand ${\ker \hat r}$ is analytic --- by Lemma~\ref{lem:new_preservation_E_to_H} --- so it has the Baire property. By Fact~\ref{fct:from_mycielski}, it follows that $\lvert \overline{{\ker \hat r}}/{\ker \hat r}\rvert\geq 2^{\aleph_0}$. It follows that $Y'/{\ker \hat r}=Y/E$ has cardinality at least $2^{\aleph_0}$.
+	\end{proof}
+
+	\begin{thm}
+		\label{thm:general_cardinality_transitive}
+		If $E$ is analytic and weakly closed group-like or weakly uniformly properly group like, then $E$ is clopen or $E$ has at least $2^{\aleph_0}$ many classes.
+		
+		More generally, suppose $Y\subseteq X$ is closed and $E$-saturated, and suppose that $G^Y$ (the setwise stabiliser of $Y$) has a dense orbit in $Y/E$. Then either $E\restr_{Y}$ is clopen in $Y^2$ (and $Y/E$ is finite) or $\lvert Y/E\rvert\geq 2^{\aleph_0}$.
+	\end{thm}
+	\begin{proof}
+		We will treat the general case. Suppose $\lvert Y/E\rvert <2^{\aleph_0}$. Then by Theorem~\ref{thm:general_cardinality_intransitive}, $E$ is closed (note that this implies that $\ker \hat r$ is closed and $Y/E$ is Hausdorff). If $Y/E$ is finite, it follows easily that $E\restr_Y$ is clopen, so suppose towards contradiction that it is infinite.
+		
+		Consider $\hat G=u\cM/H(u\cM)$ acting continuously on $X/E$ as in Lemma~\ref{lem:weakly_grouplike}(3), and let $\hat G^Y$ be the setwise stabiliser of $Y/E$. Since $Y$ is closed an $E$-saturated, so is $Y/E$, and thus (by continuity) also $\hat G^Y$, which is therefore a compact group (as a closed subgroup of $\hat G$). Note that for every $g\in G^Y$, we have $uguH(u\cM)\in \hat G^Y$. It follows that $\hat G^Y$ has a dense, and therefore (because $Y/E$ is Hausdorff) infinite orbit in $Y/E$. We may assume without loss of generality that $[x_0]_E\in Y/E$ and $[x_0]_E$ has an infinite $\hat G^Y$-orbit (otherwise, we can replace $Y/E$ by $g^{-1}(Y/E)$ and $\hat G^Y$ by $g^{-1}\hat G^Yg$, for some $g$ such that $g[x_0]_E\in Y$ has infinite $\hat G^Y$-orbit).
+		
+		Under this assumption, we have a bijection between $\hat G^Y\cdot [x_0]_E\subseteq Y/E$ and $\hat G^Y/(\ker \hat r\cap \hat G^Y)$. Since $E$ is closed, $\ker \hat r$ is a closed subgroup of $\hat G$, so $H^Y:=\ker \hat r\cap \hat G^Y$ is a Baire subgroup of $\hat G^Y$. Using the aforementioned bijection between $\hat G^Y/H^Y$ and the orbit $\hat G^Y\cdot [x_0]_E$, we conclude  that $[\hat G^Y:H^Y]$ is infinite, so by compactness of $\hat G^Y$, $H^Y$ is not open. But then by Fact~\ref{fct:from_mycielski}, it follows that $[\hat G^Y:H^Y]\geq 2^{\aleph_0}$, and thus $\hat G^Y\cdot [x_0]_E\subseteq Y/E$ has cardinality at least $2^{\aleph_0}$, which is a contradiction.
+	\end{proof}
+	In the case when $Y=X$ and $X$ is metrisable, we can refine the dichotomy from Theorem~\ref{thm:general_cardinality_transitive} by another dividing line, as we will see in Corollary~\ref{cor:metr_smt_cls}. Later, in Chapter~\ref{chap:nonmetrisable_card}, we will discuss a possible variant of this refinement which would apply in the non-metrisable case.
+	
+	
+	\section[Group-like quotients and Polish groups and Borel cardinality]{Group-like quotients and Polish groups and Borel cardinality\sectionmark{Polish groups}}
+	\sectionmark{Polish groups}
+	In this section, we study the consequences of Lemma~\ref{lem:main_abstract_grouplike} for metrisable ambits. In particular, we present the class space of a (weakly uniformly properly or weakly closed) group-like equivalence relation as the quotient of a Polish group by a subgroup, which will later be used to prove Main~Theorem~\ref{mainthm_group_types}.
+	
+	The following theorem can be considered the principal result of the thesis in the general abstract context. The main results in Chapter~\ref{chap:applications} (in particular, Theorems~\ref{thm:main_aut}, \ref{thm:main_galois} and \ref{thm:main_tdf}) are essentially its specialisations. In Chapter~\ref{chap:nonmetrisable_card}, we discuss possible extensions of this Theorem to the case when $X$ is not metrisable.
+	\begin{thm}
+		\label{thm:main_abstract}
+		Suppose $X$ is metrisable, while $E$ is weakly uniformly properly group-like or weakly closed group-like. Write $D'$ for $H(u\cM)\Core(D)\unlhd u\cM$ and $\hat G$ for the Polish group $u\cM/D'$ (cf.\ Corollary~\ref{cor:Polish_quotient_Core(D)}).
+		
+		Then $\hat G$ acts continuously and transitively on $X/E$ (as $(fD')\cdot [x]_E=[f(x)]_E$), and the orbit map $\hat r\colon \hat g\mapsto \hat g\cdot [x_0]_E$, the induced equivalence relation $E|_{\hat G}$, and $H\leq \hat G$, defined as the stabiliser of $[x_0]_E$, have the following properties:
+		\begin{enumerate}
+			\item
+			$H\leq \hat G$ and fibres of $\hat r$ are exactly the left cosets of $H$ (so $\hat G/E_{\hat G}=\hat G/H$),
+			\item
+			$\hat r$ is a topological quotient map (so it induces a homeomorphism of $\hat G/H$ and $X/E$),
+			\item
+			$E$ is clopen or closed if and only if $H$ is (respectively)
+			\item
+			if $E$ is $F_\sigma$, Borel, or analytic (respectively), then so is $H$,
+			\item
+			$E|_{\hat G}\leq_B E$
+		\end{enumerate}
+		
+		Furthermore:
+		\begin{enumerate}
+			\setcounter{enumi}{5}
+			\item
+			if $(G,X)$ is tame, then $E|_{\hat G}\sim_B E$, and
+			\item
+			if $E$ itself is closed group-like or properly group-like (or, more generally, satisfies the assumptions of Proposition~\ref{prop:wgl_homom}), then $H\unlhd \hat G$ and $\hat r$ is a homomorphism (and hence, by (2), a topological group quotient map).
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		Recall that by Corollary~\ref{cor:uM/HuMD_Polish} and Corollary~\ref{cor:Polish_quotient_Core(D)}, we know that the group $\hat G$ and the space $\hat G':=u\cM/H(u\cM)D$ are both compact Polish.
+		
+		Lemma~\ref{lem:weakly_grouplike} applies, and so do Lemmas~\ref{lem:factorisation_lemma} and \ref{lem:new_preservation_E_to_H}. This gives us the continuous action and (1)-(4) (with $\hat r=\hat r_3$ from Lemma~\ref{lem:factorisation_lemma}).
+		
+		Note that we have a continuous surjection $\hat G\to \hat G'$, and again by Lemma~\ref{lem:new_preservation_E_to_H}, $\hat r$ factors through it. As both $\hat G$ and $\hat G'$ are compact Polish, Fact~\ref{fct:borel_section} applies, and we have $E|_{\hat G}\sim_B E|_{\hat G'}$.
+		
+		For (5), note that trivially $E\geq_B E\restr _{\overline{u\cM}/{\equiv}}$ (where we identify $\overline{u\cM}/{\equiv}$ with $R[\overline{u\cM}]\subseteq R[EL/{\equiv}]=X$). On the other hand, we have a commutative diagram:
+		\begin{center}
+			\begin{tikzcd}
+				\overline{u\cM}/{\equiv}\ar[d]\ar[r, two heads] & \hat G'= u\cM/H(u\cM)D \ar[d, two heads] \\
+				X\ar[r, two heads] & X/E
+			\end{tikzcd}
+		\end{center}
+		where the map $\overline{u\cM}/{\equiv}\to u\cM/H(u\cM)D$ is the function $[f]_{\equiv}\mapsto ufH(u\cM)D$ given by Proposition~\ref{prop:from_cluM}. Commutativity follows in a straightforward manner from the definitions  (and the fact that $u$ and the whole $H(u\cM)$ act trivially on $X/E$), and it implies that $\overline{u\cM}/{\equiv}\to u\cM/H(u\cM)D$ is a reduction of $E\restr _{\overline{u\cM}/{\equiv}}$ to $E|_{\hat G'}$. By Fact~\ref{fct:borel_section}, we have $E\restr _{\overline{u\cM}/{\equiv}}\sim_B E|_{\hat G'}$, so
+		\[
+			E|_{\hat G}\sim_BE|_{\hat G'}\sim_B E\restr _{\overline{u\cM}/{\equiv}}\leq_B E.
+		\]
+		For (6), note that if $(G,X)$ is tame and metrisable, we can apply Corollary~\ref{cor:borel_map} to obtain a commutative diagram:
+		\begin{center}
+			\begin{tikzcd}
+				EL/{\equiv'} \ar[r,"Borel", two heads]\ar[d, two heads] & \hat G'= u\cM/H(u\cM)D\ar[d, two heads]\\
+				X \ar[r, two heads] & X/E.
+			\end{tikzcd}
+		\end{center}
+		$EL/{\equiv'}$ is Polish (by Proposition~\ref{prop: quotients of EL are Polish}) and the function $EL/{\equiv'}\to X$ is a continuous surjection, so by Fact~\ref{fct:borel_section}, $E\sim_B E|_{EL/{\equiv'}}$. On the other hand, the Borel function $EL/{\equiv'}\to \hat G'$ is clearly a reduction of $E|_{EL/{\equiv'}}$ to $E|_{\hat G'}$, so
+		\[
+			E\sim_B E|_{EL/{\equiv'}}\leq_B E|_{\hat G'}\sim_B E|_{\hat G}.
+		\]
+		
+		Finally, for (7), just apply Remark~\ref{rem:homom_factor}.
+	\end{proof}
+	
+	\begin{rem}
+		By Proposition~\ref{prop:NIP gives metrizability}, it follows that if $(G,X)$ is tame and metrisable, then $u\cM/H(u\cM)$ is Polish, so in this case, in Theorem~\ref{thm:main_abstract}, we can take $\hat G$ to be $u\cM/H(u\cM)$ instead of $u\cM/D'$ and (with the obvious modifications) the conclusion still holds, with essentially the same proof.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{cor}
+		\label{cor:tame_dominated}
+		In Theorem~\ref{thm:main_abstract}, if we have a $G$-ambit morphism $(X,x_0)\to (Z,z_0)$ with $(G,Z)$ tame, and an equivalence relation $F$ on $Z$ such that $E=F|_X$, then $E\sim_B E|_{\hat G}$ (even if $(G,X)$ is untame).
+	\end{cor}
+	\begin{proof}
+		Note that by assumption, $Z$ is metrisable (cf.\ Fact~\ref{fct: preservation of metrizability}).
+		
+		Choose an Ellis group $u\cM\leq E(G,X)$ and take $D':=H(u\cM)\Core(D)$, so that $\hat G=u\cM/D'$ is as in Theorem~\ref{thm:main_abstract}. Denote by $\varphi$ the morphism $(X,x_0)\to (Z,z_0)$. Then by Proposition~\ref{prop:induced_epimorphism}, $\varphi_*[u\cM]=v\cN$ is an Ellis group in $E(G,Z)$, and if we take $\hat G_Z$ to be $v\cN/D'_Z$ (where $D'_Z=H(v\cN)\Core(D_Z)$ for the naturally defined $D_Z$), then by Remark~\ref{rem:induced_hom_by_D}, $\varphi_*$ induces a topological group quotient mapping $\hat G\to \hat G_Z$.
+		
+		This quotient map fits into the following commutative diagram.
+		\begin{center}
+			\begin{tikzcd}
+				\hat G\ar[d, two heads]\ar[r, two heads] & X/E\ar[d, two heads] \\
+				\hat G_Z\ar[r, two heads] & Z/F.
+			\end{tikzcd}
+		\end{center}
+		The vertical arrows are the quotient map mentioned before and the bijection induced by $\varphi$ (by the assumption that $E=F|_X$). The horizontal arrows are given by $fD'\mapsto [f(x_0)]_E$ and $fD'_Z\mapsto [f(z_0)]_F$ (they are well-defined by Theorem~\ref{thm:main_abstract}). Since for every $f\in E(G,X)$ we have $\varphi_*(f)(z_0)=\varphi(f(x_0))$, the diagram commutes.
+		
+		It follows immediately that the quotient map $\hat G\to \hat G_Z$ is a continuous reduction of $F|_{\hat G}=E|_{\hat G}$ to $F|_{\hat G_Z}$. Thus, by Fact~\ref{fct:borel_section}, $E|_{\hat G}\sim_B F|_{\hat G_Z}\sim_B F$. But the morphism $(X,x_0)\to (Z,z_0)$ induces a reduction of $E=F|_X$ to $F$, so again by Fact~\ref{fct:borel_section}, $F\sim E$, so $E|_{\hat G}\sim_B E$.
+	\end{proof}
+	
+	
+	\begin{rem}
+		\label{rem:strengthening}
+		Similarly, one can show that if either $E$ is weakly closed group-like or $(G,X)$ is tame (or, more generally, it satisfies the assumptions of Corollary~\ref{cor:tame_dominated}), then in Theorem~\ref{thm:main_abstract}, $E|_{\hat G}\sim_B E$ (also in the first case) and $E$ is Borel or analytic if and only if $H$ is. Briefly, in the first case, if we take a closed group-like $F$ dominating $E$, then we can consider $E|_{Z/F}$ as a $Z/F$-invariant equivalence relation on $Z/F$, and then we can apply Proposition~\ref{prop:toy_main} with $G=X=Z/F$ and $E=E|_{Z/F}$, and conclude by successive applications of Fact~\ref{fct:borel_section} and Proposition~\ref{prop:preservation_properties}. In the second case, it can be shown via Remark~\ref{rem:tame_preservation} and Proposition~\ref{prop:preservation_properties}. \xqed{\lozenge}
+	\end{rem}
+	The following corollary is a part of Main~Theorem~\ref{mainthm:abstract_smt}.
+	\begin{cor}
+		\label{cor:metr_smt_cls}
+		For $E$ as in Theorem~\ref{thm:main_abstract}, $E$ is smooth (according to Definition~\ref{dfn:smt}) if and only if $E$ is closed (as a subset of $X^2$).
+		
+		Moreover, exactly one of the following holds:
+		\begin{enumerate}
+			\item
+			$E$ is clopen and has finitely many classes,
+			\item
+			$E$ is closed and has exactly $2^{\aleph_0}$ classes,
+			\item
+			$E$ is not closed and not smooth. In this case, if $E$ is analytic, then $E$ has exactly $2^{\aleph_0}$ classes.
+		\end{enumerate}
+	\end{cor}
+	\begin{proof}
+		Immediate by Theorem~\ref{thm:main_abstract} and Lemma~\ref{lem:abstract_trich}.
+	\end{proof}
+	
+	
+	
+	
+	

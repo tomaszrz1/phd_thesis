@@ -1,0 +1,936 @@
+
+	\chapter{(Weakly) group-like equivalence relations in model theory and beyond}
+	\chaptermark{Group-like equivalence relations in particular contexts}
+	\label{chap:applications}
+	In this chapter, we apply the main results of Chapter~\ref{chap:grouplike} in specific contexts, mostly model-theoretic. In particular, we prove Main~Theorems~\ref{mainthm_group_types}, \ref{mainthm:smt} and \ref{mainthm:nwg}.
+	\section{Compact group actions}
+	\begin{ex}
+		\label{ex:cpct_glike}
+		\begin{figure}[H]
+			\begin{tikzcd}
+				G \arrow[r]\arrow[dr]& EL=G\arrow[d,"R"]\arrow[dr,"r"]& \\
+				\tilde G=G \arrow[r] & X=G \arrow[r]& G/N
+			\end{tikzcd}
+		\end{figure}
+		Suppose $G$ is a compact Hausdorff group and consider $X=G$ with $G$ acting by left translations, with $x_0=e\in G$. Then for any normal $N\unlhd G$ the relation $E=E_N$ of lying in the same $N$-coset is properly group-like on $G$, with ${\equiv}$ on $\tilde G$ being just the equality relation.
+		
+		Pseudocompleteness means just that whenever $g_i\to x_1$, $h_i\to x_2$ and $g_ih_i\to x_3$ for some nets $(g_i)_i,(h_i)_i$ in $G$ and $x_0,x_1,x_2\in G$, then $x_1x_2=x_3$. But this is clear by joint continuity. Other axioms are easy to verify.
+		
+		Furthermore, $E_N$ is also uniformly properly group-like: indeed, we can take for $\mathcal E$ to be just the family of sets of the form $D_A:=\{(g,hg)\mid g\in G, h\in A \}$, where $A$ ranges over finite symmetric subsets of $N$ containing the identity. Each $D_A$ is closed (as the continuous image of $G\times A$ by multiplication, which is closed by compactness) and $(D_A)'=D_{A\cdot A}$ has the properties required by Definition~\ref{dfn:unif_prop_glike}.
+		
+		The conclusion of Lemma~\ref{lem:main_abstract_grouplike} is trivial in this case: the map $G\to G^G$ ($g\mapsto \pi_{G,g}$) is continuous and injective, and therefore an embedding into a closed subset, so $EL=G$, and the only idempotent is the identity in $G$, and thus $u\cM=G$, while $H(u\cM)=\{e\}$.
+		
+		Likewise, the conclusion of Corollary~\ref{cor:metr_smt_cls} reduces to Proposition~\ref{prop:trichotomy_for_groups}.
+		\xqed{\lozenge}
+	\end{ex}
+	
+	\begin{ex}
+		Consider a transitive action of a compact Hausdorff group $G$ on a compact Hausdorff space $X$, and let $E$ be any $G$-invariant equivalence relation on $X$. Then $E$ is dominated by equality on $G$, which is clearly closed group-like (and also properly uniformly group-like), so $E$ is weakly closed group-like. By applying Theorem~\ref{thm:main_abstract}, we recover most of Proposition~\ref{prop:toy_main} (the rest can be essentially recovered via Remark~\ref{rem:strengthening}, although this reasoning is circular), and by applying Corollary~\ref{cor:metr_smt_cls}, we recover Corollary~\ref{cor:toy_trich}.
+		\xqed{\lozenge}
+	\end{ex}
+	
+	\section{Automorphism group actions}
+	In this section, we will be looking at dynamical systems stemming from automorphism group actions, of the form $(\Aut(M),S_m(M),\tp(m/M))$ (and other similar ones). In this context, we will find the naturally occurring (weakly) group-like equivalence relations and then apply to them what we learned from Chapter~\ref{chap:grouplike}. Thus we will recover (with some improvements) the main results of the papers \cite{KPR15} (joint with Krzysztof Krupiński and Anand Pillay) and \cite{KR18} (joint with Krzysztof Krupiński).
+	
+	\subsection*{Lemmas}
+	We intend to apply results of Chapter~\ref{chap:grouplike}. In the following lemmas, we will show that their hypotheses are satisfied in the case of actions of automorphism groups on certain type spaces.
+	
+	\begin{lem}[pseudocompleteness for automorphism groups]
+		\label{lem:pseudocompleteness_for_aut}
+		Suppose $M$ is a model and $a$ is an arbitrary tuple in $M$ (e.g.\ an enumeration of $M$), while $N\succeq M$ is an $\lvert M\rvert^+$-saturated and $\lvert M\rvert^+$-strongly homogeneous model (for example, $N=\fC$ and $M$ is small in $\fC$).
+		
+		Then whenever $(\sigma_i)_i$ and $(p_i)_i$ are nets in $\Aut(M)$ and $S_a(M)$ (respectively) such that $\tp(\sigma_i(a)/M)\to q_1$, $p_i\to q_2$ and $\sigma_i(p_i)\to q_3$ for some $q_1,q_2,q_3\in S_a(M)$, there are $\sigma'_1,\sigma'_2\in \Aut(N)$ such that $\tp(\sigma'_1(a)/M)=q_1$, $\tp(\sigma'_2(a)/M)=q_2$ and $\tp(\sigma'_1\sigma'_2(a)/M)=q_3$. (This is pseudocompleteness for $\tilde G=\Aut(N)$, $X=S_a(M)$ and the map $\tilde G\to S_a(M)$ given by $\sigma\mapsto \tp(\sigma(a)/M)$, see Definition~\ref{dfn:prop_glike}.)
+	\end{lem}
+	\begin{proof}
+		Let for each $i$, choose $b_i\in N$ such that $b_i\models p_i$ (so in particular, $b_i\equiv a$), and extend $\sigma_i$ to $\bar\sigma_i\in \Aut(N)$. Then by the assumptions, for every $\varphi_1(x),\varphi_2(x),\varphi_3(x)$ in $q_1,q_2$ and $q_3$ (resp.) we have, for sufficiently large $i$, $N\models \varphi_1(\bar \sigma_i(a))\land \varphi_2(b_i)\land \varphi_3(\bar\sigma_i(b_i))\land a\equiv b_i\land ab_i\equiv \bar\sigma_i(a)\bar\sigma_i(b_i)$. Now by compactness, we have $a_1,a_2,a_3\in N$ such that $N\models q_1(a_1)\land q_2(a_2)\land q_3(a_3)\land a\equiv a_2\land aa_2\equiv a_1a_3$. Any $\sigma'_1, \sigma'_2\in \Aut(N)$ such that $\sigma'_2(a)=a_2$, $\sigma'_1(aa_2)=a_1a_3$ satisfy the conclusion of the lemma.
+	\end{proof}
+	
+	\begin{lem}
+		\label{lem:F_0_for_aut}
+		Suppose $A\subseteq \fC$ is small, enumerated by the tuple $a$, while $Y$ is type-definable over $A$.
+		
+		Then the set $F_0=\{\tp((\sigma'_1)^{-1}\sigma'_2(a)/A) \mid \sigma'_1,\sigma_2'\in \Aut(\fC)\land \sigma'_1(a)\equiv_A \sigma'_2(a)\in Y_A \}$ is closed in $S_a(A)$.
+	\end{lem}
+	\begin{proof}
+		Let $F_1$ be the set of $\tp(b/A)$ such that $\fC\models(\exists a_1,a_2) aa_1\equiv aa_2\land a\equiv a_2\land ab\equiv a_1a_2\land a_1\in Y$. Clearly, $F_1$ is a closed subset of $S_a(A)$. We will show that $F_0=F_1$.
+		
+		For $\subseteq$, take some $p\in F_0$, as witnessed by $\sigma'_1,\sigma'_2\in \Aut(\fC)$ and take $b=(\sigma'_1)^{-1}\sigma'_2(a)$, $a_1=\sigma'_1(a)$ and $a_2=\sigma'_2(a)$. It is easy to check that they witness that $\tp(b/A)\in F_1$.
+		
+		For $\supseteq$, take some $p\in F_1$, witnessed by $b,a_1,a_2$. Take $\sigma_1',\sigma'_2\in \Aut(\fC)$, such that $\sigma'_1(ab)=a_1a_2$ and $\sigma'_2(a)=a_2$. It is easy to check that these $\sigma'_1,\sigma'_2$ witness that $p=\tp(b/A)\in F_0$.
+	\end{proof}
+	
+	When reading the proof of Lemma~\ref{lem:lascar_grouplike}, it may be useful to compare the diagram below to the diagram in Definition~\ref{dfn:prop_glike}.
+	\begin{center}
+		\begin{tikzcd}
+			\Aut(M) \ar[r] \ar[dr] & E(\Aut(M), S_m(M)) \ar[d,"R"]\ar[dr,"r"]\\
+			\Aut(\fC)\ar[r] & S_m(M)\ar[r] & S_m(M)/{\equiv_\Lasc^M}=\Gal(T)
+		\end{tikzcd}
+	\end{center}
+	\begin{lem}
+		\label{lem:lascar_grouplike}
+		Let $M$ be a small ambitious model (see Definition~\ref{dfn:ambitious_model}), enumerated by $m$. Consider the $\Aut(M)$-ambit $(\Aut(M),S_m(M),\tp(m/M))$. Then $E={\equiv_\Lasc^M}$ is a uniformly properly group-like equivalence relation on $S_m(M)$.
+		
+		More generally, if $G^Y\leq \Gal(T)$ is closed, and $M$ is ambitious relative to $G^Y$ (see Definition~\ref{dfn:ambitious_model}), then $(G^Y(M),Y'_M,\tp(m/M))$ (where $Y'$ is as there) is an ambit and ${\equiv_\Lasc^M}\restr_{Y'_M}$ is a uniformly properly group-like equivalence relation on it.
+	\end{lem}
+	\begin{proof}
+		Notice that the ``base" case follows from the ``moreover" case simply by taking $G^Y=\Gal(T)$, so we will treat the second case.
+		
+		Note that $Y'$ is type-definable over $M$ immediately by Fact~\ref{fct: characterization of topology on Gal_L(T)}. The fact that $(G^Y(M),Y'_M,\tp(m/M))$ is an ambit follows immediately by definition of a relatively ambitious model
+		
+		Note that almost immediately by our assumptions, $Y'_M$ is the preimage of $G^Y$ by the quotient map $S_m(M)\to \Gal(T)$ from Fact~\ref{fct:sm_to_gal}, so we may identify $G^Y$ and $Y'_M/{\equiv_\Lasc^M}$, and ${\equiv_\Lasc^M}\restr_{Y'_M}$ is evidently group-like.
+		
+		Let $\tilde G=\{\sigma'\in \Aut(\fC)\mid \sigma'\Autf(\fC)\in G^Y \} $. Immediately by the definitions, $\tilde G$ maps onto $Y'_M$ via $\sigma'\mapsto \tp(\sigma'(m)/M)$, and the induced map $\tilde G\to G^Y$ is just $\sigma'\mapsto \sigma'\Autf(\fC)$, which is of course a homomorphism. By applying Lemma~\ref{lem:pseudocompleteness_for_aut}, we obtain pseudocompleteness (in the sense of Definition~\ref{dfn:prop_glike}) --- to see that, just notice that if $\sigma_i\in G^Y(M)$ and $p_i\in Y'_M$, then (since $Y'_M$ is closed), the $q_1,q_2,q_3$ as in Lemma~\ref{lem:pseudocompleteness_for_aut} are in $Y'_M$, so $\sigma_1',\sigma_2'\in \tilde G$.
+		
+		By Lemma~\ref{lem:F_0_for_aut} (applied to $Y=Y'$ and $A=M$), we conclude that ${\equiv_\Lasc^M}\restr_{Y'_M}$ is properly group-like.
+		
+		To see that it is uniformly properly group-like, let $\mathcal E=\{F_n\mid n\in\bN\}$, where $F_n$ is the set of pairs of types $p_1,p_2\in Y'_M$ such that there exist some $m_1,m_2$ satisfying $p_1$ and $p_2$ (respectively) and such that $d_\Lasc(m_1,m_2)\leq n$ (cf.\ Definition~\ref{dfn:Lascar distance}). Clearly, each $F_n$ is symmetric, reflexive and by Fact~\ref{fct:distance_tdf}, they are all closed in $S_m(M)^2$. We will show that $(F_n)':=F_{2n+2}$ has the properties postulated in Definition~\ref{dfn:unif_prop_glike}.
+		
+		Indeed, if $d_\Lasc(a,b_1)\leq n$ and $d_\Lasc(b_2,c)\leq n$ and $b_1\equiv_M b_2$, then $d_\Lasc(b_1,b_2)\leq 1$, so by triangle inequality $d_\Lasc(a,c)\leq 2n+1$, so $F_n\circ F_n\subseteq F_{2n+1}\subseteq F_{2n+2}$. On the other hand, and if $(\tp(m/M),\tp(\sigma(m)/M))\in F_n$, then there are some $\sigma_1,\sigma_2\in \Aut(\fC/M)$ such that $d_\Lasc(\sigma_1(m),\sigma_2\sigma(m))\leq n$, so $d_\Lasc(m,\sigma_1^{-1}\sigma_2\sigma(m))\leq n$, so by Fact~\ref{fct:diameter_witnessed_by_model}, $d_\Lasc(\sigma_1^{-1}\sigma_2\sigma(m))\leq n+1$, and hence (because $\sigma_1^{-1}\sigma_2$ fixes $M$ pointwise) $d_\Lasc(\sigma)\leq n+2$, i.e.\ for every $a$ we have $d_\Lasc(a,\sigma(a))\leq n+2$, in particular, for every $\sigma'\in \Aut(\fC)$ we have $(\tp(\sigma'(m)/M),\tp(\sigma\sigma'(m)/M))\in F_{n+2}\subseteq F_{2n+2}$. Finally, from Fact~\ref{fct:Lascar_equivalent}, it follows easily that ${\equiv_\Lasc^M}=\bigcup_n F_n$, which completes the proof.
+	\end{proof}
+	
+	
+	\begin{lem}
+		\label{lem:lascar_dominates}
+		Given any strong type $E$ on $p(\fC)$, where $p\in S(\emptyset)$, and a small model $M$ enumerated by $m$, such that some $a\subseteq m$ realises $p$, the relation $\equiv_\Lasc^M$ on $S_m(M)$ dominates the relation $E^M$ on $S_a(M)$ (via the restriction $S_m(M)\to S_a(M)$).
+		
+		More generally, if $Y$ is any $\equiv_\Lasc$-invariant, type-definable set containing $a$, such that $\Aut(\fC/\{Y\})$ acts transitively on $Y$, if $M$ is a small model enumerated by $m\supseteq a$, ambitious relative to $G^Y=\Aut(\fC/\{Y\})/\Autf(\fC)$ (cf.\ Definition~\ref{dfn:ambitious_model}), then $(G^Y(M),Y_M,\tp(a/M))$ is an ambit, and ${\equiv_\Lasc^M}\restr_{Y'_M}$ dominates $E^M\restr_{Y_M}$, where $Y'=\Aut(\fC/\{Y\})\cdot m$.
+		
+		In particular (by Lemma~\ref{lem:lascar_grouplike}), $E^M$ and $E^M\restr_{Y_M}$ are weakly uniformly properly group-like.
+	\end{lem}
+	\begin{proof}
+		For the first part, just note that the relation $\equiv_\Lasc^M$ on $S_a(M)$ is a refinement of $E^M$, and $\equiv_\Lasc^M$ on $S_m(M)$ dominates $\equiv_\Lasc^M$ on $S_a(M)$ via the restriction mapping $S_m(M)\to S_a(M)$, which follows from the trivial observation that if two tuples are $\equiv_\Lasc$-equivalent, then their subtuples (chosen from corresponding coordinates) are also $\equiv_\Lasc$-equivalent. Since $\Gal(T)=S_m(M)/{\equiv_\Lasc^M}$ acts on $p(\fC)/E$ (and the map $S_m(M)/{\equiv_\Lasc^M}\to S_a(M)/E^M$ is equivariant), this shows that $\equiv_\Lasc^M$ dominates $E^M$.
+		
+		For the second part, apply Fact~\ref{fct: characterization of topology on Gal_L(T)} and Lemma~\ref{lem:lascar_grouplike} to conclude that $(G^Y(M),Y'_M,\tp(m/M))$ is an ambit and ${\equiv_\Lasc^M}\restr_{Y'_M}$ is uniformly properly group-like. Now, note that the restriction map $S_m(M)\to S_a(M)$, induces an ambit morphism $(\Aut(M),Y'_M,\tp(m/M))\to (\Aut(M),Y_M,\tp(a/M))$. The domination of $E\restr_{Y_M}$ by ${\equiv_\Lasc^M}\restr_{Y'_M}$ follows the same as in the preceding paragraph.
+	\end{proof}
+	
+	\subsection*{Results for automorphism groups}
+	\begin{rem}
+		\label{rem:wglike_closedness_to_typdef}
+		Immediately by Lemma~\ref{lem:lascar_dominates}, we can use Proposition~\ref{prop:top_props_of_wglike} to recover Proposition~\ref{prop:type-definability_of_relations}. We also deduce that if $p\in S(\emptyset)$ and $E$ is an arbitrary strong type on $X=p(\fC)$, then $X/E$ is an $R_1$ space (which was \cite[Proposition 1.12]{KPR15}, but only for $R_0$).\xqed{\lozenge}
+	\end{rem}
+	
+	
+	The following theorem is Main~Theorem~\ref{mainthm:nwg} and it generalises Fact~\ref{fct:newelski}. It appeared as \cite[Theorem 5.1]{KPR15} (joint with Krzysztof Krupiński and Anand Pillay). Here, we deduce it from the abstract Theorems~\ref{thm:general_cardinality_intransitive} and \ref{thm:general_cardinality_transitive}. Note that --- in contrast to Theorem~\ref{thm:main_aut} below --- we do not require the language to be countable.
+	\begin{thm}
+		\label{thm:nwg}
+		Suppose $E$ is an analytic strong type defined on $X=p(\fC)$ for some $p\in S(\emptyset)$, and $Y\subseteq X$ is type-definable and $E$-saturated. Suppose $\lvert Y/E\rvert<2^{\aleph_0}$.
+		
+		Then $E$ is type-definable (note that by Remark~\ref{rem:tdf_iff_restr}, this is equivalent to $E\restr_Y$ being type-definable), and if, in addition, $\Aut(\fC/\{Y\})$ acts transitively on $Y/E$, then $E\restr_Y$ is relatively-definable (as a subset of $Y^2$).
+	\end{thm}
+	\begin{proof}
+		Recall from Fact~\ref{fct: Borel in various senses} that $E\restr_Y$ is relatively definable or type-definable if and only if $E^M\restr_{Y_M}$ is clopen or closed (respectively) for some (equivalently, every) small model $M$.
+		
+		Now, if $M$ is any ambitious model (which exists by Proposition~\ref{prop:amb_exist}), then we can just apply Lemma~\ref{lem:lascar_dominates} and then Theorem~\ref{thm:general_cardinality_intransitive} to conclude that if $Y/E=Y_M/{E^M}$ has cardinality less than $2^{\aleph_0}$, then $E^M\restr_{Y_M}$ is closed, so $E$ is type-definable.
+		
+		If $\Aut(\fC/\{Y\})$ acts transitively on $Y/E$, then again by Proposition~\ref{prop:amb_exist}, we can choose $M$ to be ambitious relative to $G^Y=\Aut(\fC/\{Y\})/\Autf(\fC)$. Since $Y$ is type-definable, it follows from Fact~\ref{fct: characterization of topology on Gal_L(T)} that $G^Y$ is closed. Thus, we can just apply Lemma~\ref{lem:lascar_dominates} followed by Theorem~\ref{thm:general_cardinality_transitive}.
+	\end{proof}
+	
+	
+	The following is one of the main results of the thesis, and is a part of Main~Theorem~\ref{mainthm_group_types}. Most of it is \cite[Theorem 8.1]{KR18} (joint with Krzysztof Krupiński). Compared to it, we relax the global NIP assumption for the ``furthermore'' part: we assume only that $Y$ has NIP.
+	\begin{thm}
+		\label{thm:main_aut}
+		Suppose that the theory is countable.
+		
+		Suppose $E$ is a strong type defined on a type-definable set $X$ (in a countable product of sorts), and $Y\subseteq X$ is type-definable, $E$-saturated and such that $\Aut(\fC/\{Y\})$ acts transitively on $Y$ (e.g.\ $Y=[a]_{\equiv}$ of $Y=[a]_{\equiv_\KP}$ for some tuple $a$). Choose $a\in Y$.
+		
+		Then there is a compact Polish group $\hat G^Y$ acting continuously on $Y/E$, and such that the stabiliser $H$ of $[a]_E$, and the orbit map $\hat r_Y\colon \hat G^Y\to Y/E$, $\hat g\mapsto \hat g\cdot [a]_E$ have the following properties:
+		\begin{enumerate}
+			\item
+			$H\leq \hat G^Y$ and fibres of $\hat r_Y$ are exactly the left cosets of $H$ (so $\hat G^Y/E|_{\hat G^Y}=\hat G^Y/H$),
+			\item
+			$\hat r_Y$ is a topological quotient map (so it induces a homeomorphism of $\hat G^Y/H$ and $X/E$),
+			\item
+			$E\restr_Y$ is relatively definable or type-definable if and only if $H$ is clopen or closed (respectively)
+			\item
+			if $E$ is $F_\sigma$, Borel, or analytic (respectively), then so is $H$,
+			\item
+			$\hat G^Y/H\leq_B E$.
+		\end{enumerate}
+		Furthermore, if $Y$ has NIP (in particular, if $T$ has NIP), then $\hat G^Y/H\sim_B E$.
+	\end{thm}
+	\begin{proof}
+		By Proposition~\ref{prop:amb_exist}, we can find some $M$ which is ambitious relative to $G^Y=\Aut(\fC/\{Y\})/\Autf(\fC)$. Then by Lemma~\ref{lem:lascar_dominates}, $E^M\restr_{Y_M}$ is weakly uniformly properly group-like (in the ambit $(G^Y(M),Y_M,\tp(a/M))$), so Theorem~\ref{thm:main_abstract} applies to $E^M\restr_{Y_M}$.
+		
+		Now, if $Y$ has NIP, then by Corollary~\ref{cor:NIP_implies_tame}, $(G^Y(M), Y_M)$ is tame, so in particular,  so we also have (6) of Theorem~\ref{thm:main_abstract}.
+		
+		To complete the proof, just note that:
+		\begin{itemize}
+			\item
+			by definition, the Borel cardinality of $E\restr_Y$ is the Borel cardinality of $E^M\restr_{Y_M}$,
+			\item
+			we identify $Y/E$ and $Y_M/{E^M}$ (via the natural homeomorphism),
+			\item
+			by Fact~\ref{fct: Borel in various senses}, $E\restr_Y$ is relatively definable, type-definable, $F_\sigma$, Borel, analytic if and only if $E^M\restr_{Y_M}$ is clopen, closed, $F_\sigma$, Borel or analytic (respectively).
+		\end{itemize}
+		These observations allow us to translate the conclusion of Theorem~\ref{thm:main_abstract} into the conclusion of the theorem, and thus we are done.
+	\end{proof}
+	
+	\begin{rem}
+		By referring back to the statement of Theorem~\ref{thm:main_abstract}, we can see that in Theorem~\ref{thm:main_aut}, the group $\hat G^Y$ is $u\cM/H(u\cM)\Core(D)$ for the ambit $(G(M),Y_M,y_0)$, and the action is induced by the action of $E(G(M),Y_M)$ on $Y_M$.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{prop}
+		\label{prop:orbital_in_main_aut}
+		In Theorem~\ref{thm:main_aut}, if the stabiliser of $[a]_E$ is a normal subgroup of $\Aut(\fC/\{Y\})$, then $H$ is a normal subgroup of $\hat G^Y$, and $\hat r_Y$ is a topological group quotient mapping onto then $Y/E$ (equipped with the group structure obtained by identification with $\Aut(\fC/\{Y\})/\Stab_{\Aut(\fC/\{Y\})}\{[a]_E\}$).
+	\end{prop}
+	\begin{proof}
+		It is not hard to see that under the hypotheses, the map $G^Y\to Y/E$ given by $\sigma\Autf(\fC)\mapsto \sigma \Stab_{\Aut(\fC/\{Y\})}\{[a]_E\}$ is a homomorphism. But $G^Y$ is naturally identified with $Y'_M/{\equiv_\Lasc^M}$ (with $Y'$  chosen as in the proof of Lemma~\ref{lem:lascar_dominates}, so that ${\equiv_\Lasc^M}$ is uniformly properly group-like on $Y'_M$ and dominates $E^M$). Hence, the assumptions of Proposition~\ref{prop:wgl_homom} are satisfied. Thus Theorem~\ref{thm:main_abstract}(7) applies, and we are done.
+	\end{proof}
+	
+	\begin{cor}
+		\label{cor:galois_quotient}
+		The Galois group $\Gal(T)$ of any countable first order theory $T$ is isomorphic as a topological group to the quotient of a compact Polish group by an $F_\sigma$ subgroup.
+		
+		If the theory is NIP, it also has the same Borel cardinality as that quotient.
+				
+		The same is true for $\Gal_0(T)$.
+	\end{cor}
+	\begin{proof}
+		Choose any tuple $m$ enumerating a model and apply Theorem~\ref{thm:main_aut} to $Y=[m]_{\equiv}$ (for $\Gal(T)$) and $Y=[m]_{\equiv_\KP}$ (for $\Gal_0(T)$), $a=m$ and $E={\equiv_\Lasc}$, noting that Proposition~\ref{prop:orbital_in_main_aut} applies (e.g.\ because by Fact~\ref{fct:diameter_witnessed_by_model}, the relevant stabiliser is just $\Autf(\fC)$).
+	\end{proof}
+	
+	The following trichotomy appeared (essentially) as \cite[Corollary 6.1]{KPR15} (joint with Krzysztof Krupiński and Anand Pillay). It constitutes most of Main~Theorem~\ref{mainthm:smt} (completed by Corollary~\ref{cor:smt_type}).
+	\begin{cor}
+		\label{cor:trich_plus}
+		Suppose that the theory is countable, while $E$ is a strong type (on a set of countable tuples), and $Y$ is type-definable, $E$-saturated, and such that $\Aut(\fC/\{Y\})$ acts transitively on $Y$ (e.g.\ $Y\in \{[a]_\equiv,[a]_{\equiv_{\textrm{Sh}}},[a]_{\equiv_\KP} \}$ for some countable tuple $a$). Then exactly one of the following is true:
+		\begin{enumerate}
+			\item
+			$E\restr_Y$ is relatively definable (as a subset of $Y^2$) and has finitely many classes,
+			\item
+			$E\restr_Y$ is type-definable and has exactly $2^{\aleph_0}$ classes,
+			\item
+			$E\restr_Y$ is not type-definable and not smooth. In this case, if $E\restr_Y$ is analytic, then $E\restr_Y$ has exactly $2^{\aleph_0}$ classes.
+		\end{enumerate}
+	\end{cor}
+	\begin{proof}
+		By Theorem~\ref{thm:main_aut}, we can apply Lemma~\ref{lem:abstract_trich}, which (by Fact~\ref{fct: Borel in various senses}) completes the proof.
+	\end{proof}
+	
+	The following corollary of Theorem~\ref{thm:main_aut} gives a partial answer to the question of possible Borel cardinalities of Lascar strong types (and strong types in general), as raised in \cite{KPS13} (for example, it implies that in NIP theories, the Borel cardinality of $[a]_{\equiv_\KP}/{\equiv_\Lasc}$ is the Borel cardinality of the quotient of a compact Polish group by an $F_\sigma$ subgroup).
+	\begin{cor}
+		Suppose $E$ is a strong type, while $Y$ is a type-definable and $E$-saturated set such that $\Aut(\fC/\{Y\})$ acts transitively on $Y$ (e.g.\ $E$ refines $\equiv_\KP$ and $Y=[a]_{\equiv_\KP}$ for some $a$). Suppose in addition that $Y$ has NIP. Then $E\restr_Y$ is Borel equivalent to the quotient of a compact Polish group by a subgroup (which is $F_\sigma$, Borel or analytic, respectively, whenever $E$ is such).
+	\end{cor}
+	\begin{proof}
+		This is immediate by Theorem~\ref{thm:main_aut}.
+	\end{proof}
+	
+	\begin{prop}
+		\label{prop:closure_has_transitive_action}
+		If $E$ is a strong type on a ($\emptyset$-)type-definable set $X$, then for any $a_0\in X$, the set $Y_{a_0}$ of $a\in X$ such that $[a]_E\in \overline{\{[a_0]_E\}}\subseteq X/E$ is type-definable and $E$-saturated. Moreover, $\Aut(\fC/\{Y_{a_0}\})$ is equal to $\{\sigma\in \Aut(\fC)\mid \sigma(a_0)\in Y_{a_0} \}$, and it acts transitively on $Y_{a_0}$.
+	\end{prop}
+	\begin{proof}
+		We may assume without loss of generality that $X=p(\fC)=[a_0]_{\equiv}$ (since $E$ is a strong type, we have $[a_0]_E\subseteq [a_0]_{\equiv}$, which implies that $Y_{a_0}\subseteq [a_0]_{\equiv}$).
+		
+		Type-definability of $Y_{a_0}$ is straightforward by the definition of the logic topology, $E$-invariance is trivial.
+		
+		Since $Y_{a_0}\subseteq [a_0]_{\equiv}$, we have that for each $a\in Y_{a_0}$, there is some $\sigma\in \Aut(\fC)$ such that $\sigma(a_0)=a$. It is enough to show that $\sigma\in \Aut(\fC/\{Y_{a_0}\})$. But since $\sigma$ is an automorphism, it acts on $X/E$ by homeomorphisms, so $\sigma(\overline{\{[a_0]_E\}})=\overline{\{[a]_E\}}$. Since $[a]_E\in \overline{\{[a_0]_E\}}$, it follows that $\overline{\{[a]_E\}}\subseteq \overline{\{[a_0]_E\}}$.
+		It follows that $\sigma[Y_{a_0}/E]\subseteq Y_{a_0}/E$, so $\sigma[Y_{a_0}]\subseteq Y_{a_0}$.
+		
+		
+		On the other hand, by Remark~\ref{rem:wglike_closedness_to_typdef}, $X/E$ is an $R_0$ space, whence $[a_0]_E\in \overline{\{[a]_E\}}$, so $a_0\in Y_a$. Arguing as in the preceding paragraph, we conclude that $Y_{a_0}=\sigma^{-1}[Y_a]\subseteq Y_a=\sigma[Y_{a_0}]$, so $\sigma[Y_{a_0}]=Y_{a_0}$.
+	\end{proof}
+	
+	The following corollary is the last part of Main~Theorem~\ref{mainthm:smt}. Essentially, it is a generalisation of the main results of \cite{KMS14} and \cite{KM14}/\cite{KR16} (Facts~\ref{fct:KMS_theorem} and \ref{fct:mainA}). It appeared as \cite[Theorem 4.1]{KPR15} (in the paper joint with Krzysztof Krupiński and Anand Pillay). Loosely speaking, it can be seen as a strengthening of Theorem~\ref{thm:nwg} in the ``countable language case'' (as in that case, if $E$ is Borel, then by Fact~\ref{fct:silver}, non-smoothness implies having $2^{\aleph_0}$ classes).
+	\begin{cor}
+		\label{cor:smt_type}
+		Suppose $T$ is countable. If $E$ is a strong type defined on $X=p(\fC)$ for some $p\in S(\emptyset)$ (in countably many variables) and $Y\subseteq X$ is nonempty, type-definable and $E$-saturated, then either $E$ is type-definable, or $E\restr_Y$ is non-smooth.
+	\end{cor}
+	\begin{proof}
+		Suppose $E\restr_Y$ is smooth. We need to show that $E$ is type-definable, which by Proposition~\ref{prop:type-definability_of_relations} is equivalent to $E$ having a type-definable class. Since $E\restr_{Y}$ is smooth, it follows that for every $a\in Y$, $E\restr_{Y_a}$ is also smooth, where $Y_a$ is as in Proposition~\ref{prop:closure_has_transitive_action}. Clearly, it is enough to show that $E\restr_{Y_a}$ has a type-definable class, and thus we may assume without loss of generality that $Y=Y_a$. But then by Proposition~\ref{prop:closure_has_transitive_action}, $\Aut(\fC/\{Y\})$ acts transitively on $Y$, so by Corollary~\ref{cor:trich_plus}, $E\restr_{Y}$ is type-definable, and by Remark~\ref{rem:tdf_iff_restr}, $E$ is type-definable as well.
+	\end{proof}
+	(See also Corollary~\ref{cor:smt_aut} for a further generalisation (to sets larger than $p(\fC)$).)
+	
+	Theorem~\ref{thm:main_aut} shows that every quotient of a sufficiently symmetric type-definable set $Y$ by a strong type $E$ is essentially the quotient of a compact Polish group by a subgroup. It is not hard to see that the compact group does not depend on $E$, only on $Y$.
+	
+	We can actually show more: essentially, we can find one $\hat G$ witnessing Theorem~\ref{thm:main_aut} for all $Y=p(\fC)$, where $p\in S(\emptyset)$, but first, we need an additional lemma.
+	
+	\begin{lem}
+		\label{lem:every_stype_on_m}
+		Suppose $T$ is countable.
+		Assume that $E$ is a strong type defined on $p(\fC)$ for $p=\tp(a/\emptyset)$ for some countable tuple $a$, while $M$ is an arbitrary countable model, enumerated by $m$.
+		
+		Then there is a strong type $E'$ on $[m]_{\equiv}$ such that:
+		\begin{itemize}
+			\item
+			$E$ is type-definable [resp. Borel, or analytic, or $F_\sigma$, or relatively definable] if and only if $E'$ is,
+			\item
+			there are Borel maps $r_1\colon S_m(M)\to S_a(M)$ and $r_2 \colon S_a(M)\to S_m(M)$ such that $r_1$ and $r_2$ are Borel reductions between $(E')^M$ and $E^M$ (in particular, $E'\sim_B E$), satisfying $r_1(\tp(m/M))=\tp(a/M)$ and $r_2(\tp(a/M))=\tp(m/M)$, and
+			\item
+			the induced maps $r_1'\colon [m]_{\equiv}/E' \to p(\fC)/E$ and $r_2'\colon p(\fC)/E \to [m]_{\equiv}/E'$ are $\Gal(T)$-equivariant homeomorphisms, and $r_2'$ is the inverse of $r_1'$.
+		\end{itemize}
+		The maps $r_1'$ and $r_2'$ are uniquely determined by $r_1'([\sigma(m)]_{E'})=[\sigma(a)]_{E}$ and $r_2'([\sigma(a)]_{E})=[\sigma(m)]_{E'}$ for all $\sigma \in \Aut(\fC)$.
+	\end{lem}
+	\begin{proof}
+		Let $N\succeq M$ be a countable model containing $a$, and enumerate it by $n\supseteq am$.
+		
+		Then we have the restriction maps $S_n(N)\to S_a(M)$, $S_n(N)\to S_m(M)$, which fit in the commutative diagram:
+		\begin{center}
+			\begin{tikzcd}
+			S_m(M) \ar[dr, two heads] & S_n(N) \ar[l, two heads] \ar[r, two heads] \ar[d, two heads] & S_a(M) \ar[d, two heads] \\
+			&\Gal(T) \ar[r, two heads] & p(\fC)/E.
+			\end{tikzcd}
+		\end{center}
+		In this diagram, the maps to $\Gal(T)$ are given by Fact~\ref{fct:sm_to_gal}, while the map $\Gal(T)\to p(\fC)/E$ is the orbit map $\sigma\Autf(\fC)\mapsto [\sigma(a)]_E$ (cf. Proposition~\ref{prop:gal_action}).
+		
+		Recall from Fact~\ref{fct: Borel in various senses} that $E$ is type-definable [resp. Borel, analytic, $F_\sigma$, relatively definable] if and only if the induced relation $E^M$ on $S_a(M)$ is closed [resp. Borel, analytic, $F_\sigma$, clopen]. Note also that $E^M=E|_{S_{a}(M)}$ (using Definition~\ref{dfn:induced_relation}).
+		
+		Note that $E|_{S_m(M)}$ and $E|_{S_n(N)}$ are both induced by the same left invariant equivalence relation $E|_{\Gal(T)}$ on $\Gal(T)$ (left invariance holds because the map $\Gal(T)\to p(\fC)/E$ is left $\Gal(T)$-equivariant, as the orbit map of a left action).
+		
+		
+		Let $E'$ be the $\Aut(\fC/M)$-invariant equivalence relation on $[m]_{\equiv}$ such that $(E')^M$ is $E|_{S_m(M)}$. It is $\Aut(\fC)$-invariant by construction (e.g.\ because $E|_{\Gal(T)}$ is left invariant), and it is clearly bounded by the size of $p(\fC)/E$. We will show that it satisfies the conclusion.
+		
+		Since $E|_{S_n(N)}$ is the pullback of both $E|_{S_m(M)}$ and $E|_{S_a(M)}$ (and so, a preimage of each by a continuous surjection), the first part follows by Proposition~\ref{prop:preservation_properties}.
+		
+		Fact~\ref{fct:borel_section} gives us Borel sections $S_m(M)\to S_n(N)$ and $S_a(M)\to S_n(N)$ of the restriction maps, and we can assume without loss of generality that each section maps $\tp(m/M)$ or $\tp(a/M)$ (respectively) to $\tp(n/N)$ (possibly by changing the value of the section at one point). Those sections, composed with the appropriate restrictions from $S_n(N)$, yield Borel maps $r_1\colon S_m(M)\to S_a(M)$ and $r_2\colon S_a(M)\to S_m(M)$, which (by the last sentence) take $\tp(m/M)$ to $\tp(a/M)$ and vice versa. These maps are clearly Borel reductions between $E|_{S_m(M)}$ and $E^M$ (passing via $E|_{S_n(N)}$). Denote by $r_1',r_2'$ the induced maps between the class spaces (as in the statement of the lemma), where we freely identify various homeomorphic quotient spaces (e.g.\ $p(\fC)/E$ and $S_a(M)/E^M$).
+		
+		Now, note that given any $\sigma\in \Aut(\fC)$, the restriction of $\tp(\sigma(n)/N)\in S_n(N)$ to $S_m(M)$ is $\tp(\sigma(m)/M)$ and likewise, the restriction to $S_a(M)$ is $\tp(\sigma(a)/M)$. It follows easily that for every $\sigma\in \Aut(\fC)$, we have $r_1'([\tp(\sigma(m)/M]_{E|_{S_m(M)}})=[\tp(\sigma(a)/M)]_{E^M}$ and likewise, $r_2'([\tp(\sigma(a)/M)]_{E^M})=[\tp(\sigma(m)/M)]_{E|_{S_m(M)}}$. In particular, $r_1'$ and $r_2'$ are bijections with $r_2'$ being the inverse of $r_1'$, and they are $\Gal(T)$-equivariant.
+		
+		Note that all the maps in the diagram are quotient maps, so in particular, the composed map $S_m(M)\to p(\fC)/E$ is a quotient map. It is easy to see that this map is the composition of the bijection $r_1'$ and the quotient map $S_m(M)\to [m]_{\equiv}/E'$, which implies that $r_1'$ is a homeomorphism, and hence, so is $r_2'$.
+		
+		Finally note that the conditions $r_1(\tp(m/M))=\tp(a/M)$ and $r_2(\tp(a/M))=\tp(m/M)$, together with $\Gal(T)$-equivariance of $r_1'$ and $r_2'$, imply that $r_1'$ and $r_2'$ are determined by $r_1'([\sigma(m)]_{E'})=[\sigma(a)]_{E}$ and $r_2'([\sigma(a)]_{E})=[\sigma(m)]_{E'}$, for all $\sigma \in \Aut(\fC)$.
+	\end{proof}
+	The next theorem (along with Theorem~\ref{thm:main_aut}) completes Main~Theorem~\ref{mainthm_group_types}. It is \cite[Theorem 7.13]{KR18}, and is the main result of that paper (joint with Krzysztof Krupiński).
+	\begin{thm}
+		\label{thm:main_galois}
+		Let $T$ be an arbitrary countable theory, and let $M$ be any countable ambitious model of $T$ (such a model exists by Proposition~\ref{prop:amb_exist}).
+		
+		Consider the ambit $(\Aut(M),S_m(M),\tp(m/M))$, and let $\hat G$ be the compact Polish group $u\cM/H(u\cM)\Core(D)$ (as in Corollary~\ref{cor:Polish_quotient_Core(D)}). Then the orbit map $E(\Aut(M),S_m(M))\to S_m(M)$, $f\mapsto f(\tp(m/M))$ induces a topological group quotient mapping $\hat r\colon \hat G\to \Gal(T)$ (identified with $S_m(M)/{\equiv_\Lasc^M}$ via Fact~\ref{fct:sm_to_gal}) with the following property.
+		
+		Suppose $E$ is a strong type defined on $p(\fC)$ for some $p\in S(\emptyset)$ (in countably many variables). Fix any $a\models p$.
+		
+		Denote by $r_{[a]_E}$ the orbit map $\Gal(T)\to p(\fC)/E$ given by $\sigma \Autf(\fC)\mapsto[\sigma(a)]_E$ (i.e. the orbit map of the natural action of $\Gal(T)$ on $p(\fC)/E$ from Proposition~\ref{prop:gal_action}).
+		
+		Then for $\hat r_{[a]_E}:=r_{[a]_E}\circ \hat r$ and $H=\ker \hat r_{[a]_E}:=\hat r_{[a]_E}^{-1}[[a]_E]$ we have that:
+		\begin{enumerate}
+			\item
+			$H\leq \hat G$ and the fibres of $\hat r_{[a]_E}$ are the left cosets of $H$,
+			\item
+			$\hat r_{[a]_E}$ is a topological quotient map, and so $p(\fC)/E$ is homeomorphic to $\hat G/H$,
+			\item
+			$E$ is type-definable if and only if $H$ is closed,
+			\item
+			$E$ is relatively definable on $p(\fC) \times p(\fC)$ if and only if $H$ is clopen,
+			\item
+			if $E$ is Borel [resp. analytic, or $F_\sigma$], then $H$ is Borel [resp. analytic, or $F_\sigma$],
+			\item
+			$E_H\leq_B E$, where $E_H$ is the relation of lying in the same left coset of $H$.
+		\end{enumerate}
+		
+		Moreover, if $T$ has NIP (or, more generally, if $M$ is a tame ambitious model --- cf.\ Definition~\ref{dfn:tame_model}), then $E_H\sim_B E$.
+	\end{thm}
+	\begin{proof}
+		By Lemma~\ref{lem:lascar_grouplike}, $\equiv_\Lasc^M$ is uniformly properly group-like (in the ambit $(\Aut(M),S_m(M),\tp(m/M))$), so by Theorem~\ref{thm:main_abstract}, we obtain the epimorphism $\hat r \colon \hat G\to [m]_{\equiv}/{\equiv_\Lasc}$ (identified with $\Gal(T)$ and $S_m(M)/{\equiv_\Lasc}$ via Fact~\ref{fct:sm_to_gal} and Fact~\ref{fct:logic_by_type_space}).
+		
+		Now, fix an $p$, $a\models p$ and $E$. Note that Lemma~\ref{lem:every_stype_on_m} yields a strong type $E'$ on $[m]_\equiv$ and a map $r_1'\colon [m]_\equiv/E' \to p(\fC)/E$ satisfying all the conclusions of that lemma, in particular, $r_1'([\sigma(m)]_{E'})= [\sigma(a)]_E$ for any $\sigma \in \Aut(\fC)$. Therefore, $r_{[a]_E}=r_1'\circ r_{[m]_{E'}}$, and so $\hat r_{[a]_E}=r_1'\circ \hat r_{[m]_{E'}}$. This, together with the conclusions of Lemma~\ref{lem:every_stype_on_m}, shows that we can assume without loss of generality that that $m=a$.
+		
+		Note that the Borel cardinality of $E$ is by definition the Borel cardinality of $E^M$, $p(\fC)/E$ is homeomorphic to $S_m(M)/E^M$, and by Fact~\ref{fct: Borel in various senses}, we can translate topological and descriptive properties of $E$ to those of $E^M$. Recall also that by definition, if $M$ is a tame ambitious model (which is true for any ambitious model under NIP, see Corollary~\ref{cor:NIP_implies_tame}), then the dynamical system $(\Aut(M),S_m(M))$ is tame.
+		
+		Now, if $E$ is a strong type defined on $[m]_{\equiv}$, then it is refined by $\equiv_\Lasc$. Therefore, $E^M$ is refined by $\equiv_\Lasc^M$; of course, $\Gal(T)=S_m(M)/{\equiv_\Lasc^M}$ acts on itself preserving $E|_{\Gal(T)}$ so $E^M$ is dominated by $\equiv_\Lasc^M$, and as such it is weakly uniformly properly group-like in the ambit $(\Aut(M),S_m(M),\tp(m/M))$. Thus Theorem~\ref{thm:main_abstract} applies to $E^M$, and the function in its conclusion is just $\hat r_{[m]_{E}}\colon \hat G\to [m]_{\equiv}/E=S_m(M)/E^M$. By the preceding paragraph, the properties of $\hat r_{[m]_{E}}$ given by Theorem~\ref{thm:main_abstract} give us the properties postulated by this theorem, which completes the proof.
+	\end{proof}
+	
+	
+	
+	\begin{cor}
+		In Theorem~\ref{thm:main_galois}, we also have $E_H\sim_B E$ if $E$ is coarser than $\equiv_\KP$.
+	\end{cor}
+	\begin{proof}
+		If $E$ is coarser than $\equiv_\KP$, then by Theorem~\ref{thm:main_over_KP}, the orbit map $r_{[a]_E,KP}$ from $\Gal_\KP(T)$ into $p(\fC)/E$ gives us $E\sim_B E|_{\Gal_\KP(T)}$
+		
+		On the other hand, if we denote by $\hat r_{KP}$ the function $\hat G\to S_m(M)/{\equiv_\KP^M}=\Gal_\KP(T)$ which we get by applying Theorem~\ref{thm:main_galois} to $\equiv_\KP$ on $[m]_{\equiv}$, then $\hat r_{KP}$ is a continuous epimorphism of compact Polish groups. Because $\hat r_{[a]_E}=r_{[a]_E,KP}\circ \hat r_{KP}$, it follows by Fact~\ref{fct:borel_section} that $E|_{\hat G}\sim_B E|_{\Gal_\KP(T)}\sim_B E$.
+		
+		(Alternatively, this follows from Remark~\ref{rem:strengthening}.)
+	\end{proof}
+	
+	\begin{rem}
+		In Theorem~\ref{thm:main_galois}, it seems plausible that we may also have $E_H\sim_B E$ for all $E$ on a tame $p(\fC)$. If $p$ is realised in the ambitious model $M$ chosen in the proof, then it follows from Corollary~\ref{cor:tame_dominated}, but in general (e.g.\ if $a$ enumerates a larger model), there seems to be no obvious argument. The main obstacle is that there is no clear connection between the Ellis groups of flows $(\Aut(M),S_m(M))$ as we vary the ambitious model $M$. It is possible that one can use methods similar to those introduced in \cite{KNS17} to show this stronger result.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		Theorem~\ref{thm:main_galois} can be extended in the following way: given a subgroup $G_0\leq \Aut(\fC)$ containing $\Autf(\fC)$, and such that $G_0/\Autf(\fC)$ is closed in $\Gal(T)$, we can find a group $\hat G_0$ which witnesses Theorem~\ref{thm:main_aut} for all sets of the form $Y_a:=G_0\cdot a$ (for some countable tuple $a$) in such a way that the action of $\hat G_0$ on $Y/E$ factors through $G_0/\Autf(\fC)$. The proof is analogous, except we have to choose a countable model ambitious relative to $G_0/{\Autf(\fC)}$, and prove a variant of Lemma~\ref{lem:every_stype_on_m} for $Y_a$ in place of $p(\fC)$.
+	\end{rem}
+	
+	
+	
+	\section{Actions of type-definable groups}
+	In this section, we consider a group $G$ acting on a set $X$, such that $G,X$ and the action are type-definable (over $\emptyset$, unless specified otherwise).
+	
+	We also consider, for a small model $M$, the group $G(M)$ acting on $S_G(M)=G_M$ (the space of types over $M$ concentrated on $G$) and on $X_M$ (the space of $M$-types of elements of $X$). Note that for every $g\in G$, the map $x\mapsto gx$ is type-definable over $g$. It follows immediately that $G(M)$ acts on $X_M$ by homeomorphisms.
+	
+	\index{EG000@$E_{G^{000}_\emptyset}$}
+	Throughout the section, we denote by $E_{G^{000}_\emptyset}$ the coset equivalence relation of $G^{000}_\emptyset$ on $G$.
+	
+	\begin{rem}
+		Note that if $G$ is a group invariant over a small model $M$, then it is easy to see that the set of elements of $G$ invariant over $M$ is a group.
+		
+		On the other hand, if $g\in G$ is invariant over $M$, then every coordinate of $g$ is definable over $M$ (because it definable and fixed by $\Aut(\fC/M)$), and as such, it is an element of $G$. It follows that $g$ is a tuple of elements of $G$, so $g\in G(M)$, so $G(M)$ is always a subgroup of $G$.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\subsection*{Lemmas}
+	We intend to apply results of Chapter~\ref{chap:grouplike}. In the following lemmas, we will show that their hypotheses are satisfied in the case of transitive type-definable group actions.
+	
+	\begin{lem}
+		\label{lem:quot_by_normal_grouplike}
+		Suppose $G$ is a $\emptyset$-type-definable group and $N\unlhd G$ is an invariant normal subgroup of bounded index. Suppose $M$ is a model such that $G(M)=G(M)\cdot \tp(e/M)$ is dense in $S_G(M)$.
+		
+		Then for the relation $E_N$ of lying in the same coset of $N$, $E_N^M$ is group-like on $(G(M),S_G(M))$.
+	\end{lem}
+	\begin{proof}
+		Note that $G/E_N=G/N$ and so, by Fact~\ref{fct:logic_by_type_space}, topologically $S_G(M)/E_N^M=G/N$. On the other hand, $G/N$ is a topological group by Fact~\ref{fct:quotient_by_bounded_subgroup}. The fact that $G(M)\to G/N$ is a group homomorphism is trivial.
+	\end{proof}
+	
+	
+	\begin{lem}[pseudocompleteness for type-definable groups]
+		\label{lem:pseudocompleteness_for_groups}
+		Let $M$ be a model, and suppose $G$ is a group type-definable over $M$. Let $N\succeq M$ be $\kappa^+$-saturated, where $\kappa$ is the maximum of $\lvert M\rvert$ and the length of an element of $G$, considered as a tuple (e.g.\ $N=\fC$ and $M$ is small in $\fC$).
+		
+		Then whenever $(g_i)_i$ and $(p_i)_i$ are nets in $G(M)$ and $S_G(M)$ (respectively) such that $\tp(g_i/M)\to q_1$, $p_i\to q_2$ and $g_i(p_i)\to q_3$ for some $q_1,q_2,q_3\in S_G(M)$, there are $g'_1,g'_2\in G(N)$ such that $\tp(g'_1/M)=q_1$, $\tp(g'_2/M)=q_2$ and $\tp(g'_1g'_2/M)=q_3$. (This is pseudocompleteness for $\tilde G=G(N)$, $X=S_G(M)$ and the map $\tilde G\to X$ given by $g\mapsto \tp(g/M)$, see Definition~\ref{dfn:prop_glike}.)
+	\end{lem}
+	\begin{proof}
+		Take any net $(a_i)_i$ in $N$ such that for all $i$, $a_i\models p_i$. Then for each $\varphi_1,\varphi_2,\varphi_3$ in $q_1,q_2,q_3$ (respectively), we have for sufficiently large $i$ that $N\models \varphi_1(g_i)\land \varphi_2(a_i)\land \varphi_3(g_ia_i)$. The conclusion follows easily by compactness.
+	\end{proof}
+	
+	\begin{lem}
+		If $M$ is any model, and If $G$ is an $M$-type-definable group, then the set $F_0=\{\tp(g_1^{-1}g_2/M)\mid g_1\equiv_M g_2\in G \}$ is closed in $S_G(M)$.
+	\end{lem}
+	\begin{proof}
+		Straightforward.
+	\end{proof}
+	
+	When reading the proof of Lemma~\ref{lem:coset_rel_is_glike}, it may be helpful to compare the diagram below to the one in Definition~\ref{dfn:prop_glike}.
+	
+	\begin{center}
+		\begin{tikzcd}
+			G(M)\ar[r]\ar[dr] & E(G(M),S_G(M))\ar[d,"R"]\ar[dr,"r"] \\
+			G(\fC)\ar[r] & S_G(M)\ar[r] & G/G^{000}_{\emptyset}
+		\end{tikzcd}
+	\end{center}
+	\begin{lem}
+		\label{lem:coset_rel_is_glike}
+		Given a type-definable group $G$ and a small model $M$ such that $G(M)\cdot \tp(m/M)$ is dense in $S_G(M)$, we have that the coset relation $E_{G^{000}_{\emptyset}}^M$ on $S_G(M)$ is uniformly properly group-like (according to Definition~\ref{dfn:unif_prop_glike}).
+	\end{lem}
+	\begin{proof}
+		From the preceding lemmas it follows easily that $\tilde G=G=G(\fC)$ witnesses that $E_{G^{000}_{\emptyset}}^M$ is properly group-like, with $[\tilde g]_{\equiv}=\tp(\tilde g/M)$ (in the sense of Definition~\ref{dfn:prop_glike}).
+		
+		To see that it is uniformly properly group-like, denote by $A$ the symmetric subset of $G$ consisting of products $g^{-1}g'$, where $g\equiv_M g'$, and let $\mathcal E$ be the family of sets of the form $F_n=\{
+		(\tp(g/M),\tp(g'g/M))\mid g \in G\land g'\in A^n \}$ (where $A^n$ is the set of all products of $n$ elements of $A$). They are clearly closed, symmetric and contain the diagonal in $S_G(M)^2$.
+		
+		We have that $F_{2n+1}\supseteq F_{n}\circ F_n$. Indeed, suppose we have two pairs in $F_n$: $(\tp(g/M),\tp(g'g/M))$ and $(\tp(h/M), \tp(h'h/M))$ (i.e.\ $g',h'\in A^n$) and $\tp(h/M)=\tp(g'g/M)$, then for $h''=g'g$ we have $h\equiv_M h''$, so $h(h'')^{-1}\in A$, and
+		\[
+			h'h=h'(h(h'')^{-1})h''=h'(h(h'')^{-1})g'g,
+		\]
+		so we have $(\tp(g/M),\tp(h'h/M))\in F_{2n+1}$.
+		
+		On the other hand, suppose $(\tp(e/M),\tp(g/M))\in F_n$. Then for some $g'\in A^n$ we have $g\equiv_M g'$. Since $A^n$ is clearly invariant over $M$, it follows that $g\in A^n$, so for any $g''\in G$ we have $(\tp(g''/M),\tp(g''g/M))\in F_n\subseteq F_{2n+1}$, which completes the proof.
+	\end{proof}
+	
+	\begin{prop}
+		\label{prop:bdd_iff_invariant}
+		Suppose $A\subseteq \fC$ is a small set, $G$ is a group acting transitively on a set $X$, and $E$ is a $G$-invariant equivalence relation on $X$. Suppose in addition that $G$, $X$, $E$ and the action are all $\Aut(\fC/A)$-invariant.
+		
+		Then $E$ is bounded if and only if its classes are setwise $G^{000}_A$-invariant.
+	\end{prop}
+	\begin{proof}
+		Note that since $E$ is $G$-invariant, $G$ acts on $X/E$.
+		
+		If $E$ is bounded, then $X/E$ is small, so the kernel of this action has small index. By the assumptions, the kernel is also invariant over $A$, so it contains $G^{000}_A$, which implies that the classes are $G^{000}_A$-invariant.
+		
+		In the other direction, if all classes of $E$ are setwise $G^{000}_A$-invariant, then for any $x_0\in X$, the assignment $gG^{000}_A\mapsto [g\cdot x_0]_E$ yields a well-defined function $G/G^{000}_A\to X/E$. Because $G$ acts transitively on $X$, this function is surjective. In particular, $\lvert X/E\rvert\leq [G:G^{000}_A]$, so $E$ is bounded.
+	\end{proof}
+	
+	
+	
+	\begin{lem}
+		\label{lem:weakly_grouplike_tdf}
+		Suppose $G$ is a type-definable group acting type-definably and transitively on a type-definable set $X$ (all without parameters).
+		
+		Suppose in addition that $E$ is a $G$-invariant bounded invariant equivalence relation on $X$.
+		
+		Let $M$ be a small model such that $X(M)$ is nonempty, while $G(M)$ is dense in $S_G(M)$, and choose some $x_0\in X(M)$.
+		
+		Then the relation $E_{G^{000}_\emptyset}^M$ on the ambit $(S_G(M),\tp(e/M))$ dominates $E^M$ on the ambit $(X_M,\tp(x_0/M))$, and in particular (by Lemma~\ref{lem:coset_rel_is_glike}), $E^M$ is weakly uniformly properly group-like on the ambit $(G(M),X_M,\tp(x_0/M))$.
+	\end{lem}
+	\begin{proof}
+		Since $G$ acts type-definably on $X$, it follows that the orbit map $g\mapsto g\cdot x_0$ is type-definable over $M$, so it induces a continuous map $S_G(M)\to X_M$. Because the action of $G$ on $X$ is transitive, this map is onto. By Proposition~\ref{prop:bdd_iff_invariant}, $E$-classes are setwise $G^{000}_\emptyset$-invariant, which implies that $E^M|_{S_G(M)}$ (see Definition~\ref{dfn:induced_relation}) is refined by $E_{G^{000}_\emptyset}^M$. Since $E$ is $G$-invariant, it follows that $S_G(M)/E_{G^{000}_\emptyset}^M=G/G^{000}_\emptyset$ acts on $X/E=X_M/E^M$, witnessing the domination.
+	\end{proof}
+	
+	\begin{prop}
+		\label{prop:amb_for_groups}
+		Let $x_0\in \fC$ be an arbitrary tuple, and let $G$ be a $\emptyset$-type-definable group, consisting of tuples of length at most $\lambda$.
+		
+		Then there is a model $M$ of cardinality at most $\lvert T\rvert+\lvert x_0\rvert+\lambda$ containing $x_0$, such that $G(M)$ is dense in $S_G(M)$.
+	\end{prop}
+	\begin{proof}
+		The proof is analogous to that of Proposition~\ref{prop:amb_exist}
+		
+		Roughly, start with any model $M_0$ containing $x_0$, and find a small group $G_0\leq G$ such that $\{\tp(g_0/M_0)\mid g_0\in G_0 \}$ is dense in $S_G(M_0)$, and expand $M_0$ to a small model $M_1$ containing $G_0$, and continue. After $\omega$ steps, take the union of the resulting elementary chain.
+		
+		(Note that if $G$ is a \emph{definable} group, then $G(M)$ is always dense in $S_G(M)$.)
+	\end{proof}
+	
+	We have the following proposition, analogous to Corollary~\ref{cor:NIP_implies_tame}.
+	\begin{prop}
+		\label{prop:nip_tame_group}
+		Suppose $G$ is a type-definable group acting type-definably on a type-definable set $X$. Let $M$ be a model over which $G,X$ and the action are type-definable. Then if $X$ has NIP, then the dynamical system $(G(M),X_M)$ is tame (cf.\ Definition~\ref{dfn:NIP_set} and Definition~\ref{dfn:tame_function_system}).
+	\end{prop}
+	\begin{proof}
+		The proof is by contraposition. Suppose $(G(M),X_M)$ is untame. We will show that $X$ has IP (i.e.\ does not have NIP).
+		
+		Since $X_M$ is totally disconnected, by Proposition~\ref{prop:dyn_BFT}, there is a clopen subset $U\subseteq X_M$ and a sequence $(g_n)_{n\in \bN}$ in $G(M)$ such that the sets $g_nU$ are independent. Fix a formula $\varphi(x)$ with parameters in $M$ giving $U$ (i.e.\ such that $[\varphi(x)]\cap X_M=U$).
+		
+		Write $\mu$ for the multiplication $G\times X\to X$. Note that since $\mu$ is type-definable, the preimage $\mu^{-1}[\varphi(\fC)]$ is relatively definable over $M$ in $G\times X$ (because it is type-definable and so is its preimage, $\mu^{-1}[\neg \varphi(\fC)]$). Let $\psi(y,x)$ be a formula (with parameters from $M$) such that $\psi(G,X)=\mu^{-1}[\varphi(\fC)\cap X]$. Then by the assumption, $\psi(g_n,\fC)\cap X=g_n(\varphi(\fC)\cap X)$ are independent subsets of $X$, so $\psi$ does not have NIP on $G\times X$, so $X$ does not have NIP.
+	\end{proof}
+	
+	The following proposition shows that NIP assumption on $G$ implies NIP for all transitive (type-definable) $G$-spaces.
+	\begin{prop}
+		The image of an NIP set by a type-definable surjection is NIP. In particular, if $G$ is a type-definable group with NIP, acting transitively and type-definably on $X$, then $X$ also has NIP.
+	\end{prop}
+	\begin{proof}
+		The proof is by contraposition. We will show that if the range of a type-definable function does not have NIP, then neither does the domain.
+		
+		Fix a small set of parameters $A$, a set $X$, and a surjection $f\colon Z\to X$, all type-definable over $A$.
+		
+		Suppose $X$ has IP. Then there is a formula $\varphi(x,y)$ witnessing it; we may assume without loss of generality that all parameters in $\varphi$ are from $A$ (making it larger if necessary). In particular, by Remark~\ref{rem:NIP_indiscernible}, we can find a sequence $(b_n)_{n\in\bN}$, indiscernible over $A$, such that the sets $\varphi(\fC,b_n)\cap X$ are independent in $X$. Then clearly the sets $f^{-1}[\varphi(\fC,b_n)\cap X]$ are independent in $Z$, and we only need to show that they are uniformly definable.
+		
+		First, note that the set $f^{-1}[\varphi(\fC,b_0)]$ is relatively definable in $Z$ (it is obviously type-definable, and the same is true about its complement in $Z$), so there is some definable set $W$ such that $W\cap Z=f^{-1}[\varphi(\fC,b_0)]$. Now, since the sequence $(b_n)_{n\in \bN}$ is indiscernible over $A$, we can find, for each $n$, some automorphism $\sigma_n\in \Aut(\fC/A)$ such that $\sigma_n(b_0)=b_n$. But since $f$ and $X$ are invariant over $A$ and $\varphi(x,y)$ has parameters only from $A$, it follows that $\sigma_n(W)\cap Z=f^{-1}[\varphi(\fC,\sigma_n(b_0))\cap X]=f^{-1}[\varphi(\fC,b_n)\cap X]$. Since $\sigma_n(W)$ are clearly uniformly definable, we are done.
+	\end{proof}
+	\begin{rem}
+		Note also that it is not hard to see that if $(G(M),G_M)$ is a tame dynamical system, then for every $M$-type-definable transitive $G$-space $X$ with nonempty $X(M)$, the system $(G(M),X_M)$ is also tame: under those hypotheses, we can have a $G(M)$-ambit morphism $(G_M,\tp(e/M))\to (X_M,\tp(x_0/M))$ (where $x_0\in X(M)$ is arbitrary), and apply Fact~\ref{fct:tame_preserved}.\xqed{\lozenge}
+	\end{rem}
+	
+	\subsection*{Results for type-definable group actions}
+	
+	Now, Lemma~\ref{lem:weakly_grouplike_tdf} allows us to apply preceding results, including Theorem~\ref{thm:general_cardinality_intransitive}, Theorem~\ref{thm:general_cardinality_transitive} and Theorem~\ref{thm:main_abstract}. In particular, we have the following theorem (originally, \cite[Theorem 8.4]{KR18}, joint with Krzysztof Krupiński).
+	
+	
+	
+	\begin{thm}
+		\label{thm:main_tdf}
+		Suppose that the theory is countable, and $A\subseteq \fC$ is a countable set of parameters.
+		
+		Let $G$ be an type-definable group (of countable tuples), acting type-definably and transitively on a type-definable set $X$ (of countable tuples), all with parameters in $A$. Let $E$ be a bounded, $G$-invariant and $\Aut(\fC/A)$-invariant equivalence relation on $X$.
+		
+		Then there is a compact Polish group $\hat G$ acting continuously on $X/E$, and such that for any $x_0\in X$, the stabiliser $H$ of $[x_0]_E$, and the orbit map $\hat r\colon \hat G\to X/E$, $\hat g\mapsto \hat g\cdot [x_0]_E$, have the following properties:
+		\begin{enumerate}
+			\item
+			$H\leq \hat G$ and fibres of $\hat r$ are exactly the left cosets of $H$ (so $\hat G/E|_{\hat G}=\hat G/H$),
+			\item
+			$\hat r$ is a topological quotient map (so it induces a homeomorphism of $\hat G/H$ and $X/E$),
+			\item
+			$E$ is relatively definable (as a subset of $X^2$) or type-definable if and only if $H$ is clopen or closed (respectively)
+			\item
+			if $E$ is $F_\sigma$, Borel, or analytic (respectively), then so is $H$,
+			\item
+			$\hat G/H\leq_B E$.
+		\end{enumerate}
+		Furthermore, if $X$ has NIP (in particular, if $G$ has NIP or, yet more generally, if $T$ has NIP), then $\hat G/H\sim_B E$.
+	\end{thm}
+	\begin{proof}
+		Note first that we may assume without loss of generality that $A=\emptyset$ (if necessary, we may add some countably many parameters to the language).
+		
+		Fix $x_0$ and find a countable model $M$ as in Proposition~\ref{prop:amb_for_groups}. Then Lemma~\ref{lem:weakly_grouplike_tdf} applies, and we can apply Theorem~\ref{thm:main_abstract}, arguing as in the proof of Theorem~\ref{thm:main_aut}.
+		
+		More precisely, by Proposition~\ref{prop:amb_for_groups}, we can fix a model $M$ satisfying the hypotheses of Lemma~\ref{lem:weakly_grouplike_tdf}, and then for any $x_0\in X(M)$, $(G(M),X_M,\tp(x_0/M))$ is an ambit and $E^M$ is weakly uniformly properly group-like. Furthermore, by Proposition~\ref{prop:nip_tame_group}, if $X$ has NIP, then $(G(M),X_M)$ is tame.
+		
+		Recall that we identify $X/E$ and $X_M/E^M$ (and the identification is homeomorphic), the Borel cardinality of $E$ is by definition the Borel cardinality of $E^M$, and by Fact~\ref{fct: Borel in various senses}, we have that $E$ is relatively definable in $X^2$, type-definable, $F_\sigma$, Borel, or analytic if and only if $E^M$ is clopen, closed, $F_\sigma$, Borel or analytic (respectively).
+		
+		Thus, the by the third paragraph, the assumptions of Theorem~\ref{thm:main_abstract} are satisfied, and by the fourth paragraph, its conclusion gives us the desired $\hat G$, action and $\hat r$.
+	\end{proof}
+	
+	\begin{rem}
+		By going back to Theorem~\ref{thm:main_abstract}, we see that the group $\hat G$ in Theorem~\ref{thm:main_tdf} is actually the quotient $u\cM/H(u\cM)\Core(D)$ calculated for the ambit $(G(M),S_X(M),\tp(x_0/M))$.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		In Theorem~\ref{thm:main_tdf}, if the stabiliser of $[x_0]_E$ is normal in $G$, then so is the stabiliser in $G/G^{000}_A$, which gives $X/E$ a topological group structure such that the orbit map $G/G^{000}_A\to X/E$ (at $[x_0]_E$) is a homomorphism.
+		
+		It is not hard to see that this implies that that $E^M$ satisfies the assumptions of Proposition~\ref{prop:wgl_homom}, and so by Theorem~\ref{thm:main_abstract}(7), $H$ is normal.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	We can also apply Corollary~\ref{cor:metr_smt_cls}, yielding the following. See also Corollary~\ref{cor:smt_def} for related statement which applies to intransitive actions.
+	\begin{cor}
+		\label{cor:trich+_tdf}
+		Suppose $T$ is countable. Let $A\subseteq \fC$ be countable.
+		
+		Suppose in addition that $G$ is a type-definable group, and $X$ is an type-definable set of countable tuples on which $G$ acts transitively and type-definably (all with parameters in $A$), while $E$ is a bounded $G$-invariant and $\Aut(\fC/A)$-invariant equivalence relation on $X$. Then exactly one of the following holds:
+		\begin{enumerate}
+			\item
+			$E$ is relatively definable (as a subset of $X^2$) and has finitely many classes,
+			\item
+			$E$ is type-definable and has exactly $2^{\aleph_0}$ classes,
+			\item
+			$E$ is not type-definable and not smooth. In this case, if $E$ is analytic, then it has exactly $2^{\aleph_0}$ classes.
+		\end{enumerate}
+		In particular, $E$ is smooth if and only if it is type-definable.
+		
+		Furthermore, if $X$ has NIP, then the Borel cardinality of $E$ is the Borel cardinality of the coset equivalence relation of a subgroup of a compact Polish group (which is $F_\sigma$, Borel or analytic, respectively, whenever $E$ is such).
+	\end{cor}
+	\begin{proof}
+		By Theorem~\ref{thm:main_tdf}, we can apply Lemma~\ref{lem:abstract_trich}, which (by Fact~\ref{fct: Borel in various senses}) completes the proof, apart from the ``furthermore'' part, which follows directly from Theorem~\ref{thm:main_tdf}.
+	\end{proof}
+	
+	The following corollary (Main~Theorem~\ref{mainthm:tdgroup}) is a strengthening of Fact~\ref{fct:KM_about_groups} from \cite{KM14}; it partially appeared in \cite{KPR15} and in \cite{KR18} (cf.\ the comments preceding Main~Theorem~\ref{mainthm:tdgroup}).
+	\begin{cor}
+		\label{cor:trich_tdgroups}
+		Suppose $G$ is a type-definable group, while $H\leq G$ is an analytic subgroup, invariant over a small set. Then exactly one of the following holds:
+		\begin{itemize}
+			\item
+			$[G:H]$ is finite and $H$ is relatively definable,
+			\item
+			$[G:H]\geq 2^{\aleph_0}$, but is bounded, and $H$ is not relatively definable.
+			\item
+			$[G:H]$ is unbounded (i.e.\ not small).
+		\end{itemize}
+		In particular, $[G:H]$ cannot be infinite and smaller than $2^{\aleph_0}$.
+		
+		Moreover, if the language is countable, $G$ consists of countable tuples, and $G$ and $H$ are invariant over a countable set, then we can divide the second case further: either $H$ is type-definable, or $G/H$ is not smooth.
+	\end{cor}
+	\begin{proof}
+		Choose $M$ as in Proposition~\ref{prop:amb_for_groups} for $x_0=e_G$.
+		
+		If $[G:H]$ is unbounded, there is nothing to prove. Otherwise, the left coset equivalence relation $E_H$ on $G$ is bounded, $G$-invariant, and invariant over the set over which $G$ and $H$ are invariant.
+		Furthermore, $G(M)$ is dense in $S_G(M)$, so it has a dense orbit in $G/H$, i.e.\ $G(M)\cdot e_{G/H}=G(M)/H$ is dense in $G/H=S_G(M)/E_H^M$.
+		
+		Therefore, we can apply Lemma~\ref{lem:weakly_grouplike_tdf} to $E_H$, and it follows that Theorem~\ref{thm:general_cardinality_transitive} applies with $X=Y=S_G(M)$ and $E_H^M$. It is easy to see that $E_H^M$ is clopen if and only if both $E_H$ and $H$ are relatively definable, which completes the proof of the trichotomy.
+		
+		Under the countability assumptions, we can apply Corollary~\ref{cor:trich+_tdf} with $X=G$ and $E=E_H$, noting that $E_H$ is type-definable if and only if $H$ is type-definable. This gives us the ``moreover'' part.
+	\end{proof}
+	
+	\begin{rem}
+		It is possible to have $[G:H]=2$ for an invariant and not relatively definable $H$ (see \cite[Example 3.39]{KM14}), but then $H$ is necessarily non-analytic. (Indeed, in the cited example, the $H$ is only obtained existentially, and is a kind of ``Vitali set".)\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{rem}
+		In Theorem~\ref{thm:main_tdf}, in the ``Furthermore" part, one can weaken the assumption that $X$ has NIP to say only that there is no $\varphi(x)$ with parameters in $M$ such that $\{g\cdot [\varphi(x)]\mid g\in G(M) \}$ contains an independent family, as that is enough to guarantee that $(G(M),S_G(M))$ is tame.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		One may also show that we have the analogue of Lemma~\ref{lem:every_stype_on_m}, and using that, obtain an analogue of Theorem~\ref{thm:main_galois}. Roughly speaking, given a fixed $G$ and $A$, there is a single $\hat G$ witnessing Theorem~\ref{thm:main_tdf} for all $X$ and $E$.\xqed{\lozenge}
+	\end{rem}
+	
+	\section{Other applications in model theory}
+	\label{sec:other_apps}
+	As mentioned in the introduction, Theorem~\ref{thm:main_abstract} (as well as Theorems~\ref{thm:general_cardinality_intransitive} and \ref{thm:general_cardinality_transitive}) may be used to deduce virtually all the similar results in the model-theoretic contexts, either by directly showing that some equivalence relation is (weakly) uniformly properly group-like, or by some reduction to Theorem~\ref{thm:main_aut} or Theorem~\ref{thm:main_tdf}.
+	
+	Before, we have seen how we can recover and even improve the results from the papers \cite{Ne03}, \cite{KMS14}, \cite{KM14}, \cite{KP17}, \cite{KR16}, \cite{KPR15} and \cite{KR18}. Below, we briefly describe a couple of other examples.
+	
+	\subsection*{Definable components in classical topological dynamics}
+	
+	In \cite{KP16}, the authors consider a topological group $G=G(M)$, definable in a structure $M$ with predicates for all open subsets of $G$, denoting $G(\fC)$ by $G^*$. They denote by $\mu$ the subgroup of $G^*$ of infinitesimal elements, that is, $\bigcap_U U(\fC)$, where $U$ ranges over all neighbourhoods of the identity in $G$. Using $\mu$, they define the group $G^{*000}_{\topo}$ as the smallest $M$-invariant normal subgroup of $G^*$ which contains $\mu$ and has bounded index. Then $G^*/G^{*000}_\topo$ is a new invariant of the topological group $G$ (as one can show that it does not depend on the choice of the model $M$, as long as it defines $G$ and has predicates for all its open subsets).
+	
+	They also define the space $S_{G^*}^\mu(M)$ as the quotient of $S_{G^*}(M)$ by $\mu$ (i.e.\ two types $p,q\in S_{G^*}(M)$ are identified if $\mu p(\fC)=\mu q(\fC)$).
+	
+	Then, since $G^*$ is definable, $G(M)$ is dense in $S_{G^*}(M)$, and so it is also dense in $S_{G^*}^\mu(M)$, so $(G(M),S_{G^*}^\mu(M),\tp(e/M))$ is an ambit. In fact, it is exactly the classical universal (topological) $G$-ambit.  It turns out that $S_{G^*}^\mu(M)$ has a natural semigroup structure which makes it isomorphic to $E(G(M),S_{G^*}^\mu(M))$, so in particular, we can find inside the Ellis group $u\cM$ and the quotient $u\cM/H(u\cM)$, which is exactly the generalized Bohr compactification of $G$, as introduced by Glasner in \cite[Chapter VIII]{Gl76}. They turn to state, in \cite[Theorem 2.24, Theorem 2.25]{KP16} (without proof, beyond very broad description how one can adapt \cite{KP17}) that we have a well-defined topological quotient map $u\cM/H(u\cM)\to G^*/G^{*000}_\topo$, and that $G^{*00}_\topo/G^{*000}_\topo$ is the quotient of a compact Hausdorff group by a dense subgroup, for $G^{*00}_\topo$ defined analogously.
+	
+	It is not hard to show that, in their context, the coset equivalence relation $E_{G^{*000}_\topo}$ of $G^{*000}_\topo$ induces a uniformly properly group-like $F_\sigma$ equivalence relation on the ambit $(G(M),S_{G^*}^\mu(M),\tp(e/M))$, and the quotient of $S_{G^*}^\mu(M)$ by this relation can be naturally identified with $G^*/G^{*000}_\topo$. Thus, by Lemma~\ref{lem:main_abstract_grouplike}, we recover the quotient map $u\cM/H(u\cM)\to G^*/G^{*000}_\topo$, concluding (using Lemma~\ref{lem:new_preservation_E_to_H}) that $G/G^{*000}_\topo$ is the quotient of the compact group $u\cM/H(u\cM)$ by an $F_\sigma$ normal subgroup. Since $G^{*00}_\topo/G^{*000}_\topo$ is the closure of the identity in $G^*/G^{*000}_\topo$, it follows that it is the quotient of a compact Hausdorff group by a dense subgroup.
+	\subsection*{Relative Galois groups}
+	\newcommand{\res}{{\mathrm{res}}}
+	\newcommand{\fix}{{\mathrm{fix}}}
+	In \cite{DKL17}, the authors study several variants of the Galois group. For each partial type $\Sigma$ over $\emptyset$, they put:
+	\begin{itemize}
+		\item
+		$\Aut(\Sigma(\fC))=\{\sigma\restr_{\Sigma(\fC)}\mid \sigma\in \Aut(\fC) \}$,
+		\item
+		$\Autf_\res(\Sigma(\fC))=\{\sigma\restr_{\Sigma(\fC)}\mid \sigma\in \Autf(\fC) \}$,
+		\item
+		$\Autf_\fix(\Sigma(\fC))=\{\sigma\in \Aut(\Sigma(\fC))\mid \sigma(a)\equiv_\Lasc a\}$, where $a$ is a tuple enumerating $\Sigma(\fC)$.
+	\end{itemize}
+	Using these, they define the relative Galois groups in the following way.
+	\begin{itemize}
+		\item
+		$\Gal^\res(\Sigma(\fC))=\Aut(\Sigma(\fC))/\Autf_\res(\Sigma(\fC))$
+		\item
+		$\Gal^\fix(\Sigma(\fC))=\Aut(\Sigma(\fC))/\Autf_\fix(\Sigma(\fC))$
+	\end{itemize}
+	It is easy to see that $\Autf_\res(\Sigma(\fC))$ and $\Autf_\fix(\Sigma(\fC))$ are normal subgroups of $\Aut(\Sigma(\fC))$ and $\Autf_\res(\Sigma(\fC))\leq \Autf_\fix(\Sigma(\fC))$, so $\Gal^\res(\Sigma(\fC))$ and $\Gal^\fix(\Sigma(\fC))$ are groups and we have a natural epimorphism $\Gal^\res(\Sigma(\fC))\to \Gal^\fix(\Sigma(\fC))$. Furthermore, the restriction epimorphism $\Aut(\fC)\to \Aut(\Sigma(\fC))$ induces an epimorphism $\Gal(T)\to \Gal^\res(\Sigma(\fC))$, which turns $\Gal^\res(\Sigma(\fC))$ and $\Gal^\fix(\Sigma(\fC))$ into topological groups. Furthermore, by considering the compositions of the epimorphisms with the function $S_m(M)\to \Gal(T)$ from Fact~\ref{fct:sm_to_gal}, we can also conclude that each relative Galois group also has a well-defined Borel cardinality (provided the theory is countable and $\Sigma$ has countably many free variables).
+	
+	In both cases, we can show that the Galois groups are actually quotients of the space $S_m(M)$ by a uniformly properly group-like equivalence relation. Thus, we can apply Lemma~\ref{lem:weakly_grouplike} to present them as quotients of compact Hausdorff groups, and if the language is countable, we may also apply Theorem~\ref{thm:main_abstract} to present them as quotients of compact Polish groups, and Corollary~\ref{cor:metr_smt_cls} to see that they are smooth if and only if they are Hausdorff  (i.e.\ they coincide with the appropriately defined relative Kim-Pillay Galois groups). Similarly to Theorem~\ref{thm:main_galois}, we also recover the full Borel cardinality under NIP, although in this case, it is enough to assume NIP on $[a]_{\equiv}$ for a suitable tuple of realisations of $\Sigma$.
+	
+	
+	\section{Examples}
+	\label{sec:examples}
+	
+	In this section, we analyse examples of non-G-compact theories $T$ from \cite{CLPZ01} and \cite{KPS13} and see how Theorem~\ref{thm:main_galois} can be applied to them. Namely, we describe the compact group $\hat G$ (which turns out to be the Ellis group) and the kernel of $\hat r\colon \hat G\to \Gal(T)$ in those cases. In order to do that, we compute the Ellis groups of the appropriate dynamical systems. This allows us to describe the group $\Gal(T)$ in each of these examples. Further, because the examples have NIP, this description also yields the Borel cardinality of the Galois group.
+	
+	The contents of this section are based on the appendix of \cite{KR18} (joint with Krzysztof Krupiński), expanded with more details of the proofs.
+	
+	(The topological group structure in the first example (Example~\ref{ex:CLPZ}) was described in \cite{Zie02}, by a more direct method. In \cite{KPS13}, the authors describe the topological group structure the second example (Example~\ref{ex:KPS}) and the Borel cardinality in both cases, but use completely different methods and give very few details.)
+	
+	\subsection*{Lemmas}
+	First, we prove some auxiliary lemmas.
+	
+	\begin{rem}
+		\label{rem:action_factors}
+		If $(G,X)$ is a dynamical system and the action of $G$ on $X$ factors through another group $G'$, then it is easy to see that $E(G,X)=E(G',X)$, and the $\tau$ topologies on the ideal groups coincide.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{lem}
+		\label{lem:projlim_ellis}
+		Consider a projective system of dynamical systems $(G_i,X_i)$ for $i\in I$ (where $i$ is some downwards directed set), i.e.\ for each pair $i<j$ we have an epimorphism $\pi_{i,j}\colon G_i\to G_j$, and a $G_i$-equivariant continuous surjection $\pi_{i,j}\colon X_i\to X_j$. Let $G:=\varprojlim_i G_i$ act naturally on $X:=\varprojlim_i X_i$, and for each $i$, let $\pi_i$ denote the projection $\pi_i\colon X\to X_i$ and abusing the notation, also the projection $\pi_i\colon G\to G_i$.
+		
+		Then we have a natural isomorphism $E(G,X)\cong \varprojlim_i E(G_i,X_i)$ (as semitopological semigroups and as a $G$-flows), consistent with the maps $\pi_i$ given in the preceding paragraph. Let us abuse the notation further, and write $\pi_i$ for the epimorphism $E(G,X)\to E(G_i,X_i)$.
+		
+		Then, for every minimal left ideal $\cM \unlhd E(G,X)$, each $\cM_i=\pi_i[\cM]$ is a minimal left ideal in $E(G_i,X_i)$ and $\cM=\varprojlim_i \pi_i[\cM]$. If $u\in \cM$ is an idempotent, then each $u_i=\pi_i(u)$ is an idempotent in $\cM_i=\pi_i[\cM]$.
+		
+		In particular, $u\cM=\varprojlim_i u_i\cM_i$. Furthermore, the $\tau$ topology on $u\cM$ is the projective limit topology, with each $u_i\cM_i$ equipped with its $\tau$ topology.
+		
+		Conversely, if $(\cM_i)_i$ is a consistent system of minimal left ideals in $E(G_i,X_i)$ and for each $i$, $u_i$ is an idempotent in $\cM_i$, then $\varprojlim_i \cM_i$ is a minimal left ideal in $E(G,X)$ and $u=(u_i)_i$ is an idempotent in $\cM$.
+	\end{lem}
+	\begin{proof}
+		Note that immediately by the assumptions, $G$ acts on each $X_i$ via $G_i$, and $\pi_i\colon X\to X_i$ is $G$-equivariant. By Remark~\ref{rem:action_factors}, we may assume without loss of generality that $G=G_i$ for all $i$.
+		
+		Now, using Proposition~\ref{prop:induced_epimorphism}, we obtain the epimorphisms $\pi_i\colon E(G,X)\to E(G,X_i)$, and they obviously commute with the covering maps in the projective system, whence $E(G,X)=\varprojlim_i E(G,X_i)$.
+		
+		Since each $\pi_i$ is an epimorphism, preimages and images of ideals by $\pi_i$ are ideals. This easily implies that if $\cM$ is a minimal ideal, then each $\pi_i[\cM]$ is also minimal. Since $\cM$ is closed (as a minimal ideal), it is the inverse limit of $\pi_i[\cM]$. Conversely, if $(\cM_i)_i$ is a consistent system of minimal ideals, then $\varprojlim_i \cM_i=\bigcap_i \pi_i^{-1}[\cM_i]$, so it is an ideal (as an intersection of ideals, which is nonempty by compactness, because the system is consistent). Thus, it contains a minimal ideal $\cM$. If $\cM\subsetneq \varprojlim_i \cM_i$, then for some $i$ we have $\pi_i[\cM]\subsetneq \cM_i$, which contradicts minimality of $\cM_i$, so $\cM= \varprojlim_i \cM_i$, and the latter is a minimal ideal.
+		
+		It is clear that $u\in E(G,X)$ is an idempotent if and only if each $\pi_i(u)$ is an idempotent (because multiplication in the inverse limit is coordinatewise). Therefore, if $u=(u_i)_i\in \cM=\varprojlim_i \cM_i$ is an idempotent, then for each $f\in u\cM$ and each $i$ we have $\pi_i(f)=\pi_i(uf)=\pi_i(u)\pi_i(f)\in u_i \cM_i$, and conversely, if for each $i$ we have $\pi_i(f)\in u_i\cM_i$, then $uf=(u_i\pi_i(f))_i=(\pi_i(f))_i=f$, so as sets, $u\cM=\varprojlim_i u_i\cM_i$.
+		
+		What is left is to show that the $\tau$-topology on an Ellis group $u\cM$ is the limit of the $\tau$ topologies on projections. Let us denote the limit topology by $\pi$.
+		
+		In one direction, this is trivial: a subbasic $\pi$-closed set is clearly $\tau$-closed, so $\tau$ refines $\pi$.
+		
+		In the other direction, let $A$ be a $\tau$-closed set in $u\cM$. Take any $f$ which is in $\pi$-closure of $A$, any open $U\ni u$ and $V\ni f$, with the aim to apply Proposition~\ref{prop:circ_description} to show that $f\in u\circ A$. Then for some $i\in I$ and open $U',V'\subseteq EL_i=E(G,X_i)$, we have $U=\pi_i^{-1}[U'],V=\pi_i^{-1}[V']$, so $u_i\in U'$ and $f_i:=\pi_i(f)\in V'$. But then by the assumption and Proposition~\ref{prop:circ_description}, there is some $g_i\in G$ and $a_i\in \pi[A]$ such that $\pi_{X_i,g_i}\in U'$ and $g_ia_i\in V'$. But then for any $a\in A$ such that $\pi_i(a)=a_i$ we have $\pi_{X,g_i}\in U$ and $g_ia\in V$. Since $U,V$ were arbitrary, by Proposition~\ref{prop:circ_description}, $f\in u\circ A$, and since $f\in u\cM$ and $A$ is $\tau$-closed, we have $f\in A$.
+	\end{proof}
+	
+	\begin{lem}
+		\label{lem:tau_accumulation}
+		Fix arbitrary dynamical system $(G,X)$, and consider its Ellis group $u\cM$.
+		
+		Given a net $(f_i)_i$ in $u\cM$ and $f\in u\cM$, the following are equivalent:
+		\begin{itemize}
+			\item
+			$f$ is a $\tau$-accumulation point of $(f_i)_i$ (i.e.\ for every $i_0$, $f$ is in the $\tau$-closure of $(f_i)_{i>i_0}$),
+			\item
+			there is a subnet $(f'_{j'})_{j'}$ of $(f_j)_j$ such that for some net $(g_{j'})_{j'}$ in $G$ such that $g_{j'}\to u$ we have $g_{j'}f'_{j'}\to f$.
+		\end{itemize}
+		In particular, $(f_i)_i$ $\tau$-converges to $f$ if and only if every subnet of $(f_i)_i$ has a further subnet with the second property.
+	\end{lem}
+	\begin{proof}
+		It is clear that the second condition implies the first. For the converse, by Proposition~\ref{prop:circ_description}, it is enough to show that for every $i_0$, for every open $U\ni u$ and $V\ni f$, there is some $i>i_0$ and $g_i\in G$ such that $g_i\in U$ and $g_if_i\in V$. But by the assumption, we can find some net $(g'_j)_j$ and a net $(f'_j)_j$, where each $f'_j\in f_{>{i_0}}$, such that $g'_j\to u$ and $g'_jf'_j\to f$. But then for sufficiently large $j$ we have $g'_j\in U$ and $g'_jf'_j\in V$, so we can just take any $i>i_0$ such that $f_i=f'_j$ and $g_i=g'_j$.
+		
+		The ``in particular" follows easily, as $(f_i)_i$ converges to $f$ exactly when $f$ is the accumulation point of every subnet of $(f_i)_i$.
+	\end{proof}
+	
+	
+	\begin{lem}
+		\label{lem:product_ellis}
+		Consider dynamical systems $(G_i,X_i)$ for $i\in I$ (where $I$ is some index set). Put $G=\prod_i G_i$ acting naturally on $X=\prod_i X_i$, and for each $i$, let $\pi_i$ be the projection $X\to X_i$ and, abusing the notation, $G\to G_i$.
+		
+		Then $E(G,X)\cong \prod_i E(G_i,X_i)$ (as a semitopological semigroup and as a $G$-flow).
+		
+		Furthermore, if $\cM$ is a minimal left ideal in $E(G,X)$, then each $\cM_i=\pi_i[\cM]$ is a minimal left ideal in $E(G_i,X_i)$ and $\cM=\prod_i \pi_i[\cM]$. If $u\in \cM$ is an idempotent, then each $u_i=\pi_i(u)$ is an idempotent in $\cM_i=\pi_i[\cM]$.
+		
+		In particular, $u\cM=\prod_i u_i\cM_i$. Furthermore, the $\tau$ topology on $u_i\cM_i$ is the product topology.
+		
+		Conversely, if $\cM_i$ is a minimal left ideal in $E(G_i,X_i)$ and $u_i$ is an idempotent in $\cM_i$, then $\prod_i \cM_i$ is a minimal left ideal in $E(G,X)$ and $u=(u_i)_i$ is an idempotent in $\cM$.
+	\end{lem}
+	\begin{proof}
+		Since every product is the inverse limit of its finite subproducts, by Lemma~\ref{lem:projlim_ellis}, it is enough to consider the case when $I$ is finite. Moreover, a straightforward inductive argument shows that the case of finite products follows from the case of products of two elements.
+		
+		Thus, we may assume that $G=G_1\times G_2$ and $X=X_1\times X_2$. The fact that $E(G,X)$ is the product $E(G_1,X_1)\times E(G_2,X_2)$ is straightforward, as is the fact that minimal ideals in $E(G,X)$ are exactly the products of minimal ideals in $E(G_i,X_i)$, and that idempotents are those elements which have idempotents on both coordinates.
+		
+		The only nontrivial statement is about the $\tau$ topology being equal to the product topology. As in the case of inverse limit, let us call the latter topology $\pi$. Also as there, we see immediately that subbasic $\pi$-closed sets are $\tau$-closed, so $\tau$ refines $\pi$.
+		
+		In the other direction, consider any $A\subseteq u\cM=u_1\cM_1\times u_2\cM_2$ and let $f$ be a point in the $\pi$-closure of $A$. We will show that $f$ is also in the $\tau$-closure of $A$. We have a net $(a_i)_i$ in $A$ which is $\pi$-convergent to $f$, i.e.\ for $j=1,2$ we have $(a_{j,i})\xrightarrow{\tau} f_j$, where $f=(f_1,f_2)$ and each $a_i=(a_{1,i},a_{2,i})$.
+		
+		By applying Lemma~\ref{lem:tau_accumulation} to $(a_{1,i})_i$, we may assume without loss of generality that there is a net $(g_{1,i})_i$ in $G_1$ such that $g_{1,i}\to u_1$ and $g_{1,i}a_{1,i}\to f_1$. By applying it again, we may assume without loss of generality that there is also a net $(g_{2,i})_i$ in $G_2$ such that $g_{2,i}\to u_2$ and $g_{2,i}a_{2,i}\to f_2$. But then $(g_{1,i},g_{2,i})\to (u_1,u_2)=u$ and $(g_{1,i},g_{2,i})(a_{1,i},a_{2,i})\to (f_1,f_2)=f$, so $f$ is in $\tau$-closure of $A$, and we are done.
+	\end{proof}
+	
+	
+	\begin{prop}\label{prop:product of Ellis groups}
+		Suppose we have a multi-sorted structure $M=(M_n)_n$, where the sorts $M_n$ are arbitrary, without any functions or relations between them. Enumerate each $M_n$ by $m_n$ and put $m=(m_n)_n$. Then $E(\Aut(M),S_m(M))\cong \prod_n E(\Aut(M_n),S_{m_n}(M))$, and similarly, the minimal left ideals and the Ellis groups (equipped with the $\tau$-topology) are the products of minimal left ideals and Ellis groups, respectively.
+	\end{prop}
+	\begin{proof}
+		Under the given assumptions, it is easy to see that $\Aut(M)=\prod_n \Aut(M_n)$ and $S_m(M)=\prod_n S_{m_n}(M_n)$. The proposition follows from Lemma~\ref{lem:product_ellis}
+	\end{proof}
+	
+	
+	\subsection*{Examples}
+	
+	In this section, unless otherwise stated, $M_n$ denotes the countable structure $(M_n,R_n,C_n)$, where $n>1$ is a fixed natural number, the underlying set is ${\bQ}/{\bZ}$, $R_n$ is the unary function $x\mapsto x+1/n$, and $C_n$ is the ternary predicate for the natural (dense, strict) circular order. Let a tuple $m_n$ enumerate $M_n$. It is easy to show (see \cite[Proposition 4.2]{CLPZ01}) that $\Th(M_n)$ has quantifier elimination and the real circle $S^1_n=\bR/\bZ$ equipped with the rotation by the angle $2\pi/n$ and the circular order is an elementary extension of $M_n$. As usual, $\fC \succ S^1_n$ is a monster model.
+	
+	Given any $c' \in \fC$, by $\st(c')$ we denote the standard part of $c'$ computed in the circle $S^1=\bR/\bZ$.
+	As $\st(c')$ depends only on $\tp(c'/M_n)$, this extends to a standard part mapping on the space of 1-types $S_1(M_n)$.
+	
+	\begin{prop}
+		\label{prop:group_onetypes}
+		If $u$ is an idempotent in a minimal left ideal $\cM$ of  the Ellis semigroup $E(\Aut(M_n),S_1(M_n))$, then $u\cM$ is generated by $R_nu$ and cyclic of order $n$. In particular, it is isomorphic to ${\bZ}/n{\bZ}$.
+	\end{prop}
+	
+	\begin{proof}
+		Note that $R_n$ is a $\emptyset$-definable automorphism of $M_n$, and as such, it is in the centre of $\Aut(M_n)$, and so it is also central in the Ellis semigroup.
+		
+		Now, since for any two Ellis groups $u\cM,v\cN$, the map $f\mapsto vfv$ is an isomorphism $u\cM\to v\cN$ (cf.\ Remark~\ref{rem:explicit_ellisgroup_isomorphism}), and since $R_n$ is central, we have $vR_n^juv=R_n^jvuv=R_n^jv$. Thus if the conclusion holds for $u\in \cM$, then it also holds for $v
+		\in \cN$. Hence, it is enough to show that it holds for \emph{some} idempotent in \emph{some} minimal ideal.
+		
+		In the rest of this proof, by \emph{short} interval we mean an interval of length less than $1/n$. We also identify $\Aut(M_n)$ with its image in the Ellis semigroup.
+		
+		From quantifier elimination, it follows easily that $M_n$ is $\omega$-categorical, and $\Aut(M_n)$ acts transitively on the set of short open intervals in $M_n$.
+		
+		Denote by $J$ the set of $p\in S_1(M_n)$ with $\st(p)\in [0,1/n) + \bZ \subseteq \bR/\bZ$.
+		
+		\begin{clm*}
+			For any non-isolated type $p\in S_1(M_n)$, there is a unique $f_{p}\in EL:=E(\Aut(M_n),S_1(M_n))$ such that for all $q\in J$ we have $f_p(q)=p$.
+		\end{clm*}
+		\begin{clmproof}
+			Enumerate $M_n$ as $(a_k)_{k\in \bN}$.
+			
+			Since $p$ is non-isolated, for each $k\in \bN$ there is a short open interval $I_k$ such that $p$ is concentrated on $I_k$ and $a_0,\ldots,a_k\notin I_k$. By quantifier elimination, it is easy to see that $p$ is the only type in $S_1(M_n)$ concentrated on all $I_k$'s.
+			
+			Now, let $J_k:=(\frac{-1}{2kn},\frac{1}{n}-\frac{1}{kn})$. Notice that if $q\in J$, then $q$ is concentrated on all but finitely many $J_k$'s.
+			
+			Since each $I_k$ and $J_k$ is a short open interval, we can find for each $k$ some $\sigma_k\in \Aut(M_n)$ such that $\sigma_k[J_k]=I_k$. It follows that for any $q\in J$ we have $\lim_k\sigma_k(q)=p$. Thus, if we take any $f_p\in EL$ which is an accumulation point of $(\sigma_k)_k$, we will have $f_p(q)=p$ for all $q \in J$.
+			
+			To see that $f_p$ is unique, note that for each integer $j$ and $q\in R_n^j[J]$, $f_p(q)\in f_p[R_n^j[J]]=f_pR_n^j[J]=R_n^j f_p[J]=\{R_n^j(p)\}$. Since $J\cup R_n[J]\cup\ldots\cup R_n^{n-1}[J]=S_1(M_n)$, uniqueness follows.
+		\end{clmproof}
+		
+		Take any non-isolated $p_0\in J$, and let $u=f_{p_0}$ (as in the claim). By uniqueness in the claim, $u$ is an idempotent. Denote by $\mathcal O$ the $R_n$-orbit of $p_0$.
+		
+		Note that every $f \in ELu$ is constant on $J$. As in the above proof of uniqueness, since $u$ and $uf$ commute with $R_n$, we easily see that the image of $uf$ equals $\mathcal O$.
+		
+		Now, we show that $\cM:=ELu$ is a minimal left ideal. Consider any $f \in \cM$.
+		By the last paragraph, $uf(p_0)=R_n^j(p_0)$ for some $j$. Then $R_n^{-j}uf(p_0)=p_0$ and $R_n^{-j}uf$ is constant on $J$, so by uniqueness in the claim, $R_n^{-j}uf=u$. It follows that $ELf=ELu=\cM$, so $\cM$ is a minimal left ideal.
+		
+		
+		By the preceding paragraph, we see also that for any $uf\in u\cM$, there is some $j$ such that $uf=R_n^ju$. Conversely, since $R_n$ is central, $R_nu=uR_nu\in u\cM$, so $u\cM$ is cyclic, generated by $R_nu$. As $R_n^ju(p_0)=R_n^j(p_0)$, $R_nu$ has order $n$ in $u\cM$, so $u\cM\cong \bZ/n\bZ$.
+	\end{proof}
+	
+	\begin{lem}
+		\label{lem:ellis_group_onesort}
+		Suppose $n>1$.
+		
+		The restriction $S_{m_n}(M_n)\to S_1(M_n)$ to the first variable induces an isomorphism of Ellis semigroups $E(\Aut(M_n),S_{m_n}(M_n))\cong E(\Aut(M_n),S_1(M_n))$
+		
+		In particular, every Ellis group $u\cM$ of $(\Aut(M_n),S_{m_n}(M_n))$ is generated by $R_nu$ and isomorphic to $\bZ/n\bZ$.
+	\end{lem}
+	\begin{proof}
+		We have the following ``orthogonality" property.
+		
+		\begin{clm*}
+			Let $p,q\in S_{m_n}(M_n)$ satisfy the condition that for each single variable $x$, $p\restr_x=q\restr_x$. Then $p=q$.
+		\end{clm*}
+		\begin{clmproof}
+			For $c_1',c_2'\in \fC$, write $c_1'<c_2'$ for $C_n(c_1',c_2',R_n(c_1'))$. Note that for each $r\in S^1$, this is a linear ordering on the set of all $c'$ with $\st(c')=r$. Furthermore, for any $c_1',c_2',c_3'$ we have that $C_n(c_1',c_2',c_3')$ holds if and only if one of the following holds:
+			\begin{itemize}
+				\item
+				$\st(c_1'),\st(c_2'),\st(c_3')$ are all distinct and they are in the standard circular order on $S^1$,
+				\item
+				$\st(c_1')=\st(c_2')\neq \st(c_3')$ and $c_1'<c_2'$,
+				\item
+				$\st(c_1')\neq\st(c_2')=\st(c_3')$ and $c_2'<c_3'$,
+				\item
+				$\st(c_2')\neq\st(c_1')=\st(c_3')$ and $c_1'>c_3'$,
+				\item
+				$\st(c_1')=\st(c_2')=\st(c_3')$ and ($c_1'<c_2'<c_3'$ or $c_3'<c_1'<c_2'$ or $c_2'<c_3'<c_1'$).
+			\end{itemize}
+			
+			We need to show that for each tuple $m'=(m'_k)_{k\in \bN}$ satisfying $\tp(m_n/\emptyset)$, we have the implication $\tp(m_n/\emptyset)\cup\bigcup_k \tp(m'_k/M_n)\vdash \tp(m'/M_n)$. By quantifier elimination, it is enough to show that the type on the left implies each atomic formula (or negation) in $\tp(m'/M_n)$. The only nontrivial cases are of the form $C_n(R_n^i(x_1),R_n^j(x_2),c)$, $C_n(R_n^i(x_1),c,R_n^j(x_2))$, $C_n(c,R_n^i(x_1),R_n^j(x_2))$ (or negations), where $i,j \in \{0,\dots,n-1\}$ and $c \in M_n$. But that follows immediately from the preceding paragraph (and the fact that the standard part is determined by the type over $M_n$).
+		\end{clmproof}
+		
+		It follows from quantifier elimination that there is a unique 1-type over $\emptyset$, so the restriction to the first variable $S_{m_n}(M_n)\to S_1(M_n)$ is surjective, and (since it is obviously equivariant) it gives us a surjective homomorphism $E(\Aut(M_n),S_{m_n}(M_n))\to E(\Aut(M_n),S_1(M_n))$. We need to show that it is injective.
+		
+		Suppose $f_1,f_2\in E(\Aut(M_n),S_{m_n}(M_n))$ are distinct, so there is some $p\in S_{m_n}(M_n)$ such that $f_1(p)\neq f_2(p)$. But then, by the claim, there is a variable $x_k$ such that $f_1(p)\restr x_k\neq f_2(p)\restr x_k$. Choose $m'=(m'_k)_{k\in \bN}\models p$; then $m'$ enumerates a countable $M'\preceq \fC$. By $\omega$-categoricity and the fact that there is a unique 1-type over $\emptyset$, there is $\sigma\in \Aut(M')$ such that $\sigma(m'_1)=m'_k$. Now, if we put $p':=\tp(\sigma(m')/M_n)$, we have that $p'\restr_{x_1}=p\restr_{x_k}$. From that, we obtain $f_1(p')\restr_{x_1}=f_1(p)\restr_{x_k}\neq f_2(p)\restr_{x_k}=f_2(p')\restr_{x_1}$. It follows that the epimorphism $E(\Aut(M_n),S_{m_n}(M_n))\to E(\Aut(M_n),S_1(M_n))$ induced by the restriction to the first variable is injective.
+		
+		To complete the proof, notice that because restriction to $S_1(M_n)$ induces an isomorphism of $E(\Aut(M_n),S_{m_n}(M_n))$ and $E(\Aut(M_n),S_1(M_n))$, for any Ellis group $u\cM$ in the former, $u\cM\restr_{S_1(M_n)}$ is an Ellis group in the latter. Furthermore, it is easy to see that $\pi_{R_n,S_{m_n}(M_n)}\restr_{S_1(M_n)}=\pi_{R_n,S_{1}(M_n)}$, so since --- by Proposition~\ref{prop:group_onetypes} --- $u\cM\restr_{S_1(M_n)}$ is cyclic of order $n$, generated by $R_nu\restr_{S_1(M_n)}=\pi_{R_n,S_{1}(M_n)}u\restr_{S_1(M_n)}$ , it follows that $u\cM$ is generated by $\pi_{R_n,S_{m_n}(M_n)}u=R_nu$.
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:connecting_maps_nn'}
+		If $n,n'$ are positive integers and $n'$ divides $n$, then the map $M_n\to M_{n'}$ given by multiplication by $k=n/n'$ induces an epimorphism $\varphi_1\colon \Aut(M_n)\to\Aut(M_{n'})$ and a continuous surjection $\varphi_2\colon S_{m_n}(M_n)\to S_{m_{n'}}(M_{n'})$ which is equivariant with respect to the induced action of $\Aut(M_n)$ on $S_{m_{n'}}(M_{n'})$.
+	\end{prop}
+	\begin{proof}
+		
+		Denote by $H$ the group generated by $R_n^{n'}$ in $\Aut(M_n)$. Then the $H$-orbit equivalence relation on $M_n$ is definable in $M_n$, and thus $M_n/H$ is an imaginary sort in $M_n$. $R_n$ and $C_n$ induce an unary function $R_n'$ and a ternary relation $C_n'$ (both $M_n$-definable) on $M_n/H$ by putting $R_n'(Hx):=HR_n(x)$ and declaring that $C_n'(Hx_1,Hx_2,Hx_3)$ if we have $C_n(x_1',x_2',x_3')$ for the representatives $x_1',x_2',x_3'$ (of the respective orbits) in $[0,1/k)+\bZ$. Then it is not hard to see that $(M_n/H,C_n')$ is a dense circular order and $R_n'$ is its automorphism of order $n/k=n'$. Furthermore, it is easy to see that the map $M_n\to M_{n'}$ given by $x\mapsto kx$ factors through $Hx\mapsto kx$, which defines an isomorphism $\varphi_0\colon (M_n/H,R_n',C_n')\to(M_{n'},R_{n'},C_{n'})$.
+		
+		Then the isomorphism $\varphi_0$ induces an action of $\Aut(M_n)$ on $M_{n'}$ by automorphisms (given by $\sigma(x')=\varphi_0(\sigma(\varphi_0^{-1}(x')))$), and thus gives us a homomorphism $\varphi_1\colon \Aut(M_n)\to \Aut(M_{n'})$. Note that in particular, if $x'=kx$ for some $x\in M_n$, then $\varphi_1(\sigma)(kx)=\varphi_0(\sigma(Hx))=\varphi_0(H\sigma(x))=k\sigma(x)$. Since $x\mapsto kx$ is onto $M_{n'}$, this determines $\varphi_1(\sigma)$ uniquely, and in this sense $\varphi_1$ is induced by $x\mapsto kx$.
+		
+		Let $m_n$ be enumerated as $(m_n^i)_{i\in \bN}$. Then the natural map $[m_n]_{\equiv}\to [(Hm_n^i)_i]_{\equiv}$ (given by taking each coordinate to its $H$-orbit) is type-definable and induces a natural continuous surjection $S_{m_n}(M_n)\to S_{(Hm_n^i)_i}(M_n)$. Via the isomorphism between $(M_n/H,C_n',R_n')$ and $(M_{n'},C_{n'},R_{n'})$, we obtain a continuous surjection $S_{(Hm_n^i)_i}(M_n)\to S_{m_{n'}}(M_{n'})$. By composing the two, we obtain a surjection $\varphi_2\colon S_{m_n}(M_n)\to S_{m_{n'}}(M_{n'})$, which is easily seen to be $\Aut(M_n)$-equivariant, furthermore, it is not hard to see that it is induced by $x\mapsto kx$ in the sense that if $m_n'\equiv m_n$ is a tuple in $M_n$, then, the type $\tp(m_n'/M_n)$ is mapped to $\tp(km_n'/M_{n'})$ (note that since $M_n$ is $\omega$-categorical, realised types are dense in $S_{m_n}(M_n)$, so by continuity, this uniquely determines $\varphi_2$).
+		
+		What is left is to show that $\varphi_1$ is surjective. By the description of $\varphi_1$ given before, it is enough to show that for every $\sigma'\in \Aut(M_{n'})$ there is some $\sigma\in\Aut(M_n)$ such that for all $x\in M_{n}$, $k\sigma(x)=\sigma'(kx)$.
+		
+		We may assume without loss of generality that $\sigma'(0)=0$: otherwise, $\sigma'-\sigma'(0)$ is also an automorphism of $\Aut(M_{n'})$, and if we find $\sigma$ such that $k\sigma(x)=\sigma'(kx)-\sigma'(0)$, then for any $\alpha$ such that $k\alpha=\sigma'(0)$, $\sigma(x)+\alpha$ is an automorphism of $M_n$ and we have $k(\sigma(x)+\alpha)=\sigma'(kx)$.
+		
+		Put $I_j:=([j/k,(j+1)/k)\cap \bQ)+\bZ\subseteq \bQ/\bZ$ (where $j\in \bZ$). Then we can define $\sigma(x)$ for $x\in I_j$ by letting $\sigma(x)$ be the unique element of $I_j$ such that $k\sigma(x)=\sigma'(kx)$. We need to show that $\sigma$ is an automorphism, and then we will obviously have $\varphi_1(\sigma)=\sigma'$.
+		
+		Note that we can also describe $\sigma(x)$ in the following way: if $x\in I_j$ and $\beta\in [0,1)$ is a representative of $\sigma'(kx)$, then $\sigma(x)=(\beta+j)/k+\bZ$.
+		
+		It is not hard to see that for each $j$, $\sigma$ restricts to a bijection from $I_j$ to itself. In particular, $\sigma$ is a bijection. It is also not hard to see that it preserves the circular ordering (roughly, because it preserves the circular order between the chunks $I_j$, it preserves the circular order for triples where not all elements are in a single $I_j$, while for triples lying in a single $I_j$, it follows from the description of $C_n'$ and the fact that $\varphi_0$ is an isomorphism).
+		
+		Note that since $\sigma'(0)=0$, it follows that for any $x'\in M_{n'}$, $x'\in [1-1/n',1)+\bZ$ if and only if $\sigma'(x')\in [1-1/n',1)+\bZ$. Next, notice that for $x\in I_j$, we have that $kx\in [1-1/n',1)+\bZ$ if and only if $x\in [(j+1)/k-1/n,(j+1)/k)$, which (since $x\in I_j$) is equivalent to $x+1/n\in I_{j+1}$. Thus, for $x\in I_j$, we have $\sigma'(kx)\in [1-1/n',1)+\bZ$ if and only if $R_n(x)\in I_{j+1}$.
+		
+		It follows that $\sigma$ preserves $R_n$: fix any $x\in I_j$ and let $\beta\in [0,1)$ be a representative of $\sigma'(kx)$. Note that in this case $R_n(x)\in I_j$ or $R_n(x)\in I_{j+1}$. By the preceding paragraph it easily follows that either
+		\begin{itemize}
+			\item
+			 $R_n(x)\in I_j$ and $\beta+1/n'\in [0,1)$, or
+			\item
+			$R_n(x)\in I_{j+1}$ and $\beta+1/n'-1\in [0,1)$.
+		\end{itemize}
+		Because $\sigma'$ is an automorphism of $M_{n'}$, it commutes with addition of $1/n'$, so
+		\[
+			\sigma'(k(x+1/n))=\sigma'(kx+1/n')=\sigma'(kx)+1/n'=(\beta+\bZ)+1/n',
+		\]
+		which shows that both $\beta+1/n'$ and $\beta+1/n'-1$ are representatives of $\sigma'(kR_n(x))$. Thus if $R_n(x)\in I_j$, then
+		\[
+			\sigma(R_n(x))=(\beta+1/n'+j)/k+\bZ=(\beta+j)/k+1/n+\bZ=\sigma(x)+1/n=R_n\sigma(x).
+		\]
+		Likewise, if $R_n(x)\in I_{j+1}$, then
+		\[
+			\sigma(R_n(x))=((\beta+1/n'-1)+(j+1))/k+\bZ=R_n\sigma(x).
+		\]
+		Thus, $\sigma$ is an automorphism such that $\varphi_1(\sigma)=\sigma'$, so $\varphi_1$ is onto, and we are done.
+	\end{proof}
+
+
+	\begin{cor}
+		\label{cor:ellis_groups_allsorts}
+		For all positive integers $n$, the Ellis group of $S_{m_n}(M_n)$ is isomorphic to $\bZ/n\bZ$, generated by $R_nu_n$, where $u_n$ is the identity in the Ellis group.
+	\end{cor}
+	\begin{proof}
+		For $n\neq 1$, this is Lemma~\ref{lem:ellis_group_onesort}, so we only need to consider $n=1$.
+		
+		By Proposition~\ref{prop:connecting_maps_nn'}, Remark~\ref{rem:action_factors} and Proposition~\ref{prop:induced_epimorphism}, for each $n$, we have an epimorphism from the Ellis group of $S_{m_n}(M_n)$ onto the Ellis group of $S_{m_1}(M_1)$. In particular, since the Ellis groups of $S_{m_2}(M_2)$ and $S_{m_3}(M_3)$ are isomorphic to $\bZ/2\bZ$ and $\bZ/3\bZ$ respectively, the Ellis group of $S_{m_1}(M_1)$ is cyclic of order dividing $2$ and $3$. As such, it must be trivial.
+		
+		Note that $R_1$ is simply the identity, so $R_1u_1=u_1$ indeed generates the trivial group $\{u_1\}$.
+	\end{proof}
+	
+	
+	\begin{ex}
+		\label{ex:CLPZ}
+		Consider the theory $T$ of the multi-sorted structure $M=(M_n)_{n\in \bN^+}$, where each $M_n=(M_n,R_n,C_n)$ is the countable model as described at the beginning of this section. Then, if we enumerate $M$ as $m$, then $M$ is ambitious (because it is $\omega$-categorical). For each $n$, choose an idempotent $u_n'$ as i
+		
+		By Corollary~\ref{cor:ellis_groups_allsorts} and Proposition~\ref{prop:product of Ellis groups}, the Ellis group $u\cM$ of  the dynamical system $(\Aut(M),S_m(M))$ is isomorphic to $\prod_n \bZ/n\bZ$ with the product topology. Moreover, each element $f\in u\cM$ can be uniquely represented as $(R_n^{b_n}u_n)_n$, where $u_n$ is the restriction $u\restr_{S_{m_n}(M_n)}$, while $b_n$ is an integer in the interval $(-n/2,n/2]$. In particular, $u\cM$ is a Hausdorff (compact and Polish) group, so $H(u\cM)$ is trivial.
+		
+		Moreover, the group $D$ (i.e.\ $[u]_\equiv\cap u\cM$) is trivial. Indeed, if $f\in u\cM$ is nontrivial, then for some $n$, $f\restr_{S_{m_n}(M_n)}$ and $u\restr_{S_{m_n}(M_n)}$ are distinct. Therefore, $f\restr_{S_{m_n}(M_n)}=R_n^{b_n}(u\restr_{S_{m_n}(M_n)})$ for some $b_n$ not divisible by $n$, so in particular, $f(\tp(m_n/M_n))=R_n^{b_n}u(\tp(m_n/M_n))$, which is clearly distinct from $u(\tp(m_n/M_n))$. Hence, also $f(\tp(m/M))\neq u(\tp(m/M))$, i.e.\ $f\notin D$.
+		
+		We have proved that $u\cM/H(u\cM)D=u\cM/H(u\cM)=u\cM \cong \prod_n \bZ/n\bZ$, so the group $\hat G$ from Theorem~\ref{thm:main_galois} is $u\cM$, which we identify with $\prod_n \bZ/n\bZ$.
+		
+		We claim that $g\in \ker \hat r$ if and only if the $g_n$'s are absolutely bounded.
+		
+		By \cite[Corollary~4.3]{CLPZ01}, for any $a\in M_n(\fC)$ and integer $k \in (-n/2,n/2]$ we have $d_\Lasc(a,R_n^k(a)) \geq k$, which easily implies (having in mind the precise identification of $u\cM$ with $\prod_n \bZ/n\bZ$) that unbounded sequences are not in the kernel.
+		
+		On the other hand, to show that absolutely bounded sequences are in $\ker \hat r$, it is enough to show this for sequences bounded by $1$. But then (again, having in mind the identification of $u\cM$ with $\prod_n \bZ/n\bZ$ from the second paragraph) for an element $f \in u\cM$ corresponding to such a sequence, $f\restr_{S_{m_n}(M_n)} =R_n^{\epsilon_n}u \restr_{S_{m_n}(M_n)}=u \restr_{S_{m_n}(M_n)}R_n^{\epsilon_n}$ for some $\epsilon_n \in \{-1,0,1\}$. By \cite[Lemma 3.7]{CLPZ01}, it is enough to show that $d_\Lasc(m_n,R_n(m_n))$ is bounded (when $n$ varies).
+		%
+		By $\omega$-categoricity, we can replace $m_n$ by an enumeration $m_n'$ of any other countable model $M_n'$. So let $m'_n$ be an enumeration of $(\bQ\cap ([0,1/3n)+\bZ/n ))/\bZ\subseteq \bQ/\bZ$. Furthermore, put $m''_n:=m'_n+1/3n$ and $m'''_n:=m'_n+2/3n$, and write $M'_n,M''_n,M'''_n$ for the respective models they enumerate. Then $\tp(m'_n/M'''_n)=\tp(m''_n/M'''_n)$, $\tp(m''_n/M'_n)=\tp(m'''_n/M'_n)$, $\tp(m'''_n/M''_n)=\tp(R_n(m'_n)/M''_n)$, so $d_\Lasc(m_n',R_n(m_n')) \leq 3$.
+		
+		Note that $T$ has NIP (e.g.\ because it is interpretable in an o-minimal theory), so the full Theorem~\ref{thm:main_galois} applies, and the Galois group $\Gal(T)$ is the quotient of $\prod_n \bZ/n\bZ$ by the subgroup of bounded sequences. As a topological group, this is exactly the description given by \cite[Theorem~28]{Zie02}; note that the topology is trivial. In terms of Borel cardinality, we obtain $\ell^\infty$
+		(see the paragraph following the proof of Lemma 3.10 in \cite{KPS13}).
+		\xqed{\lozenge}
+	\end{ex}
+	
+	\begin{ex}
+		\label{ex:KPS}
+		Consider the theory $T$ of the multi-sorted structure $M=(M_n,h_{nn'})_{n,n'}$, where $M_n$ are as before, $n$ runs over positive integers, while $n'$ rangers over divisors of $n$; for each pair $n' \mid n$, $h_{nn'}\colon M_n\to M_{n'}$ is the multiplication by $n/n'$. Enumerate each $M_n$ by $m_n$ in such a way that $h_{nn'}(m_{n})=m_{n'}$, and then enumerate $M$ by $m=(m_n)_n$.
+		
+		By Proposition~\ref{prop:connecting_maps_nn'}, we see that each map $h_{nn'}$ induces a natural epimorphism $\Aut(M_n)\to \Aut(M_{n'})$, and a continuous, $\Aut(M_n)$-equivariant surjection $S_{m_n}(M_n)\to S_{m_{n'}}(M_{n'})$, so we have epimorphisms of dynamical systems $(\Aut(M_n),S_{m_n}(M_n))\to (\Aut(M_{n'}),S_{m_{n'}}(M_{n'}))$. Furthermore, if $n''\mid n' \mid n$, then it is easy to see that $h_{n'n''}\circ h_{nn'}=h_{nn''}$, so these epimorphisms are compatible. Using that, it is not hard to see that $\Aut(M)=\varprojlim_n \Aut(M_n)$ (because $\Aut(M)$ acts on each $M_n$ by automorphisms and it has to be compatible with $h_{nn'}$) and $S_m(M)=\varprojlim_n S_{m_n}(M_n)$ (because the type on the $n$-th coordinate determines the type on $n'$-th coordinate, when $n'$ divides $n$). By Lemma~\ref{lem:projlim_ellis}, it follows that $E(\Aut(M),S_{m}(M))\cong \varprojlim_n E(\Aut(M_n),S_{m_n}(M_n))$.
+		
+		In particular, by Corollary~\ref{cor:ellis_groups_allsorts}, the Ellis group $u\cM$ of $E(\Aut(M),S_m(M))$ is isomorphic to the profinite completion of integers $\widehat \bZ=\varprojlim_n\bZ/n\bZ$. By analysis analogous to the preceding example, we see that $H(u\cM)$ and $D$ are trivial, and $\ker \hat r$ corresponds to the elements of $\widehat \bZ$ represented by bounded sequences. Those sequences are exactly the elements of $\bZ\subseteq \widehat \bZ$ (this follows from the observation that a bounded sequence representing an element of $\widehat \bZ$ has to eventually stabilize).
+		
+		Thus, by Theorem~\ref{thm:main_galois}, $\Gal(T)$ is the quotient $\widehat \bZ/\bZ$ (which, again, has trivial topology), and, since the theory is NIP (e.g.\ because, as it is easy to see, it is interpretable in $(\bR,+,\cdot,\leq)$), $\Gal(T)$ also has the Borel cardinality of $\widehat\bZ/\bZ$ which is $E_0$ (which can be seen as a consequence of the fact that it is hyperfinite (as an orbit equivalence relation of a $\bZ$-action) and non-smooth (as the quotient of a compact Polish group by a non-closed subgroup), see \cite[Theorem 8.1.1]{kanovei}.
+		\xqed{\lozenge}
+	\end{ex}

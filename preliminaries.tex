@@ -1,0 +1,1634 @@
+
+	
+
+	\chapter{Preliminaries}
+	\label{chap:prelims}
+	Most facts in this chapter are classical or folklore. The few (apparent) exceptions are, for the most part, straightforward generalisations of well-known facts, some of which originate from \cite{KPR15} (joint with Krzysztof Krupiński and Anand Pillay).
+	\section{Topology}
+	
+	\subsection*{Compact spaces and analytic sets; Baire property}
+	In this thesis, compact spaces are not Hausdorff by definition, so we will add the adjective ``Hausdorff" whenever it is needed.
+	
+	\begin{fct}
+		For a compact Hausdorff space $X$ the following conditions are equivalent:
+		\begin{itemize}
+			\item $X$ is second countable,
+			\item $X$ is is metrisable,
+			\item $X$ is Polish (i.e.\ separable and completely metrisable).
+		\end{itemize}
+	\end{fct}
+	\begin{proof}
+		It follows from \cite[Theorem 5.3]{Kec95}.
+	\end{proof}
+	
+	\begin{fct}\label{fct: preservation of metrizability}
+		Metrisability is preserved by continuous surjections between compact, Hausdorff spaces.
+	\end{fct}
+	\begin{proof}
+		This follows from \cite[Theorem 4.4.15]{Eng89}.
+	\end{proof}
+	The  notion of a quotient map is one of the fundamental topological notions in this thesis.
+	\begin{dfn}
+		\index{quotient map}
+		A surjection $f \colon X \to Y$ between topological spaces is said to be a {\em topological quotient map} if it has the property that a subset $A$ of $Y$ is closed if an only if $f^{-1}[A]$ is closed. (This is equivalent to saying that the induced bijection $X/E \to Y$ is a homeomorphism, where $E$ in the equivalence relation of lying in the same fibre of $f$ and $X/E$ is equipped with the quotient topology.)
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		In the definition of a quotient map, we can replace both instances of ``closed'' by ``open''. It is also easy to see that continuous open surjections and continuous closed surjections are always quotient maps, but in general, a quotient map need not be open nor closed.\xqed{\lozenge}
+	\end{rem}
+	
+	The following simple observation will be rather useful.
+	\begin{rem}
+		\label{rem:commu_quot}
+		Suppose we have a commutative triangle:
+		\begin{center}
+			\begin{tikzcd}
+			A \ar[r] \ar[dr] & B\ar[d] \\
+			& C
+			\end{tikzcd}
+		\end{center}
+		where $A,B,C$ are topological spaces, and the horizontal arrow is a quotient map. Then if one of the other two arrows is a continuous or a quotient map, then so is the other one (respectively).\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}\label{rem: continuous surjection is closed}
+		A continuous map from a compact space to a Hausdorff space is closed. In particular, if it is onto, it is a quotient topological map.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{fct}
+		\label{fct:quot_T2_iff_closed}
+		If $X$ is a compact Hausdorff topological space and $E$ is an equivalence relation on $X$, then $E$ is closed (as a subset of $X^2$) if and only if $X/E$ is a Hausdorff space, and $E$ is open if and only if $X/E$ is discrete (and in this case, $X/E$ is finite).
+	\end{fct}
+	\begin{proof}
+		For the first part, this is \cite[Theorem 3.2.11]{Eng89}. The second part is easy by compactness: if $E$ is open, it has open classes, so points in $X/E$ are open. On the other hand, if $X/E$ is discrete, then it must be finite (as a discrete compact space), so $E$ is open (as a finite union of open rectangles).
+	\end{proof}
+	
+	\begin{dfn}
+		\index{Souslin scheme}
+		\index{Souslin operation}
+		Recall that a {\em Souslin scheme} is a family $(P_s)_{s \in \omega^{<\omega}}$ of subsets of a given set, indexed by finite sequences of natural numbers. The {\em Souslin operation} $\Souslin$ applied to such a scheme produces the set
+		\[
+		\Souslin_s P_s:=\bigcup_{s \in \omega^\omega} \bigcap_n P_{s\restr_n}.
+		\]
+		
+		We say that a Souslin scheme $(P_s)_{s \in \omega^{<\omega}}$ is {\em regular} if $s \subseteq t$ implies $P_s \supseteq P_t$.\xqed{\lozenge}
+	\end{dfn}
+	
+	There seems to be no established notion of an ``analytic set" in an arbitrary topological space. The following one will be the most convenient for us.
+	
+	\begin{dfn}\label{definition: analytic sets}
+		\index{analytic set}
+		In a topological space $X$, we call a subset of $X$ \emph{analytic} if it can be obtained via the $\Souslin$ operation applied to a Souslin scheme of closed sets.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		We will mostly consider analytic sets in compact Hausdorff spaces. There, the definition above coincides with the classical notion of a $K$-analytic set, see \cite[Théorème 1]{Cho59}.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		What we really need of the class of ``analytic sets" is the following:
+		\begin{itemize}
+			\item
+			if $A$ is analytic in $X$ and $Y\subseteq X$ is a closed subspace, then $A\cap Y$ is analytic in $Y$,
+			\item
+			if $A$ is analytic in $Y$ and $Y$ is a closed subspace of $X$, then $A$ is analytic in $X$,
+			\item
+			if $A$ is analytic (in a compact Hausdorff space), it has the Baire property (see below),
+			\item
+			if $f\colon X\to Y$ is a continuous surjection and $X,Y$ are compact Hausdorff, then for every $A\subseteq Y$, we have that $A$ is analytic if and only if $f^{-1}[A]$ is analytic.
+		\end{itemize}
+		Any notion of an ``analytic set" with these properties will also work.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		It is easy to check that if
+		$(P_s)_{s \in \omega^{<\omega}}$ is a Souslin scheme and $Q_s:= \bigcap_{s \subseteq t} P_s$, then $(Q_s)_{s \in \omega^{<\omega}}$ is regular and $\Souslin_s P_s =\Souslin_s Q_s$.
+		
+		
+		In particular, in the definition of an analytic set, we can consider only regular Souslin schemes.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		If $X$ is a Polish space, then this definition coincides with the standard definition of analytic sets as continuous images of Borel sets (see \cite[Theorem 25.7]{Kec95}). In particular, all Borel sets are analytic.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{dfn}
+		Suppose $X$ is a topological space and $B\subseteq X$.
+		
+		\index{Baire!property}
+		\index{Baire!property!strict}
+		We say that $B$ has the \emph{Baire property} (BP) or that it is \emph{Baire} if there is an open set $U$ and a meagre set $M$ such that $B$ is the symmetric difference of $U$ and $M$.
+		
+		We say that $B$ has the \emph{strict Baire property} or that it is \emph{strictly Baire} if for every closed $F\subseteq X$, $F\cap B$ has BP in $F$. (This is equivalent to saying that the same holds for all $F$, not necessarily closed, see \cite[§11 VI.]{Ku}.)\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{fct}
+		The sets with the Baire property form a $\sigma$-algebra closed under the $\Souslin$ operation. In particular, every Borel set and every analytic set is strictly Baire.
+	\end{fct}
+	\begin{proof}
+		See \cite[Theorem 25.3]{Arh}.
+	\end{proof}
+	
+	\begin{dfn}
+		\index{totally non-meagre}
+		We say that a topological space $X$ is totally non-meagre if no closed subset of $X$ is meagre in itself.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		It is easy to see that every compact Hausdorff space and every Polish space is totally nonmeagre, by the Baire category theorem. \xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{prop}\label{prop: image of intersection}
+		Assume that $X$ is a compact (not necessarily Hausdorff) space and that $Y$ is a $T_1$-space. Let $f\colon X \to Y$ be a continuous map. Suppose $(F_n)_{n\in \omega}$ is descending sequence of closed subsets of $X$. Then $f[\bigcap_n F_n]=\bigcap_n f[F_n]$.
+	\end{prop}
+	\begin{proof}
+		The inclusion $(\subseteq)$ is always true. For the opposite inclusion, consider any $y \in \bigcap_n f[F_n]$. Then $f^{-1}(y) \cap F_n \ne \emptyset$ for all $n$. Since $(F_n)_{n\in \omega}$ is descending, we get that the family $\{f^{-1}(y) \cap F_n\mid n \in \omega\}$ has the finite intersection property. On the other hand, since $\{y\}$ is closed in $Y$ (as $Y$ is $T_1$) and $f$ is continuous, we have that each set $f^{-1}(y) \cap F_n$ is closed. So compactness of $X$ implies that $f^{-1}(y) \cap \bigcap_n F_n=\bigcap_n f^{-1}(y) \cap F_n \ne \emptyset$. Thus $y \in f[\bigcap_n F_n]$.
+	\end{proof}
+	
+	\begin{prop}\label{prop: preservation of analyticity by images and preimages}
+		Let $f\colon X \to Y$ be a continuous map between topological spaces. Then:
+		\begin{enumerate}
+			\item The preimage by $f$ of any analytic subset of $Y$ is an analytic subset of $X$.
+			\item Assume that $X$ is compact (not necessarily Hausdorff) and that $Y$ is Hausdorff. Then the image by $f$ of any analytic subset of $X$ is an analytic subset of $Y$.
+		\end{enumerate}
+	\end{prop}
+	\begin{proof}
+		\ref{it:prop:dyn_BFT:untame} is clear by continuity of $f$ and the fact that preimages preserve unions and intersections.
+		
+		To show (2), consider any analytic subset $A$ of $X$. Then $A=\bigcup_{s \in \omega^\omega} \bigcap_n F_{s\restr_n}$ for some regular Souslin scheme $(F_s)_{s \in \omega^{<\omega}}$ of closed subsets of $X$. Because $X$ is compact, $Y$ is Hausdorff and $f$ is continuous, we see that each set $f[F_s]$ is closed. By Proposition~\ref{prop: image of intersection},
+		\[
+			f[X] = \bigcup_{s \in \omega^\omega} \bigcap_n f[F_{s\restr_n}].
+		\]
+		Hence, $f[X]$ is analytic.
+	\end{proof}
+	The following proposition summarises various preservation properties of continuous surjections between compact Hausdorff spaces.
+	\begin{prop}
+		\label{prop:preservation_properties}
+		Suppose $f\colon X\to Y$ is a continuous surjection between compact Hausdorff spaces. Then:
+		\begin{itemize}
+			\item
+			preimages and images of closed sets by $f$ are closed,
+			\item
+			preimages and images of $F_\sigma$ sets by $f$ are $F_\sigma$
+			\item
+			preimages and images of analytic sets by $f$ are analytic,
+			\item
+			preimages of Borel sets by $f$ are Borel, and sets with Borel preimage are Borel.
+		\end{itemize}
+		
+		Furthermore, for every $X_0\subseteq X_1\subseteq X$, $X_0$ is open or closed in $X_1$ if and only if $Y_0:=f^{-1}[X_0]$ is open or closed (respectively) in $Y_1:=f^{-1}[X_1]$.
+	\end{prop}
+	\begin{proof}
+		For analytic sets, this follows from Proposition~\ref{prop: preservation of analyticity by images and preimages}. For closed sets, this follows from Remark~\ref{rem: continuous surjection is closed}. For $F_\sigma$ sets, this follows from Remark~\ref{rem: continuous surjection is closed} and Proposition~\ref{prop: image of intersection}. For Borel sets, it follows from Fact~\ref{fct:borel_preimage}.
+		
+		For the ``furthermore'' part, just note that since $f$ is continuous and closed and $Y_1=f^{-1}[X_1]$, the restriction $f\restr_{Y_1}\colon Y_1\to X_1$ is also continuous and closed (and hence a quotient map), which completes the proof.
+	\end{proof}
+	
+	
+	\begin{prop}[Mycielski's theorem]
+		\label{prop:mycielski}
+		Suppose $E$ is a meagre equivalence relation on a locally compact, Hausdorff space $X$. Then $\lvert X/E\rvert \geq 2^{\aleph_0}$.
+	\end{prop}
+	\begin{proof}
+		The proof mimics that of the classical theorem for Polish spaces (for example see \cite[Theorem 5.3.1]{SuG}), except we use compactness instead of metric completeness to obtain a nonempty intersection.
+		
+		Firstly, we can assume without loss of generality that $X$ is compact. This is because we can restrict our attention to the closure $\overline U$ of a small open set $U$: $E$ restricted to $\overline U$ is still meagre, and if we show that $\overline U/E$ has the cardinality of at least the continuum, clearly the same will hold for $X/E$.
+		
+		
+		Suppose $E\subseteq \bigcup_{n\in \omega} F_n$ with $F_n\subseteq X^2$ closed, nowhere dense. We can assume
+		that the sets $F_n$ form an increasing sequence. We will define a family of nonempty open sets $U_s$ with $s\in 2^{<\omega}$, recursively with respect to the length of $s$, such that:
+		\begin{itemize}
+			\item
+			$\overline{U_{s0}},\overline{U_{s1}}\subseteq U_s$,
+			\item
+			if $s\neq t$ and $s,t\in 2^{n+1}$, then $(U_s\times U_t)\cap F_n=\emptyset$.
+		\end{itemize}
+		
+		Then, by compactness, for each $\eta\in 2^\omega$ we will find a point $x_\eta\in \bigcap_n U_{\eta\restr n}$. It is easy to see that this will yield a map from $2^\omega$ into $X$ such that any two distinct points are mapped to $E$-unrelated points.
+		
+		The construction can be performed as follows:
+		\begin{enumerate}
+			\item
+			For $s=\emptyset$, we put $U_\emptyset=X$.
+			\item
+			Suppose we already have $U_s$ for all $\lvert s\rvert \leq n$, satisfying the assumptions.
+			\item
+			By compactness (more precisely, regularity), for each $s\in 2^n$ and $i\in\{0,1\}$ we can find a nonempty open set $U_{si}'$ such that $\overline{U_{si}'}\subseteq U_s$.
+			\item
+			For each (ordered) pair of distinct $\sigma,\tau\in 2^{n+1}$, the set $(U'_\sigma\times U'_\tau)\setminus F_n$ is a nonempty open set (because $F_n$ is closed, nowhere dense), so in particular, $U'_\sigma\times U'_\tau$ contains a smaller (nonempty, open) rectangle $U''_\sigma\times U''_\tau$ which is disjoint from $F_n$.
+			\item
+			Repeating the procedure from the previous point recursively, for each ordered pair $(\sigma,\tau)$, we obtain for each $\sigma\in 2^{n+1}$ a nonempty open set $U_\sigma\subseteq U_\sigma'$ such that for $\sigma\neq \tau$ we have $(U_\sigma\times U_\tau)\cap F_n=\emptyset$. It is easy to see that the sets $U_\sigma$ satisfy the inductive step for $n+1$.\qedhere
+		\end{enumerate}
+	\end{proof}
+	
+	
+	
+	\subsection*{Topological groups and continuous group actions}
+	
+	
+	
+	\begin{fct}[Pettis-Pickard theorem]\label{fct:pettis}
+		Let $G$ be a topological group. If $A\subseteq G$ has the Baire property (e.g.\ it is analytic) and is non-meagre, the set $A^{-1}A:=\{a^{-1}b\mid a,b \in A\}$ contains an open neighbourhood of the identity. In particular, if $A$ is a subgroup of $G$, then $A$ is open.
+	\end{fct}
+	\begin{proof}
+		This is \cite[Theorem 9.9]{Kec95}.
+	\end{proof}
+	
+	
+	\begin{fct}
+		\label{fct:multiplication_open}
+		Suppose $G$ is a topological group. Then the multiplication map $\mu\colon G\times G\to G$, $\mu(g_1,g_2)=g_1g_2$ and the map $\mu'\colon G\times G\to G$, $\mu'(g_1,g_2)=g_1^{-1}g_2$ are both continuous and open. In particular, they are topological quotient maps.
+	\end{fct}
+	\begin{proof}
+		Continuity is immediate. For openness, note that if $A\subseteq G\times G$ is open, then $\mu[A]=\bigcup_{g\in G} gA_g$, where $A_g$ is the section of $A$ at $g$. Since open sets have open sections, the conclusion follows. Openness of $\mu'$ is analogous.
+	\end{proof}
+	
+	\begin{fct}\label{fct:from_mycielski}
+		Suppose $G$ is a locally compact, Hausdorff group and $H$ is a subgroup which has the Baire property, but is not open. Then $[G:H]\geq 2^{\aleph_0}$.
+	\end{fct}
+	\begin{proof}
+		It follows from Fact~\ref{fct:pettis} that a non-meagre Baire subgroup of a topological group is open, so, in our case, $H$ is meagre. By Fact~\ref{fct:multiplication_open}, we have that the orbit equivalence relation of $H$ acting by left translations on $G$ is meagre (the preimage of a meagre set by an open continuous map is meagre). But then by Proposition~\ref{prop:mycielski}, it follows that $\lvert G/H\rvert\geq 2^{\aleph_0}$.
+	\end{proof}
+	
+	
+	In the thesis, coset equivalence relations appear very often, so the simple observation made in the following remark is very useful.
+	\begin{rem}
+		\label{rem:group_to_cosets}
+		Note that if $G$ is a group and $H\leq G$, then the left coset equivalence relation $E_H$ of $H$ on $G$ is the preimage of $H$ by the map $\mu'$ from Fact~\ref{fct:multiplication_open}. In particular, if $G$ is a compact Hausdorff topological group, we can apply Proposition~\ref{prop:preservation_properties} and Fact~\ref{fct:multiplication_open} to show that $H$ and $E_H$ share good topological properties.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{fct}
+		\label{fct:quotient_by_closed_subgroup}
+		Suppose $G$ is a (possibly non-Hausdorff) topological group and $H\leq G$ is a subgroup. Then $G/H$ is Hausdorff (with the quotient topology) if and only if $H$ is closed, and $G/H$ is discrete if and only if $H$ is open.
+	\end{fct}
+	\begin{proof}
+		For the closed-Hausdorff correspondence, see \cite[III.2.5, Proposition 13]{NB66}.
+		
+		For open-discrete, just note that $H$ is open if and only if all of its cosets are open, which is the same as $G/H$ being discrete.
+	\end{proof}
+	
+	
+	
+	While topological groups need not be Hausdorff, it is well-known that a $T_0$ topological group is completely regular Hausdorff. A related fact is that they (and their quotients) are $R_1$ spaces. First, recall the notion of a Kolmogorov quotient of a topological space.
+	
+	\begin{dfn}
+		\label{dfn:kolmogorov}
+		\index{Kolmogorov quotient}
+		If $X$ is a topological space, then the \emph{Kolmogorov quotient} of $X$ is the quotient obtained by identifying topologically indistinguishable points, i.e.\ $x_1$ and $x_2$ are identified if the closures of $\{x_1\}$ and $\{x_2\}$ are equal.\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	
+	\begin{dfn}
+		\label{dfn:R0_R_1}
+		\index{space!R0@$R_0$}
+		We say that a topological space $X$ is an \emph{$R_0$ space} if for every $x_1,x_2\in X$ we have that $x_1\in \overline{x_2}$ if and only if $x_2\in \overline{x_1}$, or equivalently, the Kolmogorov quotient of $X$ is a $T_1$ space.
+		
+		\index{space!R1@$R_1$}
+		A topological space $X$ is an \emph{$R_1$ space} if its Kolmogorov quotient is Hausdorff.\xqed{\lozenge}
+	\end{dfn}
+	(Note that in particular, every $R_1$ space is $R_0$.)
+	
+	\begin{prop}
+		\label{prop:top_gp_R1}
+		Suppose $G$ is a topological group and $H\leq G$. Then $G/H$ is an $R_1$ space.
+	\end{prop}
+	\begin{proof}
+		Note that $\overline H$ is a subgroup of $G$ (as the closure of a subgroup of a topological group). Since $G$ acts on itself by homeomorphisms, the closure of every $gH$ is $g\overline H=g\overline{H}H$, so $g'H\in \overline{\{gH\}}\subseteq G/H$ if and only if $g\overline H=g'\overline H$, and hence, $\overline{\{g'H\}}=\overline{\{gH\}}$ if and only if $g\overline H=g'\overline H$.
+		
+		It follows that the Kolmogorov quotient of $G/H$ is naturally homeomorphic to $G/\overline H$, which is Hausdorff by Fact~\ref{fct:quotient_by_closed_subgroup}.
+	\end{proof}
+	
+	
+	\begin{fct}
+		\label{fct:cpct_action}
+		Suppose $G$ is a compact Hausdorff group acting continuously on a Hausdorff space $X$. Then:
+		\begin{itemize}
+			\item
+			$X/G$ is Hausdorff
+			\item
+			$G\times X\to X$ is a closed map (i.e.\ images of closed sets are closed).
+			\item
+			$X\to X/G$ is a closed map.
+		\end{itemize}
+	\end{fct}
+	\begin{proof}
+		See \cite[Theorems 1.2 and 3.1]{GB72}.
+	\end{proof}
+	
+	
+	There are several different notions of a ``proper map". One that will be convenient for us is the one used in \cite{NB66}.
+	
+	\begin{dfn}
+		\index{proper map}
+		A continuous map $f\colon X\to Y$ is said to be \emph{proper} if for every $Z$, the map $f\times \id_Z\colon X\times Z\to Y\times Z$ is closed.\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{fct}
+		\label{fct:proper}
+		Suppose $f\colon X\to Y$ is continuous. Then the following are equivalent:
+		\begin{itemize}
+			\item
+			$f$ is proper,
+			\item
+			$f$ is closed and its fibres (preimages of points) are compact.
+		\end{itemize}
+	\end{fct}
+	\begin{proof}
+		See \cite[Theorem 1 in \S10.2 of Chapter I]{NB66}.
+	\end{proof}
+	
+	An important fact in this context is that continuous actions of compact groups are proper.
+	\begin{fct}
+		\label{fct:cpct_proper}
+		If $G$ is a compact Hausdorff group acting continuously on a Hausdorff space $X$, then it is also acting properly, that is, the function $G\times X\to X\times X$, defined by the formula $(g,x)\mapsto (x,g\cdot x)$ is proper.
+	\end{fct}
+	\begin{proof}
+		See \cite[Proposition 2 in \S4.1 of Chapter III]{NB66}.
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:cont_action_factors_through_Polish}
+		Suppose $G$ is a compact Hausdorff group acting transitively and (jointly) continuously on a Polish space $X$. Then for any $x_0\in X$, if we denote by $H$ the stabiliser of $x_0$, then $G/\Core(H)$ is a compact Polish group (where $\Core(H)$ is the normal core of $H$, i.e.\ intersection of all of its conjugates) and the action of $G$ on $X$ factors through $G/\Core(H)$.
+		
+		In particular, if $G$ is a compact Hausdorff topological group and $H\leq G$ is such that $G/H$ is metrisable, then $G/\Core(H)$ is a compact Polish group.
+	\end{prop}
+	\begin{proof}
+		First, note that since $G$ acts transitively on $X$, the orbit map $g\mapsto g\cdot x_0$ is onto. By continuity of the action, it is also continuous, so $X$ is a compact Polish space.
+		
+		Let $\varphi \colon G\to \Homeo(X)$ be the homomorphism induced by the action, where $\Homeo(X)$ is the group of homeomorphisms of $X$.
+		
+		Since $G\times X$ is compact, continuity of the action of $G$ on $X$ implies uniform continuity (see \cite[Theorem II in \S4.2 of Chapter II]{NB66}). Therefore, if $(g_i)_i$ is a convergent net, then $(g_i\cdot x)_i$ converges uniformly in $x \in X$. This yields continuity of $\varphi$ with respect to the uniform convergence topology on $\Homeo(X)$.
+		
+		It is easy to check that $\ker(\varphi)=\Core(H)$ (which implies that the action of $G$ on $X$ factors through $G/\Core(H)$), and since $X$ is a compact Polish space, $\Homeo(X)$ is a Polish group (cf.\ \cite[9.B(8)]{Kec95}). By compactness of $G$, it follows that $\varphi[G]$ is a Polish group, and hence --- by Remark \ref{rem: continuous surjection is closed} --- so is $G/\Core(H)$.
+	\end{proof}
+	
+	\section{Descriptive set theory}
+	
+	\begin{dfn}
+		\label{dfn:borel_cardinality}
+		\index{Borel!reduction}
+		\index{Borel!reducible}
+		Suppose $E$ and $F$ are equivalence relations on Polish spaces $X$ and $Y$. We say that \emph{$E$ is Borel reducible to $F$} --- written $E\leq_B F$ --- if there is a Borel reduction of $E$ to $F$, i.e.\ a Borel function $f\colon X\to Y$ such that $x_1\Er x_2$ if and only if $f(x_1)\mathrel{F} f(x_2)$.
+		
+		\index{Borel!equivalence}
+		\index{Borel!bireducibility|see {Borel equivalence}}
+		\index{Borel!cardinality}
+		If $E\leq_B F$ and $F\leq_B E$, we say that $E$ and $F$ are \emph{Borel equivalent} or \emph{Borel bireducible}, written $E\sim_B F$. In this case, we also say that $E$ and $F$, or, abusing the notation, $X/E$ and $Y/F$, have the same {\em Borel cardinality}; informally speaking, the {\em Borel cardinality} of $E$ is its $\sim_B$-equivalence class.
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		Sometimes, we slightly abuse the notation and write e.g.\ $X/E\leq_B Y/F$ for $E\leq_B F$. In particular, if $G$ is a Polish group and $H\leq G$, then by $G/H\leq_B Y/F$ we mean that there is a Borel reduction from the left coset equivalence relation of $H$ on $G$ to the relation $F$.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{fct}
+		\label{fct:borel_isom}
+		If $X$ and $Y$ are Polish spaces and $\lvert X\rvert \leq \lvert Y\rvert $, then there is a Borel embedding of $X$ into $Y$. In particular, the equality on $X$ is Borel reducible to equality on $Y$.
+	\end{fct}
+	\begin{proof}
+		This is \cite[Theorem 15.6]{Kec95}.
+	\end{proof}
+	
+	
+	\begin{rem}
+		Note that even if $E\sim_B F$, it may not be true that there is a Borel isomorphism of $X$ and $Y$ which is a reduction in both direction. For example, if $E$ and $F$ are total, then trivially $E\sim_B F$, but $X$ and $Y$ may have different cardinalities.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{dfn}
+		\index{smoothness}
+		\index{smooth equivalence relation|see {smoothness}}
+		\label{dfn:smt}
+		We say that an equivalence relation $E$ on a Polish space $X$ (or the quotient $X/E$) is {\em smooth} if $E$ is Borel reducible to equality on $2^\bN$ (or, by Fact~\ref{fct:borel_isom}, equivalently, if it is Borel reducible to equality on some Polish space).
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	Note that a Borel reduction of $E$ to $F$ yields an injection $X/E\to Y/F$, so if $X/E\leq_B Y/F$, then in particular, $\lvert X/E\rvert\leq \lvert Y/F\rvert$. On the other hand, if $E$ and $F$ are Borel and have countably many classes, it is easy to see that the converse is also true, i.e.\ $E\leq_B F$ if and only if $\lvert X/E\rvert\leq \lvert Y/F\rvert$. This, together with Fact~\ref{fct:borel_isom}, justifies the term ``Borel cardinality".
+	
+	Informally, we can think of $E\leq F$ as a statement that we can classify elements of $X$ up to $E$ using classes of $F$ as parameters. In particular, smooth equivalence relations can be classified by real numbers, which is why they are sometimes called ``classifiable equivalence relations''.
+	
+	
+	\begin{rem}
+		\label{rem:smooth_implies_borel}
+		Note that in the definition of a Borel reduction and the Borel cardinality, we do not require the relations to be Borel. On the other hand, it is not hard to see that if $E\leq_B F$ and $F$ is Borel, then so is $E$, by simply considering the map $X\times X\to Y\times Y$ which is the square of the reduction of $E$ to $F$.
+		
+		In particular, smooth equivalence relations (in the sense just given) are all Borel.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{fct}
+		\label{fct:clsd_smth}
+		Every closed (or, more generally, every $G_\delta$) equivalence relation on a Polish space is smooth.
+	\end{fct}
+	\begin{proof}
+		See \cite[Corollary 1.2]{HKL90}.
+	\end{proof}
+	
+	
+	\begin{fct}
+		\label{fct:borel_section}
+		If $X,Y$ are compact Polish spaces and $f\colon X\to Y$ is a continuous surjection, then $f$ has a Borel section $g$.
+		
+		In particular, if $f$ is a reduction from $E$ on $X$ to $F$ on $Y$, then $g$ is a Borel reduction from $F$ to $E$, whence $E\sim_B F$.
+	\end{fct}
+	\begin{proof}
+		The first part is \cite[Exercise 24.20]{Kec95}. The second is an immediate consequence of the first and the definition.
+	\end{proof}
+	
+	Fact~\ref{fct:borel_section} immediately implies that a set $A$ in $Y$ with Borel preimage $B$ in $X$ is Borel (because $A$ is the preimage of $B$ by any section of $f$). However, a more general fact is also true.
+	
+	\begin{fct}
+		\label{fct:borel_preimage}
+		Suppose $X$ and $Y$ are compact Hausdorff topological spaces, and $f\colon X\to Y$ is a closed surjection, while $B\subseteq Y$. Then $B$ is Borel in $Y$ if and only if $f^{-1}[B]$ is Borel in $X$.
+	\end{fct}
+	\begin{proof}
+		It is clear that if $B$ is Borel, then so is $f^{-1}[B]$
+		
+		The converse follows from \cite[Theorem 10]{HS03} (because Borel sets are exactly the sets obtained from open and closed sets by a sequence of operations consisting of taking complements and countable intersections, which are descriptive operations in the sense of \cite{HS03}).
+	\end{proof}
+	
+	
+	
+	The following two dichotomies are fundamental in the theory of Borel equivalence relations.
+	
+	\begin{fct}[Silver dichotomy]
+		\label{fct:silver}
+		For every Borel (even coanalytic) equivalence relation $E$ on a Polish space either $E \leq_B \Delta_{\bN}$, or $\Delta_{2^{\bN}} \leq_B E$. (So in particular, every non-smooth Borel equivalence relation on a Polish space has $2^{\aleph_0}$ classes)
+	\end{fct}
+	\begin{proof}
+		See \cite[Theorem 10.1.1]{kanovei}.
+	\end{proof}
+	
+	By $\EZ$ we denote the equivalence relation of eventual equality on $2^{\bN}$ (i.e.\ for $\eta,\eta'\in 2^{\bN}$ we have $\eta\EZ \eta'$ when $\eta(n)=\eta'(n)$ for all but finitely many $n$).
+	
+	\begin{fct}[Harrington-Kechris-Louveau dichotomy]\label{fct:Harrington-Kechris-Louveau dichotomy}
+		For every Borel equivalence relation $E$ on a Polish space $X$ either $E \leq_B \Delta_{2^{\bN}}$ (i.e.\ $E$ is smooth), or ${\EZ} \leq_B E$. In the latter case, the reduction is realised by a homeomorphic embedding of $2^{\bN}$ into $X$.
+	\end{fct}
+	\begin{proof}
+		See \cite[Theorem 1.1]{HKL90} or \cite[Theorem 10.4.1]{kanovei}.
+	\end{proof}
+	
+	\index{E-saturated@$E$-saturated set}
+	\index{E-invariant@$E$-invariant set|see{$E$-saturated set}}
+	Recall that for an equivalence relation $E$ on a set $X$, a subset $Y$ of $X$ is said to be {\em $E$-saturated} if it is a union of some classes of $E$. In this thesis, we will say that a family $\{B_i \mid i \in \omega\}$ of subsets of $X$ {\em separates classes} of $E$ if for every $x \in X$, $[x]_E= \bigcap \{ B_i \mid x \in B_i\}$. Note that this implies that all $B_i$ are $E$-saturated. Thus, a family $\{B_i \mid i \in \omega\}$ of subsets of $X$ separates classes of $E$ if and only if each $B_i$ is $E$-saturated and each class of $E$ is the intersection of those sets $B_i$ which contain it.
+	The following characterisation of smoothness is folklore.
+	
+	\begin{fct}\label{fct:separating_family}
+		Let $X$ be an equivalence relation on a Polish space $X$. Then, $E$ is smooth if and only if there is a countable family $\{B_i\mid i \in \omega\}$ of Borel ($E$-saturated) subsets of $X$ separating classes of $E$.
+	\end{fct}
+	\begin{proof}
+		Let $f$ be a Borel reduction of $E$ to $\Delta_{2^{\bN}}$. Let $\{C_i\mid i \in \omega\}$ be a countable open basis of the space $2^{\bN}$. Then $\{f^{-1}[C_i]\mid i \in \omega \}$ is a countable family consisting of Borel ($E$-saturated) subsets of $X$ separating classes of $E$.
+		
+		For the converse, consider a family $\{ B_i \mid i \in \bN\}$ satisfying the hypothesis. Define $f \colon X \to 2^{\bN}$ by $f(x) = \chi_{\{i \in \bN \mid x \in B_i\}}$ (i.e.\ the characteristic function of ${\{i \in \bN \mid x \in B_i\}}$). It is easy to see that this is a Borel reduction of $E$ to $\Delta_{2^{\bN}}$.
+	\end{proof}
+	
+	
+	The following Fact provides a useful criterion of closedness for subgroups of totally nonmeagre topological groups (including compact Hausdorff groups).
+	\begin{fct}\label{fct:miller}
+		Assume $G$ is a totally non-meagre topological group (e.g.\ $G$ is Polish or locally compact). Suppose $H$ is a subgroup of $G$ and $\{E_i \mid i \in \omega\}$ is a collection of right $H$-invariant (i.e.\ such that $E_iH=E_i$), strictly Baire sets which separates left $H$-cosets (i.e.\ for each $g \in G$, $gH= \bigcap \{ E_i \mid g \in E_i\}$). Then $H$ is closed in $G$.
+	\end{fct}
+	\begin{proof}
+		This is \cite[Theorem 1]{Mil77}.
+	\end{proof}
+	
+	Using Fact~\ref{fct:miller}, we can prove the following proposition, which is one of the more important tools in the proofs of Main~Theorem~\ref{mainthm:smt} and Main~Theorem~\ref{mainthm:tdgroup}.
+	\begin{prop}
+		\label{prop:trichotomy_for_groups}
+		Suppose $G$ is a compact Polish group and $H\leq G$. Then exactly one of the following holds:
+		\begin{itemize}
+			\item
+			$[G:H]$ is finite and $H$ is open,
+			\item
+			$[G:H]=2^{\aleph_0}$ and $H$ is closed,
+			\item
+			$H$ has the property of Baire, $G/H$ is non-smooth (in the sense that the coset equivalence relation is non-smooth) and $[G:H]=2^{\aleph_0}$,
+			\item
+			$H$ does not have the property of Baire (and $G/H$ is non-smooth).
+		\end{itemize}
+	\end{prop}
+	\begin{proof}
+		If $H$ does not have the Baire property, then it is not Borel, and (by Remark~\ref{rem:group_to_cosets} and Proposition~\ref{prop:preservation_properties}) neither is the coset equivalence relation, so $G/H$ cannot be smooth (see Remark~\ref{rem:smooth_implies_borel}). Thus, in the following, we may assume that $H$ is Baire.
+		
+		If $H$ is not meagre, then by Fact~\ref{fct:pettis}, it is open. By compactness of $G$, it follows that $G/H$ is finite.
+		
+		If $H$ is meagre, then by Fact~\ref{fct:multiplication_open}, the coset equivalence relation of $H$ is also meagre (as the preimage of a meagre set by a continuous open map, cf.\ Remark~\ref{rem:group_to_cosets}), and thus, by Proposition~\ref{prop:mycielski}, $\lvert G/H\rvert=2^{\aleph_0}$.
+		
+		If $G/H$ is smooth, then by Remark~\ref{rem:smooth_implies_borel}, it is Borel, and hence (by Remark~\ref{rem:group_to_cosets}) so is $H$. Thus, $H$ has the strict Baire property, and by Fact~\ref{fct:separating_family} we have a countable Borel separating family for cosets of $H$, so by Fact~\ref{fct:miller}, $H$ is closed.
+	\end{proof}
+	
+	The following example is essentially \cite[Example 3.39]{KM14}.
+	\begin{ex}
+		\label{ex:trichotomy_counterexample}
+		In Proposition~\ref{prop:trichotomy_for_groups}, we cannot expect $G/H$ to be large for an arbitrary non-closed $H$. For example, if $G$ is a countably infinite-dimensional vector space over a finite field $\mathbf F_q$, then every nonzero linear functional $\eta$ on $G$ gives us a distinct subspace $H_\eta=\ker \eta$ of codimension $1$, which is then a subgroup of index $q$. But (by finite index) if $H$ is closed, it must be clopen. But as a Polish space, $G$ has only countably many clopen subsets, so (because there are $2^{\aleph_0}$ linear functionals) some $H_\eta$ is not closed (even though it has finite index).
+		
+		(In fact, a compact Hausdorff group has a non-open (equivalently, non-closed) subgroup of finite index if and only if it has uncountably many subgroups of finite index, see \cite[Theorem 2]{SW03}.)\xqed{\lozenge}
+	\end{ex}
+	
+	\begin{rem}
+		Note that Proposition~\ref{prop:trichotomy_for_groups} shows that a subgroup of a Polish group with the Baire property has index finite or $2^{\aleph_0}$, so one can ask if the same is true for arbitrary subgroups. In \cite[Theorem 2.3]{HHM16}, the authors show that if $G$ is compact Hausdorff but not profinite, then it has a subgroup of index $\aleph_0$. The case of profinite groups seems to remain open.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	
+	
+	
+	\section{Topological dynamics}
+	\label{sec:prel_topdyn}
+	All the relevant definitions and facts in topological dynamics (apart from the ones related to tame dynamical systems, which are in Section~\ref{section: tame systems}) can be found in Appendix~\ref{app:topdyn}, along with complete proofs of most of them. They have been deferred, because they have little expository value at this point. Here, we only list some of the most important ones.
+	
+	\begin{dfn}
+		\label{dfn:dyn_system_pre}
+		\index{dynamical system}
+		By a \emph{dynamical system}, in this paper, we mean a pair $(G,X)$, where $G$ is an abstract group acting by homeomorphisms on a compact Hausdorff space $X$. Sometimes, $G$ is left implicit and we just say that $X$ is a dynamical system.
+		
+		\index{ambit}
+		If $x_0\in X$ has orbit dense in $X$, then we call the triple $(G,X,x_0)$ a \emph{$G$-ambit}, or just an \emph{ambit}. Sometimes, when $G$ is clear from the context, we also write simply $(X,x_0)$.
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{dfn}
+		\label{dfn:ellis_group_pre}
+		\index{piXg@$\pi_{X,g}$}
+		\index{pig@$\pi_g$}
+		\index{E(G,X)@$E(G,X)$|see {Ellis semigroup}}
+		\index{EL@$EL$|see {Ellis semigroup}}
+		\index{Ellis!semigroup}
+		\index{Enveloping semigroup|see {Ellis semigroup}}
+		If $(G,X)$ is a dynamical system, then its \emph{Ellis (or enveloping) semigroup} $EL=E(G,X)$ is the (pointwise) closure in $X^X$ of the set of functions $\pi_{X,g}\colon x\mapsto g\cdot x$ for $g\in G$. (When there is no risk of confusion, we write simply $\pi_g$, or --- abusing the notation --- just $g$ for $\pi_{X,g}$. When $(G,X)$ is clear from the context, we also write $EL$ for $E(G,X)$.)
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{fct}
+		\label{fct:ellis_clst_pre}
+		If $(G,X)$ is a dynamical system, then $EL$ is a compact left topological semigroup (i.e.\ it is a semigroup with the composition as its semigroup operation, and the composition is continuous on the left). It is also a $G$-flow with $g\cdot f:= \pi_gf$ (i.e.\ $\pi_g$ composed with $f$).
+	\end{fct}
+	\begin{proof}
+		Straightforward ($X^X$ itself is already a compact left topological semigroup, and it is easy to check that $EL$ is a closed subsemigroup).
+	\end{proof}
+	
+	\begin{dfn}
+		\index{ideal}
+		\index{left ideal}
+		A (left) ideal $I\unlhd S$ in a semigroup $S$ is a subset such that $IS\subseteq I$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		There is a corresponding notion of a right ideal in a semigroup (satisfying $SI\subseteq I$), as well as that of a two-sided ideal, but we will never use either of those in this thesis. Thus (for brevity), we often write just ``ideal" for ``left ideal''.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{fct}[minimal ideals and the Ellis group]
+		\label{fct:ideals_ellis_pre}
+		\index{M@$\cM$}
+		\index{minimal left ideal}
+		\index{idempotent}
+		\index{u@$u$}
+		\index{Ellis!group}
+		\index{uM@$u\cM$}
+		Suppose $S$ is a compact Hausdorff left topological semigroup (e.g.\ the enveloping semigroup of a dynamical system). Then $S$ has a minimal (left) ideal $\cM$ (in the sense of inclusion). Furthermore, for any such ideal $\cM$:
+		\begin{enumerate}
+			\item
+			$\cM$ is closed,
+			\item
+			for any element $a\in \cM$, $\cM=Sa=\cM a$,
+			\item
+			$\cM=\bigsqcup_u u\cM$, where $u$ runs over all idempotents in $\cM$ (i.e.\ elements such that $u\cdot u=u$) --- in particular, $\cM$ contains idempotents,
+			\item
+			for any idempotent $u\in \cM$, the set $u\cM$ is a subgroup of $S$ with the identity element $u$ (note that $u$ is usually \emph{not} the identity element of $S$ --- indeed, $S$ need not have an identity at all).
+		\end{enumerate}
+		Moreover, all the groups $u\cM$ (where $\cM$ ranges over all minimal left ideals and $u$ over idempotents in $\cM$) are isomorphic. The isomorphism type of all these groups is called the {\em ideal} group of $S$; if $S=E(G,X)$, we call this group the {\em Ellis group} of the flow $(G,X)$.
+	\end{fct}
+	\begin{proof}
+		See Fact~\ref{fct:minimal_ideals_idempotents}.
+	\end{proof}
+	Throughout the thesis, we denote minimal ideals by $\cM$ or $\cN$, and we denote idempotents in minimal ideals by $u$ or $v$.
+	Below, we summarise the basic facts related to the so-called $\tau$ topology of the Ellis groups of $(G,X)$.
+	
+	\begin{fct}
+		\label{fct:tau_top_pre}
+		Consider the Ellis semigroup $EL$ of a dynamical system $(G,X)$. Fix any minimal left ideal $\cM$ of $EL$ and an idempotent $u\in \cM$.
+		\begin{enumerate}
+			\item
+			\index{o@$\circ$}
+			For each $a\in EL$, $B\subseteq EL$, we write $a\circ B$ for the set of all limits of nets $(g_ib_i)_i$, where $g_i\in G$ are such that $\pi_{g_i}\to a$, and $b_i\in B$.
+			\item
+			For any $p,q\in EL$ and $A\subseteq EL$, we have:
+			\begin{itemize}
+				\item
+				$p\circ(q\circ A)\subseteq (pq)\circ A$,
+				\item
+				$pA\subseteq p\circ A$,
+				\item
+				$p\circ A=p\circ \overline A$,
+				\item
+				$p\circ A$ is closed,
+				\item
+				if $A\subseteq \cM$, then $p\circ A\subseteq \cM$.
+			\end{itemize}
+			\item
+			\index{clt@$\cl_{\tau}$}
+			\index{topology!t@$\tau$}
+			The formula $\cl_\tau(A):=(u\cM)\cap (u\circ A)$ defines a closure operator on $u\cM$. It can also be (equivalently) defined as $\cl_\tau(A)=u(u\circ A)$. We call the topology on $u\cM$ induced by this operator the {\em $\tau$ topology}.
+			\item
+			If $(f_i)_i$ (a net in $u\cM$) converges to $f\in \overline{u\cM}$ (the closure of $u\cM$ in $EL$), then $(f_i)_i$ converges to $uf$ in the $\tau$-topology.
+			\item
+			The $\tau$-topology on $u\cM$ is refined by the subspace topology inherited from $EL$.
+			\item
+			$u\cM$ with the $\tau$ topology is a compact $T_1$ semitopological group (i.e.\ with separately continuous multiplication).
+			\item
+			All the ideal groups $u\cM$ are isomorphic as semitopological groups, as we vary $\cM$ and $u$. We call them \emph{Ellis groups} of $(G,X)$.
+			\item
+			\index{H(uM)@$H(u\cM)$}
+			$H(u\cM)=\bigcap_V \overline{V}$, where $V$ runs over all closures of neighbourhoods of the identity $u\in u\cM$, is a $\tau$-closed normal subgroup of $u\cM$, and $u\cM/H(u\cM)$ is a compact Hausdorff topological group.
+		\end{enumerate}
+	\end{fct}
+	\begin{proof}
+		See Facts~\ref{fct:circ_calculations}, \ref{fct:circ_with_closure} \ref{fct:circ_closed} \ref{fct:circ_stays_in_ideal} for (2).
+		
+		See Facts~\ref{fct:tau_closure}, \ref{fct:taucl_alt} for the (3).
+		
+		See Fact~\ref{fct:ulimit}, Fact~\ref{fct:tau_coarser}, Fact~\ref{fct:tau_T1}, Fact~\ref{fct:ellis_isomorphic} and Fact~\ref{fct:H(uM)} for the remaining points.
+	\end{proof}
+	
+	The following technical observation comes from \cite{KPR15} (joint with Krzysztof Krupiński and Anand Pillay) and is essential there, as well as in \cite{KR18} and large parts of this thesis.
+	\begin{prop}
+		\label{prop:strange_cont_pre}
+		The function $\xi\colon \overline {u\cM}\to u\cM$ (where $\overline{u\cM}$ is the closure of $u\cM$ in the topology of $EL$) defined by the formula $f\mapsto uf$ has the property that for any continuous function $\zeta\colon u\cM\to X$, where $X$ is a regular topological space and $u\cM$ is equipped with the $\tau$-topology, the composition $\zeta\circ \xi \colon \overline {u\cM}\to X$ is continuous, where $\overline{u\cM}$ is equipped with subspace topology from $EL$. In particular, the map $\overline{u\cM}\to u\cM/H(u\cM)$ given by $f \mapsto uf/H(u\cM)$ is continuous.
+	\end{prop}
+	\begin{proof}
+		See Proposition~\ref{prop:strange_cont}.
+	\end{proof}
+	
+	
+	\section[Rosenthal compacta and tame dynamical systems]{Rosenthal compacta and tame dynamical systems\sectionmark{Rosenthal compacta and tameness}}
+	\sectionmark{Rosenthal compacta and tameness}
+	\subsection*{Rosenthal compacta, independent sets, and \texorpdfstring{$\ell^1$}{l1} sequences}\label{section: Rosenthal compacta}
+	Here, we will discuss selected properties of Rosenthal compacta. For a broader exposition, refer to \cite{Debs14}.
+
+	\begin{dfn}
+		\index{Baire!class 1 function}
+		\index{B_1(X)@$\cB_1(X)$|see{Baire class 1 function}}
+		Given a topological space $X$, we say that a function $X\to \bR$ is of \emph{Baire class 1} if it is the pointwise limit of a sequence of continuous real-valued functions.
+		We denote by $\cB_1(X)$ the set of all such functions.\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{dfn}
+		\index{Rosenthal compactum}
+		A compact, Hausdorff space $K$ is a \emph{Rosenthal compactum} if it embeds homeomorphically into $\cB_1(X)$ for some Polish space $X$, where $\cB_1(X)$ is equipped with the pointwise convergence topology.
+		\xqed{\lozenge}
+	\end{dfn}
+	\begin{dfn}
+		\index{space!Fréchet}
+		\index{space!Fréchet-Urysohn|see {Fréchet space}}
+		A {\em Fréchet} (or {\em Fréchet-Urysohn}) space is a topological space in which any point in the closure of a given set $A$ is the limit of a sequence of elements of $A$.
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{fct}\label{fct: Rosnthal implies Frechet}
+		Rosenthal compacta are Fréchet.
+	\end{fct}
+	\begin{proof}
+		\cite[Theorem 4.1]{Debs14}.
+	\end{proof}
+	
+	
+	
+	\begin{fct}
+		\label{fct:bft}
+		Suppose $X$ is a compact metric space and $A\subseteq C(X)$ is a family of $0-1$ valued functions (i.e.\ characteristic functions of clopen subsets of $X$). Put $\mathcal A:=\{U\subseteq X\mid \chi_U\in A \}$. The following are equivalent:
+		\begin{itemize}
+			\item
+			$\overline A\subseteq {\bR}^X$ is Fréchet (equivalently, Rosenthal),
+			\item
+			$\mathcal A$ contains no infinite independent family, i.e.\ $\mathcal A$ contains no family $(A_i)_{i \in \bN}$ such that for every $I \subseteq \bN$ the intersection $\bigcap_{i \in I} A_i \cap \bigcap_{i \in \bN \setminus I} A_i^c$ is nonempty.
+		\end{itemize}
+	\end{fct}
+	\begin{proof}
+		$A$ is clearly pointwise bounded, so by \cite[Corollary 4G]{BFT78}, $A$ is relatively compact in $\cB_1(X)$ (which is equivalent to the first condition) if and only if it satisfies the condition (vi) from \cite[Theorem 2F]{BFT78}, which for $0-1$ functions on a compact space reduces to the statement that for each sequence $(a_n)$ of elements of $A$ there is some $I\subseteq \bN$ for which there is no $x\in X$ such that $a_n(x)=1$ if and only if $n\in I$.
+		This is clearly equivalent to the second condition.
+	\end{proof}
+	
+	The next definition is classical and can be found for example in \cite[Section 5]{Koh95}.
+	\begin{dfn}
+		\index{l1 sequence@$\ell^1$ sequence}
+		If $(f_n)_{n\in {\bN}}$ is a sequence of elements in a Banach space, we say that it is an {\em $\ell^1$ sequence} if it is bounded and there is a constant $\theta>0$ such that for any scalars $c_0,\ldots,c_n$ we have the inequality
+		\[
+		\theta\cdot \sum_{i=0}^n \lvert c_i\rvert < \left \lVert \sum_{i=0}^n c_i f_i\right\rVert.
+		\]
+		(This is equivalent to saying that $e_n\mapsto f_n$ extends to a topological isomorphism of $\ell^1$ and the closed span of $(f_n)_n$ (in the norm topology), where $e_n$ are the standard basis vectors.)
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	In fact, $\ell^1$ sequences are very intimately related to ``independent sequences" (via the Rosenthal's dichotomy).
+	The following is a simple example of this relationship:
+	
+	\begin{fct}
+		\label{fct:ind_untame}
+		Suppose $X$ is a compact, Hausdorff space and $(A_n)_n$ is an independent sequence of clopen subsets of $X$. Then $(\chi_{A_n})_n$ is an $\ell^1$ sequence in the Banach space $C(X)$ (with the supremum norm).
+	\end{fct}
+	\begin{proof}
+		Fix any sequence $c_0,\ldots,c_n$ of real numbers. Write $[n]$ for $\{0,\ldots,n\}$ and put $f:=\sum_{i\in [n]} c_i\chi_{A_i}$. Let $I:=\{i\in [n]\mid c_i\geq 0 \}$. Assume without loss of generality that $\sum_{i\in I} c_i\geq -\sum_{i\in [n]\setminus I} c_i$ (the other case is analogous). Then for any $x\in \bigcap_{i\in I} A_i\cap \bigcap_{i\in [n]\setminus I} A_i^c$ we have $f(x)=\sum_{i\in I} c_i\geq \frac{1}{2} \sum_{i\in [n]} \lvert c_i\rvert$.
+	\end{proof}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	\subsection*{Tame dynamical systems}\label{section: tame systems}
+	
+	
+	\begin{dfn}
+		\index{tame!function}
+		\index{tame!dynamical system}
+		\label{dfn:tame_function_system}
+		If $(G,X)$ is a dynamical system and $f\in C(X)$, then we say that $f$ is a \emph{tame function} if for every sequence $(g_n)_n$ of elements of $G$, $(f\circ g_n)_n$ is not an $\ell^1$ sequence.
+		
+		We say that $(G,X)$ is a \emph{tame dynamical system} if every $f\in C(X)$ is tame.
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		\label{rem:dfn_equiv}
+		The notion of tame dynamical system is due to Kohler \cite{Koh95}. She used the adjective ``regular" instead of (now established) ``tame", and formulated it for actions of $\bN$ on metric compacta, but we can apply the same definition to arbitrary group actions on compact spaces.
+		
+		Some authors use different (but equivalent) definitions of tame function or tame dynamical system. For example, \cite[Fact 4.3 and Proposition 5.6]{GM12} yields several equivalent conditions for tameness of a function (including the definition given above and \cite[Definition 5.5]{GM12}). By this and \cite[Corollary 5.8]{GM12}, we obtain equivalence between our definition of tame dynamical system and \cite[Definition 5.2]{GM12}.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	The condition in the following fact can be used as a definition of tameness for metric dynamical systems.
+	\begin{fct}\label{fct: metric tameness}
+		If $(G,X)$ is a metric dynamical system and $f\in C(X)$, then $f$ is tame if and only if the pointwise closure $\overline{\{f\circ g\mid g\in G \} }\subseteq {\bR}^X$ consists of Baire class 1 functions (equivalently, it is a Rosenthal compactum).
+	\end{fct}
+	\begin{proof}
+		It follows immediately from \cite[Fact 4.3 and Proposition 4.6]{GM12}.
+	\end{proof}
+	
+	
+	\begin{fct}
+		\label{fct:tame_closed}
+		For any dynamical system, the tame functions form a closed subalgebra of $C(X)$ (with pointwise multiplication and norm topology).
+	\end{fct}
+	\begin{proof}
+		First, by Remark~\ref{rem:dfn_equiv}, tame functions in $(G,X)$ satisfy \cite[Definition 5.5]{GM12}, i.e.\ for every $f$ tame in $X$ there is a tame dynamical system $(G,Y_f)$ and an epimorphism $\phi_f\colon X\to Y_f$ such that $f=\phi_f^*(f'):=f'\circ \phi_f$ for some $f'\in C(Y_f)$.
+		
+		Since tame dynamical systems are closed under subsystems and under arbitrary products (\cite[Lemma 5.4]{GM12}), there is a universal $Y$ for all tame functions $f$, i.e.\ such that the set of all tame functions in $(G,X)$ is exactly the image of $\phi^*\colon C(Y)\to C(X)$, where $\phi\colon X\to Y$ is an epimorphism and $Y$ is tame (just take $\phi\colon X\to \prod_f Y_f$ to be the diagonal of $\phi_f$, and take $Y:=\phi[X] \subseteq \prod_f Y_f$).
+		
+		Since $C(Y)$ is a Banach algebra and $\phi^*$ is a homomorphism and an isometric embedding (as $\phi$ is onto), the fact follows.
+	\end{proof}
+	
+	\begin{cor}
+		\label{cor:tame_dense}
+		If $(G,X)$ is a dynamical system and $\mathcal A\subseteq C(X)$ is a family of functions separating points, then $(G,X)$ is tame if and only if every $f\in \mathcal A$ is tame.
+	\end{cor}
+	\begin{proof}
+		The implication $(\leftarrow)$ is obvious.
+		
+		$(\rightarrow)$.
+		Since constant functions are trivially tame, by the assumption and the Stone-Weierstrass theorem, it follows that tame functions are dense in $C(X)$, and thus the conclusion follows immediately from Fact~\ref{fct:tame_closed}.
+	\end{proof}
+	
+	
+	\begin{fct}
+		\label{fct:tame_preserved}
+		Suppose $(G,X)$ is a tame dynamical system. Then the following dynamical systems are tame:
+		\begin{itemize}
+			\item
+			$(H,X)$, where $H\leq G$,
+			\item
+			$(G,X_0)$, where $X_0\subseteq X$ is a closed invariant subspace,
+			\item
+			$(G,Y)$, where $Y$ is a $G$-equivariant quotient of $X$.
+		\end{itemize}
+	\end{fct}
+	\begin{proof}
+		The first bullet is trivial. The second follows from the Tietze extension theorem. For the third, note that any potentially untame function on $Y$ can be pulled back to $X$.
+	\end{proof}
+	
+	
+	
+	The following is a dynamical variant of the so-called Bourgain-Fremlin-Talagrand dichotomy, slightly modified for our needs from \cite[Theorem 3.2]{GM06}.
+	\begin{prop}
+		\label{prop:dyn_BFT}
+		Suppose $X$ is a totally disconnected metric compactum. Let $G$ act on $X$ by homeomorphisms. Then the following are equivalent:
+		\begin{enumerate}
+			\item
+			\label{it:prop:dyn_BFT:untame}
+			$(G,X)$ is untame,
+			\item
+			\label{it:prop:dyn_BFT:clopen}
+			there is a clopen set $U$ and a sequence $(g_n)_{n\in \bN}$ of elements of $G$ such that the sets $g_n U$ are independent,
+			\item
+			\label{it:prop:dyn_BFT:betaN}
+			$EL:=E(G,X)$ contains a homeomorphic copy of $\beta \bN$,
+			\item
+			\label{it:prop:dyn_BFT:large}
+			$\lvert EL\rvert=2^{2^{\aleph_0}}$,
+			\item
+			\label{it:prop:dyn_BFT:Frechet}
+			$EL$ is not Fréchet,
+			\item
+			\label{it:prop:dyn_BFT:Rosenthal}
+			$EL$ is not a Rosenthal compactum.
+		\end{enumerate}
+		If $X$ is not necessarily totally disconnected, all conditions but \ref{it:prop:dyn_BFT:clopen} are equivalent.
+	\end{prop}
+	\begin{proof}
+		The equivalence of all conditions but \ref{it:prop:dyn_BFT:clopen}
+		is proved in \cite[Theorem 3.2]{GM06} (based on the Bourgain-Fremlin-Talagrand dichotomy).
+		For the reader's convenience, we will prove here that all conditions (including \ref{it:prop:dyn_BFT:clopen}) are equivalent in the totally disconnected case (the case which appears in our model-theoretic applications).
+		
+		$\ref{it:prop:dyn_BFT:untame} \rightarrow \ref{it:prop:dyn_BFT:clopen}$. Since the characteristic functions of clopen subsets of $X$ are continuous and separate points in $X$, by \ref{it:prop:dyn_BFT:untame} and Corollary~\ref{cor:tame_dense}, the characteristic function $\chi_U$ is not tame for some clopen $U\subseteq X$. By Fact \ref{fct: metric tameness}, this is equivalent to the fact that $\overline{\{\chi_{gU} \mid g \in G\}}$ is not a Rosenthal compactum. Hence, Fact \ref{fct:bft} implies that some family $\{g_n U: n \in \bN\}$ (with $g_n \in G$) is independent.
+		
+		$\ref{it:prop:dyn_BFT:clopen} \rightarrow \ref{it:prop:dyn_BFT:untame}$. The reversed argument works. Alternatively, it follows immediately from Fact \ref{fct:ind_untame}.
+		
+		$\ref{it:prop:dyn_BFT:clopen} \rightarrow \ref{it:prop:dyn_BFT:betaN}$. Let $(g_n)$ be a sequence of elements of $G$ such that the sets $g_n U$ are independent. By the universal property of $\beta \bN$, we have the continuous function $\beta \colon \beta \bN\to EL$ given by $\mathcal F\mapsto \lim_{n\to \mathcal F} g_n^{-1}$. It remains to check that $\beta$ is injective. Consider two distinct ultrafilters $\mathcal F_1$ an $\mathcal F_2$ on $\bN$. Choose $F \in \mathcal F_1 \setminus \mathcal F_2$. By the independence of the $g_n U$, we can find $x \in \bigcap_{n \in F} g_nU \cap \bigcap_{n \in \bN \setminus F} g_nU^c$. It suffices to show that $\beta(\mathcal F_1)(x) \ne \beta(\mathcal F_2)(x)$. Note that $\{n \in \bN \mid g_n^{-1}x \in U^c\} = \bN \setminus F \notin \mathcal F_1$ and $U^c$ is open, so $\beta(\mathcal F_1)(x) \in U$. Similarly, $\beta(\mathcal F_2)(x) \in U^c$, and we are done.
+		
+		$\ref{it:prop:dyn_BFT:betaN} \rightarrow \ref{it:prop:dyn_BFT:large}$. The group $\{\pi_g \mid g \in G\}$ is contained in the Polish group $\operatorname{Homeo}(X,X)$ of all homeomorphisms of $X$ equipped with the uniform convergence topology. So $\{\pi_g \mid g \in G\}$ is separable in the inherited topology, and so also in the pointwise convergence topology (which is weaker). Therefore, $EL =\overline{ \{\pi_g \mid g \in G\}}$ is of cardinality at most $2^{2^{\aleph_0}}$. On the other hand, $|\beta\bN| = 2^{2^{\aleph_0}}$. Hence, $|EL|= 2^{2^{\aleph_0}}$.
+		
+		$\ref{it:prop:dyn_BFT:large} \rightarrow \ref{it:prop:dyn_BFT:Frechet}$. If $EL$ is Fréchet, then, using the above observation that $\{\pi_g \mid g \in G\}$ is separable, we get that $|EL| = 2^{\aleph_0}$.
+		
+		$\ref{it:prop:dyn_BFT:Frechet} \rightarrow \ref{it:prop:dyn_BFT:Rosenthal}$. This is Fact \ref{fct: Rosnthal implies Frechet}.
+		
+		$\ref{it:prop:dyn_BFT:Rosenthal} \rightarrow \ref{it:prop:dyn_BFT:untame}$. Embed homeomorphically $X$ in $\bR^\bN$. Then $EL$ embeds homeomorphically in $\bR^{X \times \bN}$ via the map $\Phi$ given by $\Phi(f)(x,i):=f(x)(i)$. Take $f \in EL$, and let $\pi_i \colon X \to \bR$ be the projection to the $i$-th coordinate, i.e.\ $\pi_i(x):=x(i)$. Suppose $(G,X)$ is tame. Then $\pi_i \circ f \in \cB_1(X)$ by Fact \ref{fct: metric tameness}, so for every $i \in \bN$ there is a sequence of continuous functions $f^i_n \colon X \to \bR$ such that $\lim_n f^i_n = \pi_i \circ f$. Define $f_n \in \bR^{X \times \bN}$ by $f_n(x,i) := f^i_n(x)$. Then all $f_n$'s are continuous and $\Phi(f)= \lim_n f_n$.
+		So $\Phi[EL]$ is a compact subset of $\cB_1(X \times \bN)$, i.e.\ $EL$ is Rosenthal.
+	\end{proof}
+	
+	
+	\begin{fct}
+		\label{fct:tame_borel}
+		If $(G,X)$ is a metric dynamical system, then $(G,X)$ is tame if and only if all functions in $E(G,X)$ are Borel measurable.
+	\end{fct}
+	\begin{proof}
+		By Proposition~\ref{prop:dyn_BFT}, if $(G,X)$ is tame, $E(G,X)$ is Fréchet. Since the pointwise limit of a sequence of continuous functions between Polish spaces is always Borel, it follows that $E(G,X)$ consists of Borel functions.
+		
+		In the other direction, since $X$ is Polish, there are at most $2^{\aleph_0}$ many Borel functions $X\to X$. In particular, if $E(G,X)$ consists of Borel functions, $\lvert E(G,X)\rvert\leq 2^{\aleph_0}<2^{2^{\aleph_0}}$, which implies tameness by Proposition~\ref{prop:dyn_BFT}.
+	\end{proof}
+	
+	
+	\section{Model theory}
+	In this section, we recall briefly some basic facts, definitions and conventions which will be applied in the model-theoretical parts of this paper. This is not comprehensive, and is only meant to remind the most important notions; for more in-depth explanation, see e.g.\ \cite{Hod93}, \cite{marker}, \cite{TZ12} for the elementary and \cite{CLPZ01}, \cite{GiNe08}, \cite{KP97}, \cite{KPS13}, \cite{LaPi}, \cite{Zie02} for the more advanced topics.
+	\subsection*{Elementary matters}
+	
+	\index{T@$T$}
+	Throughout, $T$ will denote the ambient (first order, complete, often countable) theory.
+	
+	\begin{dfn}
+		\index{space!of types}
+		\index{Sx(A)@$S_x(A)$|see {space of types}}
+		Given a model $M\models T$, a set $A\subseteq M$, and a (possibly infinite) tuple $x$ of variables, by $S_x(A)$ we mean the space of complete types over $A$ in variables $x$, i.e.\ the Stone space of the Lindenbaum-Tarski algebra of formulas with free variables $x$ and parameters from $A$ modulo equivalence under $T$ (i.e.\ we identify formulas $\varphi_1(x),\varphi_2(x)$ when $T\vdash \varphi_1(x)\leftrightarrow \varphi_2(x)$). (Note that this implies that each $S_x(A)$ is a compact Hausdorff topological space, of weight at most $\lvert A\rvert+\lvert x\rvert+\lvert T\rvert$.)\xqed{\lozenge}
+	\end{dfn}
+	
+	We fix a strong limit cardinal $\kappa$ larger than $\lvert T\rvert$ and ``all the objects we are interested in". We also fix a monster model $\fC$, satisfying the following definition. (Note that if $\kappa$ is strongly inaccessible, then we can choose $\fC$ as simply a saturated model of cardinality $\kappa$. If $\kappa$ is not strongly inaccessible, a saturated model of cardinality $\kappa$ may not exist.)
+	
+	\begin{dfn}
+		\index{model!monster}
+		\index{C@$\fC$|see {monster model}}
+		A \emph{monster model} is a model $\fC$ of $T$ which is $\kappa$-saturated (i.e.\ each type over an arbitrary set of parameters from $\fC$ of size less than $\kappa$ is realized in $\fC$) and strongly $\kappa$-homogeneous (i.e.\ any elementary map between subsets of $\fC$ of cardinality less than $\kappa$ extends to an automorphism of $\fC$).
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	Sometimes we refer to the $\kappa$ fixed above as ``the degree of saturation of $\fC$", even though this may not be strictly true (as $\fC$ may be saturated in a higher cardinality).
+	
+	\begin{fct}
+		For every $\kappa$ as above and every complete theory $T$, there is a monster model.
+	\end{fct}
+	\begin{proof}
+		See \cite[Theorem 10.2.1]{Hod93} (note that what we call a monster model is referred to as a ``$\kappa$-big model").
+	\end{proof}
+	
+	\begin{dfn}
+		\index{small}
+		We call an object \emph{small} if it has cardinality smaller than the degree of saturation of $\fC$.\xqed{\lozenge}
+	\end{dfn}
+	
+	The following remark highlights one of the most important features of the monster model, which provides a very strong link between syntax and semantics.
+	\begin{rem}
+		\label{rem:types_orbits}
+		If $\fC$ is a monster model, then for every small $A\subseteq \fC$, and and any small (but possibly infinite) tuple $x$ of variables, if $p(x)$ is a complete type over $A$, then the set $p(\fC)$ of realisations of $p(x)$ is nonempty, and it is a single orbit of $\Aut(\fC/A)$, the group of automorphisms of $\fC$ fixing $A$ pointwise.
+		
+		Consequently, there is a natural bijection between the space $S_x(A)$ of types over $A$ in variables $x$ and the orbits of $\Aut(\fC/A)$ in the product of sorts corresponding to the variable $x$.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	By convention, whenever we mention a small model $M$ of $T$, we assume that $M$ is an elementary substructure of $\fC$ (i.e.\ for every formula $\varphi(x)$ with parameters in $M$, $M\models \exists x \varphi(x)$ if and only if $\fC\models \exists x \varphi(x)$). Every small model of $T$ can be embedded this way (this follows from $\kappa$-saturation of $\fC$).
+	
+	\begin{dfn}
+		\index{phi(M)@$\varphi(M)$}
+		Given a formula $\varphi(x)$ and a model $M\models T$ (including $\fC$), by $\varphi(M)$ we mean the set of all realisations of $\varphi$ in $M$, i.e.\ tuples $a$ in $M$ such that $M\models \varphi(a)$.
+		
+		Likewise, if $\pi$ is a partial type, by $\pi(M)$ we mean the set of all realisations of $\pi$ in $M$.
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{dfn}
+		Let $A\subseteq \fC$ be a small set, and let $X$ be a subset of a fixed product of sorts of $X$.
+		\begin{itemize}
+			\item
+			\index{invariant set}
+			\index{XA@$X_A$}
+			\index{SX(A)@$S_X(A)$}
+			We say that $X$ is {\em $A$-invariant} if it is setwise invariant under $\Aut(\fC/A)$ (note that by Remark~\ref{rem:types_orbits}, such a set is a union of sets of realizations of some number of complete types over $A$). In this case, we denote by $X_A$ (or by $S_X(A)$) the set of types over $A$ of elements of $X$. We say that $X$ is simply \emph{invariant} if it is invariant over $\emptyset$, i.e.\ under $\Aut(\fC)$.
+			\item
+			\index{definable set}
+			We say that $X$ is \emph{$A$-definable} or \emph{definable over $A$} if for some formula $\varphi(x)$ with parameters in $A$, we have $X=\varphi(\fC)$. We say that $X$ is simply \emph{definable} if it is definable over some $A$.
+			\item
+			\index{type-definable set}
+			We say that $X$ is \emph{type-definable over $A$} or \emph{$A$-type-definable} if it is the set of realisations of a partial type over $A$, or, equivalently, it is the intersection of a family of $A$-definable sets. We say that $X$ is simply \emph{type-definable} if it is $A$-type-definable for some small $A$ (equivalently, if it is the intersection of a small family of definable sets).
+			\item
+			\index{analytic set!in model theory}
+			\index{Fs set (in model theory) @ $F_\sigma$ set (in model theory)}
+			\index{Borel!set (in model theory)}
+			We say that \emph{$X$ is analytic, $F_\sigma$, or Borel over $A$} (respectively) if it is $A$-invariant and $X_A$ is analytic, $F_\sigma$ or Borel (respectively) in the the compact space $S_x(A)$, where $x$ is the tuple of variables corresponding to the product of sorts containing $X$. We say that $X$ is simply \emph{analytic, $F_\sigma$, or Borel} (respectively) if it is such over some small $A$.
+			\item
+			\index{definable set!relatively}
+			If $Y\subseteq \fC$ is arbitrary (usually, type-definable), while $X\subseteq Y$, then we say that $X$ is \emph{relatively definable [over $A$] in $Y$} if there is some [$A$-]definable $X'$ such that $X=X'\cap Y$.
+			\xqed{\lozenge}
+		\end{itemize}
+	\end{dfn}
+	
+	It should be stressed that by ``type-definable" we mean ``type-definable with parameters" whereas ``invariant" means ``invariant over $\emptyset$" (unless specified otherwise).
+	
+	
+	\begin{dfn}
+		\index{Sa(M)@$S_a(M)$}
+		For a tuple $\bar a$ from $\fC$ and a set of parameters $A$, by $S_{\bar a}(A)$ we denote the space of all types $\tp(\bar b/A)$ with $\bar b \equiv \bar a$ (i.e.\ the space of types over $A$ extending $\tp(a/\emptyset)$). (In particular, $S_a(A)=([a]_{\equiv})_A$.)\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{fct}
+		\label{fct:dtafb}
+		If $X$ is as a subset of a fixed product of sorts of $\fC$ which is $A$-invariant, then it is definable, type-definable, analytic, Borel or $F_\sigma$ if and only if it is such over $A$, and if and only if $X_A$ is clopen, closed, analytic or $F_\sigma$ in $S_x(A)$ (for the relevant tuple $x$ of variables).
+		
+		Likewise, if $X\subseteq Y$ and $X,Y$ are $A$-invariant, then $X$ is relatively definable in $Y$ if and only if it is relatively definable over $A$, if and only if $X_A$ is clopen in $Y_A$.
+	\end{fct}
+	\begin{proof}
+		Note that (immediately or almost immediately by definition) $X$ is definable, type-definable, Borel, analytic, or $F_\sigma$ over $A$ if and only if $X_A$ is clopen, closed, Borel, analytic or $F_\sigma$ (respectively) in $S_x(A)$, and it is relatively definable in $Y$ over $A$ if and only if it is clopen in $Y_A$, so it is enough to show that this happens for $A$ if and only if it happens for every $B$ over which $X,Y$ are invariant.
+		
+		We may assume without loss of generality that $A\subseteq B$. Then we have a continuous surjection $\pi \colon S_x(B)\to S_x(A)$ (given by restriction), $X_B=\pi^{-1}[X_A]$ and $Y_B=\pi^{-1}[Y_A]$. The fact follows from Proposition~\ref{prop:preservation_properties}.
+	\end{proof}
+	
+	\begin{dfn}
+		\index{equiv@$\equiv$}
+		By $\equiv$, we denote the equivalence relation (on all small tuples of elements of $\fC$) of having the same type over $\emptyset$, or equivalently, of lying in the same $\Aut(\fC)$ orbit. Likewise, for a small $A\subseteq \fC$, $\equiv_A$ denotes the relation of having the same type over $A$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{dfn}
+		\index{indiscernible sequence}
+		Suppose $(a_i)_{i\in I}$ is a sequence of elements of $\fC$, indexed by a totally ordered set $(I,\leq)$. We say that $(a_i)$ is \emph{(order) indiscernible over $A$} (where $A\subseteq \fC$ is a small set) if for each $n$, for all increasing sequences $i_1< i_2< \ldots < i_n$ and $j_1<j_2<\ldots<j_n$, there is some $\sigma\in \Aut(\fC/A)$ such that $\sigma(a_{i_1}\ldots a_{i_n})=a_{j_1}\ldots a_{j_n}$, or, equivalently, $a_{i_1}\ldots a_{i_n}\equiv_A a_{j_1}\ldots a_{j_n}$.
+		
+		We say that $(a_i)_i$ is simply \emph{indiscernible} if it is indiscernible over $\emptyset$.\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	
+	
+	
+	\subsection*{Bounded invariant equivalence relations and strong types}
+	
+	\begin{dfn}
+		\index{equivalence relation!bounded invariant}
+		\label{dfn:stype}
+		We say that an [$A$-]invariant equivalence relation $E$ on an [$A$-]invariant set $X\subseteq \fC$ (in a small product of sorts of $\fC$) is \emph{bounded} if it has a small number of classes. (Remark~\ref{rem:bounded_noofclasses} implies that the number of classes is at most $2^{\lvert T\rvert+\lambda[+\lvert A\rvert]}$ when $X$ is contained in a product of $\lambda$ sorts of $\fC$).
+		
+		\index{strong type}
+		In a slight abuse of the terminology, we say that $E$ is a \emph{strong type} if $E$ is a bounded invariant equivalence relation and $E\subseteq {\equiv}$. The classes of $E$ are also called \emph{strong types}.\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{dfn}
+		\label{dfn:logic_topology}
+		\index{topology!logic}
+		Let $E$ be a bounded, invariant equivalence relation on a $\emptyset$-type-definable set $X$. We define the {\em logic topology} on $X/E$ by saying that a subset $D \subseteq X/E$ is closed if its preimage in $X$ is type-definable.\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{rem}
+		\label{rem:logic_top_larger_sets}
+		Note that if $X$ and $E$ are only invariant over some small $A\subseteq \fC$, we can think of them as invariant in the language expanded by constants for elements for $A$. Thus, if $X$ is $A$-type-definable and $E$ is bounded, we can still talk about the logic topology on $X/E$ and it will have properties analogous to the ones listed below.
+		\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{fct}
+		\label{fct:logic_by_type_space}
+		Fix $M\preceq \fC$, a $\emptyset$-type-definable set $X$ and a bounded invariant equivalence relation $E$ on $X$. Recall that $X_M=\{\tp(a/M)\mid a\in X \}$.
+		
+		Then $E$ is refined by $\equiv_M$, and thus the map $X\to X/E$ factors through a map $X_M\to X/E$, given by $\tp(a/M)\mapsto [a]_E$. Moreover, the latter map is a topological quotient map.
+	\end{fct}
+	\begin{proof}
+		The inclusion ${\equiv_M}\subseteq E$ follows from Fact~\ref{fct:model_to_indiscernible}.
+		
+		Note that this implies that for every $A\subseteq X/E$, the preimage $A'$ in $X$ (via the quotient map) is $M$-invariant. In particular, if $A'$ is type-definable, it is type-definable over $M$. It follows that $A'_M$, the preimage of $A$ via the induced map $X_M\to X/E$, is also closed. Conversely, if $A'_M$ is closed, then $A'$ is type-definable, so $A$ is closed.
+	\end{proof}
+	
+	\begin{dfn}
+		\label{dfn:EM}
+		\index{EM@$E^M$}
+		Given a bounded invariant equivalence relation $E$ on $X$ and a model $M\preceq \fC$, by $E^M$ we denote the equivalence relation on $X_M$ given by $p\equiv q$ when for some (equivalently, every) $a\models p$ and $\models q$ we have $a\Er b$. (Note that $E^M\subseteq (X_M)^2$ and it is distinct from $E_M\subseteq (X^2)_M$, which is its preimage by the restriction map $(X^2)_M\to (X_M)^2$.)
+		\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		Fact~\ref{fct:logic_by_type_space} allows us to identify $X/E$ and $X_M/E^M$ (which we do freely).\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{fct}\label{fct: Borel in various senses}
+		Suppose $E$ is a bounded invariant equivalence relation on a $\emptyset$-type-definable set $X$. Then $E$ is relatively definable (in $X^2$), type-definable, $F_\sigma$, Borel or analytic if and only if for some (equivalently, every) small model $M$, the equivalence relation $E^M$ is clopen, closed, $F_\sigma$, Borel or analytic (respectively) as a subset of $X_M^2$.
+		
+		Furthermore, we have the same conclusion for $E\restr_Y$ and $(E^M)\restr_{Y_M}=(E\restr_Y)^M$, where $Y$ is an arbitrary type-definable, $E$-invariant set.
+	\end{fct}
+	\begin{proof}
+		Note that since $E$ is bounded invariant, it is also $M$-invariant (by Fact~\ref{fct:logic_by_type_space}). Thus, by Fact~\ref{fct:dtafb}, $E$ is relatively definable, type-definable, $F_\sigma$, analytic or Borel if and only if $E_M\subseteq (X^2)_M$ is clopen, closed, $F_\sigma$, analytic or Borel (respectively).
+		
+		On the other hand, by Fact~\ref{fct:logic_by_type_space}, it follows that $E_M$ is the preimage of $E^M$ by the restriction map $(X^2)_M\to (X_M)^2$, so the fact follows by Proposition~\ref{prop:preservation_properties}.
+		
+		The ``furthermore'' part is analogous.
+	\end{proof}
+	
+	\begin{fct}
+		\label{fct:logic_top_cpct_T2}
+		For any $\emptyset$-type-definable $X$ and bounded invariant equivalence relation $E$ on $X$, $X/E$ is a compact space, and it is Hausdorff if and only if $E$ is type-definable, and discrete if and only if $E$ is relatively definable (as a subset of $X^2$).
+	\end{fct}
+	\begin{proof}
+		It follows easily from Fact~\ref{fct: Borel in various senses}, Fact~\ref{fct:logic_by_type_space} and Fact~\ref{fct:quot_T2_iff_closed}.
+	\end{proof}
+	
+	The following proposition (which appeared in \cite{KPR15}, joint with Krzysztof Krupiński and Anand Pillay) gives an equivalent condition for type-definability of an equivalence relation defined on some $p(\fC)$ for $p\in S(\emptyset)$.
+	The idea that having a type-definable class is equivalent to being type-definable was one of the main motivations for Chapter~\ref{chap:intransitive}, where we find a more general context where type-definability of classes implies type-definability of a bounded invariant equivalence relation (see in particular Theorem~\ref{thm:worb_aut} and Corollary~\ref{cor:smt_aut}).
+	\begin{prop}\label{prop:type-definability_of_relations}
+		If $E$ is an invariant equivalence relation defined on
+		a single complete type $[a]_{\equiv}$ over $\emptyset$, then $E$ has a type-definable [resp. relatively definable] class if and only if $E$ is type-definable [resp. relatively definable].
+	\end{prop}
+	\begin{proof}
+		We prove the type-definable version; the relatively definable version is similar.
+		The implication $(\Leftarrow)$ is obvious. For the other implication,
+		without loss of generality $[a]_E$ is type-definable. Since $[a]_E$ is $a$-invariant, we get that it is type-definable over $a$, i.e.\ $[a]_E=\pi(\fC,a)$ for some partial type $\pi(x,y)$ over $\emptyset$. Then, since $E$ is invariant, for any $b \equiv a$ we have $[b]_E=\pi(\fC,b)$. Thus, $\pi(x,y)$ defines $E$.
+	\end{proof}
+	
+	\begin{rem}
+		\label{rem:tdf_iff_restr}
+		Proposition~\ref{prop:type-definability_of_relations} immediately implies that if $Y\subseteq [a]_{\equiv}$ is type-definable and $E$-saturated, then $E\restr_Y$ is type-definable if and only if $E$ is type-definable.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{fct}\label{fct:cartdf}
+		Assume that the language is countable. For any $E$ which is a bounded, invariant equivalence relation on some $\emptyset$-type-definable and countably supported set $X$, and for any $Y\subseteq X$ which is type-definable and $E$-saturated, the Borel cardinality of the restriction of $E^M$ to $Y_M$ does not depend on the choice of the countable model $M$. In particular, if $X=Y$, the Borel cardinality of $E^M$ does not depend on the choice of the countable model $M$.
+		
+		Analogously, if $E$ and $X$ are invariant over a countable set $A$, then the Borel cardinality of $E^M\restr_{Y_M}$ does not depend on the choice of a countable model $M\supseteq A$.
+	\end{fct}
+	\begin{proof}
+		This follows from Fact~\ref{fct:borel_section}. See \cite[Proposition 2.12]{KR16} for details.
+	\end{proof}
+	
+	This justifies the following definition.
+	
+	\begin{dfn}[$T$ countable]
+		\label{dfn:bier_borelcard}
+		\index{Borel!cardinality!in model theory}
+		\index{smoothness}
+		If $E$ is a bounded invariant equivalence relation on a $\emptyset$-type-definable set $X$ (in countably many variables), then by the \emph{Borel cardinality of $E$} we mean the Borel cardinality of $E^M$ for a countable model $M$. In particular, we say that $E$ is {\em smooth} if $E^M$ is smooth for a countable model $M$.
+		
+		Similarly, if $Y$ is type-definable and $E$-saturated, the Borel cardinality of $E\restr_Y$ is the Borel cardinality of $E^M\restr_{Y_M}$ for a countable model $M$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		\label{rem:tdf_implies_smooth}
+		Note that if $E$ is as in Definition~\ref{dfn:bier_borelcard}, and type-definable, then it is smooth by Fact~\ref{fct:clsd_smth}.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	
+	\subsection*{Classical strong types and strong automorphism groups}
+	We provide proofs of various facts related to the classical strong types, strong automorphism groups and the corresponding Galois groups. They are all well-known, but the proofs are rather scattered, and different authors use different (but equivalent) definitions of some notions, and so most have been collected here for the convenience of the reader. Most (if not all) of them can be found in \cite{CLPZ01}, \cite{KP97}, \cite{LaPi} and \cite{Zie02}.
+	
+	\begin{fct}
+		\label{fct:indisc_bdd}
+		Suppose $E$ is a bounded invariant equivalence relation and $(a_i)$ is an infinite indiscernible sequence. Then all elements of $(a_i)$ are $E$-related.
+	\end{fct}
+	\begin{proof}
+		Suppose not. Then for all $i\neq j$ we have $\neg (a_i \Er a_j)$. Since $(a_i)$ is infinite and indiscernible, it can be extended to an arbitrarily long indiscernible sequence (whose elements are pairwise $E$-inequivalent), which contradicts boundedness of $E$.
+	\end{proof}
+	
+	\begin{fct}
+		\label{fct:model_coheir}
+		Suppose $p\in S(M)$. Then $p$ has a global coheir $p'\in S(\fC)$, i.e.\ an extension of $p$ such that for every $\varphi(x)\in p'$, $\varphi(M)$ is nonempty.
+	\end{fct}
+	\begin{proof}
+		Note that $\{\varphi(M)\mid \varphi\in p \}$ is a centered family of subsets of $M$ (because $M$ is a model), so it can be extended to an ultrafilter $\tilde p$. For every such $\tilde p$, the type $p':=\{\varphi(x,c)\mid c\in \fC\land \varphi(M)\in \tilde p \}$ has the desired property.
+	\end{proof}
+	
+	\begin{fct}
+		\label{fct:model_to_indiscernible}
+		Suppose $a,b$ are tuples and $M$ is a model such that $a\equiv_M b$. Then there is an infinite sequence $I$ such that $aI$ and $bI$ are indiscernible. In particular, by Fact~\ref{fct:indisc_bdd}, for every bounded ($M$-)invariant equivalence relation $E$ we have $a\Er b$ (and hence $\equiv_M\subseteq E$).
+	\end{fct}
+	\begin{proof}
+		Let $p=\tp(a/M)$, and let $p'\in S(\fC)$ be a global $M$-invariant extension of $p$ (e.g.\ a coheir extension). Then construct recursively sequence $I=(c_n)_{n\in \bN}$ so that $c_n\models p'\restr_{Mabc_{<n}}$.
+		
+		Let us show that all pairs in $aI$ have the same type over $M$. The case of arbitrarily long tuples follows by straightforward induction. Take any $i_1<i_2$. Then $c_{i_1}\models p'\restr_M=p=\tp(a/M)$, so we can choose some $\sigma\in \Aut(\fC/M)$ such that $\sigma(a)=c_{i_1}$. On the other hand, we had $c_{0}\models p'\restr_{Ma}$. It follows that $\sigma(c_0)\models p'\restr_{Mc_{i_1}}$. Since also $c_{i_2}\models p'\restr_{Mc_{i_1}}$, there is some $\sigma_1\in \Aut(\fC/Mc_{i_1})$ such that $\sigma_1(\sigma(c_0))=c_{i_2}$. but then $\sigma_1(\sigma(ac_0))=c_{i_1}c_{i_2}$ and $\sigma_1\sigma\in\Aut(\fC/M)$, and we are done.
+	\end{proof}
+	
+	\begin{rem}
+		\label{rem:bounded_noofclasses}
+		Note that Fact~\ref{fct:model_to_indiscernible} immediately implies that every bounded invariant equivalence relation $E$ on a set $X$ of tuples of length $\lambda$ variables has at most $\lvert X_M\rvert\leq 2^{\lvert M\rvert+\lambda+\lvert T\rvert}$, and thus by Löwenheim-Skolem, it has at most $2^{\lambda+\lvert T\rvert}$ classes.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{fct}
+		\label{fct:lascar_finest}
+		Let $\Theta$ be the relation on tuples in a given product of sorts of lying in the same infinite indiscernible sequence. Consider the relation $E$, which is the transitive closure of $\Theta$. Then $E$ is the finest bounded invariant equivalence relation. (In particular, such relation exists.)
+	\end{fct}
+	\begin{proof}
+		$\Theta$ is clearly invariant, symmetric and reflexive, so $E$ is an invariant equivalence relation. By Fact~\ref{fct:model_to_indiscernible}, $E$ is refined by $\equiv_M$, so it is bounded. Fact~\ref{fct:indisc_bdd} implies that it refines every bounded invariant equivalence relation, so $E$ has to be the finest such relation.
+	\end{proof}
+	
+	\begin{fct}
+		\label{fct:KP_exists}
+		On every product of sorts, there is a finest bounded $\emptyset$-type-definable equivalence relation.
+	\end{fct}
+	\begin{proof}
+		Note that the relation $E$ from Fact~\ref{fct:lascar_finest} refines every bounded $\emptyset$-type-definable equivalence relation on a given product of sorts $X$. It follows that there is only a small number (at most $2^{\lvert X/E\rvert}$) of those, which easily implies that the intersection is both type-definable and bounded.
+	\end{proof}
+	
+	\begin{fct}
+		\label{fct:indisc_to_model}
+		Suppose $I$ is a small indiscernible sequence. Then there is some model $M$ such that $I$ is indiscernible over $M$, and in particular, all of its elements have the same type over $M$.
+	\end{fct}
+	\begin{proof}
+		Fix any small $M'\preceq \fC$. Then by Ramsey's theorem compactness, we can find a sequence $I'$ which is indiscernible over $M'$, and such that $I'\equiv I$. but then there is an automorphism moving $I'$ to $I$, and it moves $M'$ to some model $M$ over which $I$ is indiscernible.
+	\end{proof}
+	
+	
+	\begin{dfn}
+		\label{dfn:class_stp}
+		The following are the three classical strong types. (For their existence, see Facts~\ref{fct:lascar_finest} and \ref{fct:KP_exists}.)
+		\begin{itemize}
+			\index{strong type!Lascar}
+			\index{equivL@$\equiv_\Lasc$|see {Lascar strong type}}
+			\item the \emph{Lascar strong type} $\equiv_\Lasc$ is the finest bounded, invariant equivalence relation on a given product of sorts,
+			\index{strong type!Kim-Pillay}
+			\index{equivKP@$\equiv_\KP$|see {Kim-Pillay strong type}}
+			\item the \emph{Kim-Pillay strong type} (sometimes called also the \emph{compact strong type}) $\equiv_\KP$ is the finest bounded, $\emptyset$-type-definable equivalence relation on a given product of sorts,
+			\index{strong type!Shelah}
+			\index{equivSh@$\equiv_\Sh$|see {Shelah strong type}}
+			\item the \emph{Shelah strong type} $\equiv_\Sh$ is the intersection of all $\emptyset$-definable equivalence relations with finitely many classes (note that by compactness, a definable equivalence relation is bounded if and only if it has finitely many classes).\xqed{\lozenge}
+		\end{itemize}
+	\end{dfn}
+	
+	\begin{rem}
+		Strictly speaking, the names given in Definition~\ref{dfn:class_stp} are an abuse of terminology. In more standard terms, a Lascar, Kim-Pillay or Shelah strong type is a single class of $\equiv_\Lasc,\equiv_\KP$ or $\equiv_\Sh$ (respectively). However, we use the names for both the relations and their classes, the same as in the general case, as indicated in Definition~\ref{dfn:stype}. \xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		It is not hard to see that $\equiv_{\textrm{Sh}}$ is the same as $\equiv_{\acl^{\textrm{eq}}(\emptyset)}$ (i.e.\ the relation of having the same type over the imaginary algebraic closure of the empty set).\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		It is easy to see using Fact~\ref{fct:logic_top_cpct_T2} that if $X$ is $\emptyset$-type-definable, then $X/{\equiv_\Lasc}$ is a compact space, $X/{\equiv_\KP}$ is a compact Hausdorff space, and $X/{\equiv_\Sh}$ is a profinite space.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{dfn}
+		\index{strong automorphism!Lascar}
+		\index{Autf(C)@$\Autf(\fC)$|see{Lascar strong automorphism}}
+		\label{dfn:autf_L}
+		The group $\Autf(\fC)$ \emph{Lascar strong automorphisms} consists of those automorphisms of $\fC$ which preserve all $\equiv_\Lasc$-classes.
+		
+		\index{strong automorphism!Kim-Pillay}
+		\index{strong automorphism!Shelah}
+		\index{AutfKP(C)@$\Autf_\KP(\fC)$|see{Kim-Pillay strong automorphism}}
+		\index{AutfSh(C)@$\Autf_\Sh(\fC)$|see{Shelah strong automorphism}}
+		Analogously, the groups $\Autf_\KP(\fC)$ of \emph{Kim-Pillay strong automorphisms} and $\Autf_\Sh(\fC)$ of \emph{Shelah strong automorphisms} consist of automorphisms fixing all Kim-Pillay and Shelah strong types (respectively).\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{rem}
+		It is easy to see that all strong automorphism groups are normal subgroups of $\Aut(\fC)$.\xqed{\lozenge}
+	\end{rem}
+	
+	The following fact gives us an explicit description of the Lascar strong type.
+	\begin{fct}
+		\label{fct:Lascar_equivalent}
+		For any tuples $a,b$, the following are equivalent:
+		\begin{enumerate}
+			\item
+			$a\equiv_\Lasc b$,
+			\item
+			for some $n$, there are small models $M_1,\ldots, M_n$ and tuples $a=a_0,\ldots,a_n=b$ such that for each $i=1,\ldots,n$ we have $a_{i-1}\equiv_{M_{i}} a_{i}$ (so in particular, ${\equiv_M}\subseteq {\equiv_\Lasc}$, and if $p\in S(M)$ and both $a$ and $b$ realise $p$, then $a\equiv_\Lasc b$),
+			\item
+			for some $n$, there are tuples $a=a_0,\ldots,a_n=b$ such that for each $i=1,\ldots,n$ there is a sequence $(c_n^i)_{n\in \omega}$ such that $a_{i-1}a_{i}\frown (c^i_n)_{n\in \omega}$ is indiscernible (so in particular, if $a$ and $b$ are in an infinite indiscernible sequence, then $a\equiv_\Lasc b$).
+		\end{enumerate}
+	\end{fct}
+	\begin{proof}
+		The equivalence of \ref{it:prop:dyn_BFT:untame} and (3) is Fact~\ref{fct:lascar_finest}. (3) implies (2) by Fact~\ref{fct:indisc_to_model}. (2) implies (3) by Fact~\ref{fct:model_to_indiscernible}.
+	\end{proof}
+	
+	The group $\Autf(\fC)$ is especially important. It can be also described in the following way.
+	\begin{fct}
+		\label{fct:lst_witn_by_aut}
+		The group $\Autf(\fC)$ is generated by $\Aut(\fC/M)$, where $M$ runs over all $M\preceq \fC$, and for any tuples $a,b$ we have that $a\equiv_\Lasc b$ if and only if for some $\sigma\in \Autf(\fC)$ we have $\sigma(a)=b$.
+	\end{fct}
+	\begin{proof}
+		Denote by $G$ the group generated by all $\Aut(\fC/M)$. By Fact~\ref{fct:model_to_indiscernible}, each $\Aut(\fC/M)$ is contained in $\Autf(\fC)$, so $G\leq \Autf(\fC)$. On the other hand, by Fact~\ref{fct:Lascar_equivalent}, for all tuples $a\equiv_\Lasc b$ there is some $\sigma\in G$ such that $\sigma(a)=b$. In particular, if $m$ enumerates any model $M$, and $\tau\in \Autf(\fC)$ is arbitrary, then there is some $\sigma\in G$ such that $\sigma(m)=\tau(m)$. But then $\sigma^{-1}\tau\in \Aut(\fC/M)$, so $\tau=\sigma(\sigma^{-1}\tau)\in G$.
+	\end{proof}
+	
+	
+	
+	\begin{dfn}
+		\label{dfn:Lascar distance}
+		\index{Lascar!distance}
+		\index{dL@$d_\Lasc$}
+		The \emph{Lascar distance} $d_\Lasc(a,b)$ is the minimum number $n$ as in Fact~\ref{fct:Lascar_equivalent}(2) (or $\infty$ if it does not exist).
+		
+		\index{Lascar!diameter}
+		The \emph{Lascar diameter} of an automorphism $\sigma\in \Aut(\fC)$ is the largest $n$ such that for some tuple $a$ we have $d_\Lasc(a,\sigma(a))=n$ (or $\infty$ if it does not exist).\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{fct}
+		\label{fct:distance_tdf}
+		The Lascar distance is type-definable, i.e.\ for each $n$, $d_\Lasc(a,b)\leq n$ is a type-definable condition about $a$ and $b$ (in a given product of sorts).
+	\end{fct}
+	\begin{proof}
+		First we have the following claim.
+		\begin{clm*}
+			There is a type $\Pi$ without parameters such that whenever $M\preceq \fC$ has cardinality at most $\lvert T\rvert$, then some enumeration $m$ of $M$ (possibly with repetitions) satisfies $\Pi(m)$, and conversely, whenever a tuple $m$ satisfies $\Pi$, the set it enumerates is an elementary submodel of $\fC$.
+		\end{clm*}
+		\begin{clmproof}
+			We use a variant of the Henkin construction. Suppose for simplicity that the language is countable and one-sorted. Consider all formulas of the form $\varphi(x,y)$ (with no parameters), where $x$ is a single variable and $y$ is a finite tuple. Then we can assign to each pair $(\varphi(x,y),\eta)$, where $\eta$ is a sequence of (not necessarily distinct) natural numbers of length $\lvert y\rvert$ a natural number $n_{\varphi,\eta}$ greater than all elements of $\eta$, and we can do it injectively, so that each pair corresponds to a distinct natural number. Let $z=(z_i)_{i\in \bN}$ be a sequence of distinct variables, and for each $\eta=n_1\ldots n_k$, write $z_\eta$ for the finite tuple $z_{n_1}\ldots z_{n_k}$.
+			
+			Then let $\Pi(z)=\{\exists x\varphi(x,z_\eta)\rightarrow \varphi(z_{2n_{\varphi,\eta}},z_\eta)\mid \varphi,\eta \}$ shows that the claim is true. Indeed, if $m\models \Pi$, then by the Tarski-Vaught test, it enumerates an elementary submodel of $\fC$. On the other hand, if $M$ enumerates a model, we can enumerate the whole $M$ as $(m_{2n+1})_{n\in \bN}$. Then we can fill the even positions recursively: for each $2n$, if for some $\varphi$ and $\eta$ we have that $n=n_{\varphi,\eta}$ and $\models \exists x\varphi(x,m_{\eta})$, then we take for $m_{2n}$ any witness of that in $M$, and otherwise, we take for it any element of $M$. Then clearly $\models \Pi((m_n)_{n\in \bN})$.
+		\end{clmproof}
+		Note that by Löwenheim-Skolem, it follows that the models witnessing $d_\Lasc(a,b)\leq n$ can be chosen to be of size at most $\lvert T\rvert$. Thus the fact follows immediately by the Claim.
+	\end{proof}
+	
+	\begin{rem}
+		It follows immediately from the definition that the Lascar distance is a metric (which may attain $\infty$), and in particular, it satisfies the triangle inequality.
+		Likewise, the Lascar diameter satisfies the inequality $d_\Lasc(\sigma\tau)\leq d_\Lasc(\sigma)+d_\Lasc(\tau)$. \xqed{\lozenge}
+	\end{rem}
+	
+	\begin{fct}
+		\label{fct:diameter_witnessed_by_model}
+		If $d_\Lasc(a,b)\leq n$, there is some $\sigma\in \Aut(\fC)$ such that $\sigma(a)=b$ and $d_\Lasc(\sigma)=n$.
+		
+		If $m$ enumerates a model, then whenever $\sigma\in \Aut(\fC)$ satisfies $d_\Lasc(m,\sigma(m))\leq n$, then $d_\Lasc(\sigma)\leq n+1$, i.e.\ for any tuple $a$ we have $d_\Lasc(a,\sigma(a))\leq n+1$.
+		
+		In particular, for every $\sigma\in\Aut(\fC)$, if $m\equiv_\Lasc\sigma(m)$, then $\sigma\in \Autf(\fC)$ and for every tuple $a$ we have $a\equiv_\Lasc\sigma(a)$.
+	\end{fct}
+	\begin{proof}
+		The first part is immediate by the definitions of $d_\Lasc$.
+		
+		For the second part, note that since $d_\Lasc(m,\sigma(m))\leq n$, by the first part, there is some $\tau\in \Aut(\fC)$ with $d_\Lasc(\tau)\leq n$ such that $\tau(m)=\sigma(m)$. But then $\tau^{-1}\sigma(m)=m$, so $\tau^{-1}\sigma\in\Aut(\fC/M)$ (where $M$ is the model enumerated by $m$). It follows that $d_\Lasc(\tau^{-1}\sigma)\leq 1$, and hence $d_\Lasc(\sigma)=d_\Lasc(\tau(\tau^{-1}\sigma))\leq d_\Lasc(\tau)+d_\Lasc(\tau^{-1}\sigma)=n+1$.
+		
+		The third part follows immediately by the definitions and Fact~\ref{fct:Lascar_equivalent}.
+	\end{proof}
+	
+	
+	\begin{rem}
+		It follows immediately from Fact~\ref{fct:Lascar_equivalent} that two tuples are $\equiv_\Lasc$-related precisely when they are in finite Lascar distance from one another. This, along with Fact~\ref{fct:diameter_witnessed_by_model}, implies that a $\sigma\in \Aut(\fC)$ is a Lascar strong automorphism if and only if $d_\Lasc(\sigma)<\infty$.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		The Lascar distance can also be defined in terms of the third bullet in Fact~\ref{fct:Lascar_equivalent}. The resulting metric is bi-Lipschitz equivalent to $d_\Lasc$ defined above (it follows immediately from Facts~\ref{fct:model_to_indiscernible} and \ref{fct:indisc_to_model}), and it is also sometimes called ``the Lascar distance".\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		Fact~\ref{fct:Lascar_equivalent} and Fact~\ref{fct:distance_tdf} imply that $\equiv_\Lasc$ is $F_\sigma$ on each product of sorts.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\subsection*{Galois groups}
+	
+	Here, we recall fundamental facts about Galois groups of first order theories.
+	
+	\begin{dfn}\label{definition: Galois groups}
+		\index{Gal(T)@$\Gal(T)$|see{Galois group}}
+		\index{Galois group}
+		The \emph{(Lascar) Galois group of $T$} is the quotient $\Gal(T)=\Aut(\fC)/\Autf(\fC)$.
+		
+		\index{GalKP(T)@$\Gal_\KP(T)$|see{Galois group}}
+		\index{GalSh(T)@$\Gal_\Sh(T)$|see{Galois group}}
+		Similarly, the \emph{Kim-Pillay Galois group} and the \emph{Shelah Galois group} of $T$ are the quotients $\Gal_\KP(T)=\Aut(\fC)/\Autf_\KP(\fC)$ and $\Gal_\Sh(T)=\Aut(\fC)/\Autf_\Sh(\fC)$ (respectively).
+		
+		\index{Gal0(T)@$\Gal_0(T)$}
+		$\Gal_0(T)$ is the preimage in $\Gal(T)$ of the identity in $\Gal_\KP(T)$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		Note that the natural maps $\Gal(T)\to \Gal_\KP(T)\to \Gal_\Sh(T)$ are group epimorphisms.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}
+		\label{rem:Lascar_extending_model}
+		Note that by Fact~\ref{fct:diameter_witnessed_by_model}, if $a,a'$ are arbitrary small tuples, while $m,m'$ enumerate small models, then $ma\equiv_\Lasc m'a'$ if and only if $m\equiv_\Lasc m'$ and $ma\equiv m'a'$.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{fct}
+		\label{fct:sm_to_gal}
+		If for some tuple $m$ enumerating a model $M$, and for some $\sigma_1,\sigma_2\in \Aut(\fC)$ we have $\tp(\sigma_1(m)/M)\equiv_\Lasc^M\tp(\sigma_2(m)/M)$, then $\sigma_1\Autf(\fC)=\sigma_2\Autf(\fC)$.
+		
+		Consequently, the map $S_m(M)\to \Gal(T)$ given by $\tp(\sigma(m)/M)\mapsto \sigma\Autf(\fC)$ is a well-defined surjection, and we may identify $\Gal(T)$ and $S_m(M)/{\equiv_\Lasc^M}$
+		
+		We also have analogous surjections onto $\Gal_\KP(T)$ and $\Gal_\Sh(T)$, which induce bijections with $S_m(M)/{\equiv_\KP}$ and $S_m(M)/{\equiv_\Sh}$ (respectively).
+		
+		(Throughout the thesis, we freely identify $\Gal(T)$ with $S_m(M)/{\equiv_\Lasc^M}$ for all $M$, and $\Gal_\KP(T)$ with $S_m(M)/{\equiv_\KP}$.)
+	\end{fct}
+	\begin{proof}
+		If $\tp(\sigma_1(m)/M)\equiv_\Lasc^M\tp(\sigma_2(m)/M)$, then by the definition of $\equiv_\Lasc^M$ (see Definition~\ref{dfn:EM}), $\sigma_1(m)\equiv_\Lasc \sigma_2(m)$, so by Fact~\ref{fct:lst_witn_by_aut}, there is some $\tau\in \Autf(\fC)$ such that $\tau\sigma_1(m)=\sigma_2(m)$. Since $\Autf(\fC)$ is normal in $\Aut(\fC)$, there is some $\tau'\in \Autf(\fC)$ such that $\tau\sigma_1=\sigma_1\tau'$, so $\sigma_1\tau'(m)=\sigma_2(m)$, whence $\sigma_1^{-1}\sigma_2(m)\equiv_\Lasc m$. Since $m$ enumerates a model, by Fact~\ref{fct:diameter_witnessed_by_model}, it follows that $\sigma_1^{-1}\sigma_2\in \Autf(\fC)$, i.e.\ $\sigma_1\Autf(\fC)=\sigma_2\Autf(\fC)$.  Conversely, if $\sigma_1\Autf(\fC)=\sigma_2\Autf(\fC)$, then of course $\sigma_1(m)\equiv_\Lasc\sigma_2(m)$, so in particular, $\tp(\sigma_1(m)/M)\equiv_\Lasc^M\tp(\sigma_2(m)/M)$. Thus, we have a bijection between $\Gal(T)=\Aut(\fC)/\Autf(\fC)$ and $S_m(M)/\equiv_\Lasc^M$.
+		
+		The surjections onto $\Gal_\KP(T)$ and $\Gal_\Sh(T)$ are easily obtained by composing the surjection onto $\Gal(T)$ with the epimorphisms from $\Gal(T)$.
+	\end{proof}
+	
+	
+	\begin{fct}
+		\label{fct:gal_top}
+		The quotient topology on $\Gal(T)$ induced by the surjection $S_m(M)\to \Gal(T)$ from Fact~\ref{fct:sm_to_gal} does not depend on $M$ and it makes $\Gal(T)$ a compact (but possibly non-Hausdorff) topological group.
+		
+		In the same way, we induce a topology on each of $\Gal_\KP(T)$ and $\Gal_\Sh(T)$, with which the first one is a compact Hausdorff group, and the second one is a profinite group.
+		
+		$\Gal(T)$, $\Gal_\KP(T)$ and $\Gal_\Sh(T)$ do not depend on the choice of $\fC$ (as topological groups).
+	\end{fct}
+	\begin{proof}
+		Choose any models $M$ and $N$, enumerated by $m$ and $n$. We may assume without loss of generality that $m\subseteq n$. Then we have a continuous surjection $S_n(N)\to S_m(M)$ (and hence, by compactness, a topological quotient map), which, by Remark~\ref{rem:Lascar_extending_model} induces a bijection $S_n(N)/{\equiv_\Lasc^N}\to S_m(M)/{\equiv_\Lasc^M}$. It follows that the induced bijection is a quotient map, and hence a homeomorphism.
+		
+		The fact that $\Gal(T)$ is a topological group is \cite[Lemma 18]{Zie02}.
+		
+		The fact that $\Gal_\KP(T)$ and $\Gal_\Sh(T)$ are topological groups follows immediately (the quotient of a topological group is a topological group). Since $\equiv_\KP$ is type-definable, it follows by Fact~\ref{fct:logic_top_cpct_T2} that $\Gal_\KP(T)$ is compact Hausdorff, and it is not hard to see that $\Gal_\Sh(T)$ is profinite.
+		
+		The fact that the Galois groups do not depend on the monster model follows immediately form Fact~\ref{fct:sm_to_gal} --- the space $S_m(M)$ does not depend on $\fC\succeq M$, and neither does $\equiv_\Lasc^M$.
+	\end{proof}
+	
+	
+	\begin{rem}\label{rem: GalKP is Polish}
+		If $T$ and $M$ are countable, then $S_m(M)$ is a compact Polish space, so by Fact~\ref{fct: preservation of metrizability}, if $T$ is countable, $\Gal_\KP(T)$ and $\Gal_\Sh(T)$ are Polish.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{dfn}
+		\index{topology!logic}
+		By the \emph{logic topology} on the Galois groups, we mean the topology induced from $S_m(M)$ via Fact~\ref{fct:gal_top}.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		It follows easily from the definition of the logic topologies on Galois groups that the natural epimorphisms between them are topological group quotient maps.\xqed{\lozenge}
+	\end{rem}
+
+	\begin{prop}
+		If $T$ is countable, $M$, $N$ are countable models, enumerated by $m$ and $n$, respectively, then the relations $\equiv_\Lasc^M$ and $\equiv_\Lasc^N$ on $S_m(M)$ and $S_n(N)$ (respectively) have the same Borel cardinality.
+	\end{prop}
+	\begin{proof}
+		We may assume without loss of generality that $M\supseteq N$. Then we have a continuous surjection $S_m(M)\to S_n(N)$. From Remark~\ref{rem:Lascar_extending_model}, it follows that it is a reduction of $\equiv_\Lasc^M$ to $\equiv_\Lasc^N$, so the proposition follows by Fact~\ref{fct:borel_section}.
+	\end{proof}
+	This justifies the following definition.
+	\begin{dfn}
+		\label{dfn:bcard_galois}
+		\index{Borel!cardinality!of the Galois group}
+		If the theory is countable, then the \emph{Borel cardinality of the Galois group} $\Gal(T)$ is the Borel cardinality of $\equiv_\Lasc^M$ on $S_m(M)$, for some countable model $M$ enumerated by $m$.\xqed{\lozenge}
+	\end{dfn}
+	
+	
+	\begin{prop}
+		\label{prop:gal_action}
+		$\Gal(T)$ acts on $X/E$ for any bounded invariant equivalence relation $E$ defined on an invariant $X$. If $X=p(\fC)$ for some $p=\tp(a/\emptyset) \in S(\emptyset)$, then the orbit map $r_{[a]_E} \colon \Gal(T) \to X/E$ given by $\sigma \Autf(\fC) \mapsto [\sigma(a)]_E$ is a topological quotient map.
+		
+		If $E$ is type-definable (or, more generally, refined by $\equiv_\KP$), then this action factors through $\Gal_\KP(T)$ (yielding a topological quotient map $\Gal_\KP(T)\to X/E$ if $X=p(\fC)$).
+	\end{prop}
+	\begin{proof}
+		$\Aut(\fC)$ acts on $X$, and by invariance of $E$, it also acts on $X/E$. On the other hand, by definition of $\Autf(\fC)$ (Definition~\ref{dfn:autf_L}), $\Gal(T)=\Aut(\fC)/\Autf(\fC)$ acts on $X/{\equiv_\Lasc}$. Since $E$ is bounded invariant, it is refined by $\equiv_\Lasc$, and we have a natural map $X/{\equiv_\Lasc}\to X/E$, which is trivially $\Aut(\fC)$-equivariant, so it induces an action of $\Gal(T)$ on $X/E$.
+		
+		If $X=p(\fC)$, this action is clearly transitive, and for any $a\models p$ and $m\supseteq a$ enumerating a model $M$, we have a commutative diagram
+		\begin{center}
+			\begin{tikzcd}
+				S_m(M) \ar[r]\ar[d]& \Gal(T)\ar[d] \\
+				S_a(M) \ar[r] & X/E
+			\end{tikzcd}
+		\end{center}
+		where the top map comes from Fact~\ref{fct:sm_to_gal}, the left one is the restriction, the bottom one comes from Fact~\ref{fct:logic_by_type_space}, and the right one is the orbit map. Since the top, left and bottom arrows are topological quotient maps, so is the orbit map (e.g.\ by Remark~\ref{rem:commu_quot} with $A=S_m(M)$, $B=\Gal(T)$ and $C=X/E$).
+		
+		If $E$ is refined by $\equiv_\KP$, then we can do the same analysis with $\Gal_\KP(T)$ and $\equiv_\KP$ in place of $\Gal(T)$ and $\equiv_\Lasc$.
+	\end{proof}
+	
+	
+	The logic topology on $\Gal(T)$ can also be characterised in several different ways.
+	
+	\begin{fct}\label{fct: characterization of topology on Gal_L(T)}
+		Denote by $\mu$ the quotient map $\Autf(\fC)\to \Gal(T)$, and take an arbitrary $C\subseteq \Gal(T)$. The following conditions are equivalent:
+		\begin{enumerate}
+			\item
+			$C$ closed.
+			\item
+			For every (possibly infinite) tuple $\bar a$ of elements of $\fC$, the set $\{\sigma(\bar a)\mid \sigma \in \Aut(\fC)\;\, \mbox{and}\;\, \mu(\sigma) \in C\}$ is type-definable [over some [every] small submodel of $\fC$].
+			\item
+			There is some  tuple $\bar a$ and a partial type $\pi(\bar x)$ (with parameters) such that $\mu^{-1}[C]=\{ \sigma \in \Aut(\fC)\mid \sigma(\bar a) \models \pi(\bar x)\}$.
+			\item
+			For some tuple $\bar m$ enumerating a small submodel of $\fC$, the set $\{\sigma(\bar m)\mid \sigma \in \Aut(\fC)\;\, \mbox{and}\;\, \mu(\sigma) \in C\}$ is type-definable [over some [any] small submodel of $\fC$].
+		\end{enumerate}
+	\end{fct}
+	\begin{proof}
+		A part of this fact is contained in \cite[Lemma 4.10]{LaPi}. The rest is left as an exercise.
+	\end{proof}
+	
+	
+	\begin{fct}
+		\label{fct:galkp_quot}
+		$\Gal_0(T)$ is the closure of the identity in $\Gal(T)$.
+	\end{fct}
+	\begin{proof}
+		This is essentially the first part of \cite[Theorem 21]{Zie02} (note that our $\Gal_0(T)$ is denoted there by $\Gamma_1(T)$).
+	\end{proof}
+	
+	\begin{fct}
+		\label{fct:galkpsh_orbital}
+		$\equiv_\KP$ and $\equiv_\Sh$ are orbit equivalence relations of $\Autf_\KP(\fC)$ and $\Autf_\Sh(\fC)$ (respectively).
+	\end{fct}
+	\begin{proof}
+		For $\equiv_\KP$, this is \cite[Fact 1.4(ii)]{CLPZ01}. For $\equiv_\Sh$, this is clear, as $\Autf_\Sh(\fC)$ is simply $\Aut(\fC/\acl^{\textrm{eq}}(\emptyset))$.
+	\end{proof}
+
+	The following proposition comes from \cite{KPR15} (joint with Krzysztof Krupiński and Anand Pillay).
+	\begin{prop}\label{prop:lem_closed}
+		Suppose $Y$ is a type-definable set which is $\equiv_\Lasc$-saturated. Then:
+		\begin{enumerate}
+			\item
+			$\Autf(\fC)$ acts naturally on $Y$.
+			\item
+			The subgroup $S$ of $\Gal(T)$ consisting of all $\sigma\Autf(\fC)$ such that $\sigma[Y]=Y$ (i.e.\ the setwise stabilizer of $Y/{\equiv_\Lasc}$ under the natural action of $\Gal(T)$) is a closed subgroup of $\Gal(T)$. In particular, $\Autf_\KP(\fC)/\Autf(\fC) =\Gal_0(T) \leq S$.
+			\item
+			$Y$ is a union of $\equiv_\KP$-classes.
+		\end{enumerate}
+	\end{prop}
+	\begin{proof}
+		\ref{it:prop:dyn_BFT:untame} follows immediately from the assumption that $Y$ is $\equiv_\Lasc$-saturated.
+		
+			(2) The fact that $S$ is closed can be deduced from Fact~\ref{fct: characterization of topology on Gal_L(T)} and from the fact that this is a topological group. To see this, note that $S=P \cap P^{-1}$, where $P:= \bigcap_{a \in Y} \{ \sigma/\Autf(\fC)\mid \sigma(a) \in Y\}$ is closed in $\Gal(T)$ by Fact~\ref{fct: characterization of topology on Gal_L(T)}(3). The second part of (2) follows from the first one and the fact that $\Autf_\KP(\fC)/\Autf(\fC) = \Gal_0(T)=\cl (\id/\Autf(\fC))$.
+		
+		(3) is immediate from (2) and the fact that $\equiv_\KP$ is the orbit equivalence relation of $\Autf_\KP(\fC)$.
+	\end{proof}
+	
+	\subsection*{Model-theoretic group components}
+	
+	\begin{fct}
+		\label{fct:quot_tdgroup_topo}
+		If $G$ is a type-definable group and $H\leq G$ has small index and is invariant over a small set, then $G/H$ has a well-defined logic topology (as in Definition~\ref{dfn:logic_topology}), which is compact, and is Hausdorff if and only if $H$ is type-definable.
+	\end{fct}
+	\begin{proof}
+		Note that the coset equivalence relation of $H$ is the preimage of $H$ by the type-definable map $(g_1,g_2)\mapsto g_1^{-1}g_2$, so it is invariant over a small set and type-definable if and only if $H$ is type-definable. Thus, the fact follows from Fact~\ref{fct:logic_top_cpct_T2} (having in mind Remark~\ref{rem:logic_top_larger_sets}, we may add all parameters to the language).
+	\end{proof}
+	\begin{rem}
+		In Fact~~\ref{fct:quot_tdgroup_topo}, in the same way, if $A$ and the theory are countable, while $G$ consists of countable tuples, then the Borel cardinality of $G/H$ is well-defined (per Fact~\ref{fct:cartdf}).
+		\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{fct}
+		\label{fct:quotient_by_bounded_subgroup}
+		Fix a small set $A$ of parameters.
+		
+		Suppose $G$ is an $A$-type-definable group and $N\unlhd G$ is an $\Aut(\fC/A)$-invariant normal subgroup such that $[G:N]$ is small. Then $G/N$ is a topological group (with the logic topology).
+	\end{fct}
+	\begin{proof}
+		To see that $G/N$ is a topological group, notice that because the map $\mu\colon (g_1,g_2)\mapsto g_1^{-1}g_2$ is type-definable (by type-definability of the group), it follows immediately that the induced map $(G/N)^2\to G/N$ is continuous with respect to the logic topology on $G^2/N^2=(G/N)^2$; we need to show that it is continuous with respect to the product topology (which \emph{a priori} might be coarser). If $N$ is type-definable, then $G/N$ and $G^2/N^2$ are compact Hausdorff, so the logic topology on $G^2/N^2$ and the product topology on $(G/N)^2$ coincide (e.g.\ by Remark~\ref{rem: continuous surjection is closed} applied to the natural bijection $G^2/N^2\to (G/N)^2$).
+		
+		Otherwise, if $N$ is not type-definable, because it is bounded, there is a minimal type-definable $\overline N\leq G$ containing $N$, and it is easy to see that it is $\emptyset$-type-definable and normal. Now, fix a closed $A\subseteq G/N$. Then there is a, type-definable $A'\subseteq G$ which is a union of cosets of $N$, such that $A=A'/N$. It follows that $A'$ must also be a union of cosets of $\overline N$ (because its setwise stabiliser is an intersection of type-definable unions of cosets of $N$, so it is a type-definable group). Thus, by the preceding paragraph, $\mu^{-1}[A']/{\overline N}^2$ is closed in $(G/{\overline N})^2$. Finally, note that $(G/N)^2\to (G/{\overline N})^2$ is trivially continuous, so the preimage of $\mu^{-1}[A']/{\overline N}^2$ is closed in $(G/N)^2$. But this preimage is just $\mu^{-1}[A']/N^2$, so we  are done.
+	\end{proof}
+	
+	
+	\begin{dfn}
+		\index{model-theoretic connected group components}
+		Suppose $A$ is a small set of parameters, and let $G$ be an $A$-type-definable group. Then the following are the classical model-theoretic \emph{connected group components} of $G$:
+		\begin{itemize}
+			\item
+			\index{G000@$G^{000}$|see{model-theoretic connected group components}}
+			$G^{000}_A$ (or $G^{\infty}_A$) is the smallest $A$-invariant subgroup of $G$ of bounded index,
+			\item
+			\index{G00@$G^{00}$|see{model-theoretic connected group components}}
+			$G^{00}_A$ is the smallest subgroup of $G$ of bounded index which is type-definable over $A$,
+			\item
+			\index{G0@$G^{0}$|see{model-theoretic connected group components}}
+			$G^{0}_A$ is the intersection of all relatively $A$-definable subgroups of $G$ of bounded index.
+		\end{itemize}
+	\end{dfn}
+	
+	\begin{rem}
+		It is known that if $T$ has NIP (see Definition~\ref{dfn:NIP_formula_theory}), then for all small $A$ we have $G^{000}_A=G^{000}_\emptyset$, $G^{00}_A=G^{00}_\emptyset$ and $G^{0}_A=G^{0}_\emptyset$, see \cite{Gis11}. When this happens, they are called simply $G^{000}$, $G^{00}$ and $G^{0}$.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{fct}
+		Suppose $G$ is an $A$-type-definable group. Then $G/G^{00}_A$ is a compact Hausdorff group and $G/G^{0}_A$ is a profinite group.
+	\end{fct}
+	\begin{proof}
+		For $G/G^{00}_A$ follows from the first part and Fact~\ref{fct:quotient_by_bounded_subgroup}. For $G/G^{0}_A$ it is similar, as $G/G^{0}_A$ is the inverse limit of quotients by finite index subgroups.
+	\end{proof}
+	
+	\section{Former state of the art}
+	In this section, having recalled the necessary language, we list some former results, along with the result in the thesis which improve them.
+	
+	I stress that all of the facts listed below only applied to $F_\sigma$ strong types (sometimes with additional constraints), while the main results of this thesis apply to either arbitrary or to analytic strong types (and generally speaking, in those cases where we require analyticity, there are examples when conclusion fails for arbitrary non-analytic strong types).
+	
+	For more detailed discussion of the historical background, see the introduction.
+	
+	
+	\begin{fct}
+		\label{fct:newelski}
+		Suppose $E$ is an $F_\sigma$ equivalence relation on $X=p(\fC)$ (in particular, if $E$ is the Lascar strong type) (where $p\in S(\emptyset)$) which is not type-definable. Then for every type-definable, $E$-invariant $Y\subseteq X$ we have $\lvert Y/E\rvert\geq 2^{\aleph_0}$.
+	\end{fct}
+	\begin{proof}
+		This is essentially \cite[Corollary 1.12]{Ne03}.
+	\end{proof}
+	The above fact is entirely superseded by Theorem~\ref{thm:nwg}, where we only require that $E$ is analytic, an not $F_\sigma$. See also Corollary~\ref{cor:nwg2}.
+	
+	Note that if the language is countable and $E={\equiv_\Lasc}$, the above corollary says that, in particular, either ${\equiv_\Lasc}\restr_{[\bar a]_{\equiv_\KP}}$ has only one class, or $\Delta_{2^\omega}$ Borel reduces to it (by Fact~\ref{fct:silver}).
+	
+	There is also a corresponding statement for groups
+	
+	\begin{fct}
+		\label{fct:new_group}
+		Suppose $G$ is a $\emptyset$-definable group, while $H\leq G$ is $F_\sigma$.
+		
+		Then either $H$ is type-definable, or $[G:H]\geq 2^{\aleph_0}$.
+	\end{fct}
+	\begin{proof}
+		This is a part of \cite[Theorem 3.1]{Ne03}.
+	\end{proof}
+	The above Fact is superseded by Corollary~\ref{cor:trich_tdgroups}, as we require only that $H$ is analytic, and in the case of index smaller than $2^{\aleph_0}$, we obtain relative definability of $H$ in $G$.
+	
+	The following is the main theorem of \cite{KMS14}, proving an earlier conjecture from \cite{KPS13}.
+	\begin{fct}
+		\label{fct:KMS_theorem}
+		Assume that $T$ is a complete theory in a countable language, and consider $\equiv_\Lasc$ on a product of countably many sorts. Suppose $Y$ is an $\equiv_\Lasc$-saturated, $G_\delta$ (i.e.\ the complement of an $F_\sigma$) subset of the domain of $\equiv_\Lasc$. Then either each $\equiv_\Lasc$ class in $Y$ is type-definable, or $E\restr_Y$ is non-smooth.
+	\end{fct}
+	\begin{proof}
+		See \cite[Main Theorem A]{KMS14}.
+	\end{proof}
+	
+	In \cite{KM14} and \cite{KR16}, the last fact was generalized to a certain wider class of bounded $F_\sigma$ relations. In order to formulate this generalization, we need to recall one more definition from \cite{KR16}.
+	
+	\begin{dfn}
+		\label{dfn:orbital_stype}
+		\index{equivalence relation!orbital}
+		Suppose $E$ is an invariant equivalence relation on a set $X$. We say that $E$ is \emph{orbital} if there is a group $\Gamma\leq \Aut(\fC)$ such that $E$ is the orbit equivalence relation of $\Gamma$ acting on $X$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{rem}
+		Note that immediately by the definition, a bounded orbital equivalence relation is a strong type according to Definition~\ref{dfn:stype} (because $\equiv$ is the orbit equivalence relation of the whole $\Aut(\fC)$). Furthermore, each of $\equiv_\Lasc,\equiv_\KP$, and $\equiv_\Sh$ is orbital, by Facts~\ref{fct:lst_witn_by_aut} and \ref{fct:galkpsh_orbital}.\xqed{\lozenge}
+	\end{rem}
+	
+	
+	\begin{fct}\label{fct:mainA}
+		We are working in the monster model $\fC$ of a complete, countable theory. Suppose we have:
+		\begin{itemize}
+			\item
+			a set $X=p(\fC)$ for some $p\in S(\emptyset)$,
+			\item
+			an $F_\sigma$, bounded invariant equivalence relation $E$ on $X$, which is orbital,
+			\item
+			a type-definable and $E$-saturated set $Y\subseteq X$ such that $E\restr_Y$ is not type-definable.
+		\end{itemize}
+		Then $E\restr_Y$ is non-smooth.
+	\end{fct}
+	\begin{proof}
+		This is essentially \cite[Theorem 3.4]{KR16}.
+	\end{proof}
+	
+	Essentially the same was proved independently, using slightly different methods, in \cite[Theorem 3.17]{KM14}. The assumptions in \cite[Theorem 3.17]{KM14} are slightly weaker, namely $X$ is only required to be type-definable with parameters, and $Y$ is only $G_\delta$, and the orbitality assumption is replaced by a slightly weaker one. However, for $X=p(\fC)$ and type-definable $Y$, the two theorems are equivalent.
+	
+	Both Fact~\ref{fct:KMS_theorem} and Fact~\ref{fct:mainA} are superseded by Corollary~\ref{cor:smt_type} (albeit for type-definable $Y$): we drop orbitality assumption, and $E$ need not be $F_\sigma$.
+	
+	\begin{fct}
+		Suppose $T$ is countable. Let $A\subseteq \fC$ be countable.
+		
+		Suppose in addition that $G$ is an type-definable group, and $X$ is an type-definable set of countable tuples on which $G$ acts type-definably and transitively (all with parameters in $A$), while $H\leq G$ is $F_\sigma$ over $A$ and has small index in $G$.
+		
+		Then if for some $a$, the orbit $H\cdot a$ is not type-definable (and $a$ satisfies a mild technical assumption), then the $H$-orbit equivalence relation on $X$ is not smooth.
+	\end{fct}
+	\begin{proof}
+		This is essentially \cite[Theorem 3.33]{KM14}.
+	\end{proof}
+	This is superseded by Corollary~\ref{cor:trich+_tdf}: using that, we can drop the assumption that $H$ is $F_\sigma$ (as well as the technical assumption), and we obtain a stronger conclusion.
+	
+	In \cite{KM14}, the following corollary was also obtained.
+	\begin{fct}
+		\label{fct:KM_about_groups}
+		Suppose $G$ is a definable group, while $H\leq G$ is $F_\sigma$ and invariant over a small set, of finite index in $G$. Then $H$ is definable.
+	\end{fct}
+	\begin{proof}
+		This is \cite[Corollary 3.38]{KM14}.
+	\end{proof}
+	This is superseded by Corollary~\ref{cor:trich_tdgroups}: in our case, we only assume that $G$ is type-definable, and for a definable $G$, to obtain definability of $H$, we only need to assume that $H$ is analytic and of index smaller than $2^{\aleph_0}$.
+	
+	

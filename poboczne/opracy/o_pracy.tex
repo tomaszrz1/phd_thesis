@@ -1,0 +1,102 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = pl_PL
+\documentclass[12pt,a4paper]{article}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[marginratio=1:1]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=10,shrink=10]{microtype}
+\SetTracking{encoding=*, shape=sc}{50}
+\microtypecontext{spacing=nonfrench}
+\usepackage[utf8]{inputenc}
+\usepackage[draft=false]{hyperref}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[polish]{babel}
+%\usepackage{csquotes}
+%\usepackage{tikz-cd}
+%\usepackage{float}
+%\usepackage{graphicx}
+%\usepackage{tikz}
+%\usepackage{thmtools}
+%\usepackage{thm-restate}
+%%\usepackage{mathrsfs}
+%\usepackage{enumitem}
+%%\usepackage{mathtools}
+%%\usepackage[overload]{textcase}
+%%\usepackage[numindex,numbib]{tocbibind}
+%\setenumerate{label=(\arabic*),topsep=.1\baselineskip,itemsep=-0.1\baselineskip}
+%\setitemize{topsep=.1\baselineskip,itemsep=-0.1\baselineskip}
+\usepackage[backend=biber,
+url=false,
+isbn=false,
+citestyle=alphabetic,
+bibstyle=alphabetic,
+autocite=inline,
+maxnames=99,
+minalphanames=4,
+maxalphanames=4,
+sorting=nyt,]{biblatex}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+
+\addbibresource{thesis_bibliography.bib}
+
+
+\NewBibliographyString{toappear}
+\DefineBibliographyStrings{english}{%
+	toappear = {to appear},
+}
+\DefineBibliographyStrings{polish}{%
+	toappear = {praca przyjęta},
+}
+\DefineBibliographyStrings{english}{%
+submitted = {submitted},
+}
+\DefineBibliographyStrings{polish}{%
+toappear = {praca wysłana},
+}
+
+\title{O pracy ,,Bounded invariant equivalence relations''}
+\author{Tomasz Rzepecki}
+\date{}
+
+
+
+
+\begin{document}
+	\maketitle
+	Główną motywacją dla rozprawy doktorskiej jest pytanie o równoważność gładkości (w sensie deskryptywnej teorii mnogości) i typowej definiowalności tzw.\ silnych typów w teorii modeli.
+	
+	Pierwotna hipoteza o równoważności gładkości i typowej definiowalności silnego typu Lascara, postawiona w pracy \cite{KPS13} (której autorzy, na bazie ogólnych sugestii z wcześniejszej pracy \cite{CLPZ01}, nadali ścisły sens mocy borelowskiej teoriomodelowej grupy Galois i silnego typu Lascara), została udowodniona w pracy \cite{KMS14}, a następnie rozszerzona na tzw.\ silne typy orbitalne $F_\sigma$ w pracach \cite{KM14} i \cite{KR16} (z których ta druga jest oparta na mojej pracy magisterskiej).
+	
+	W obydwu pracach pozostały otwarte pytania o możliwość rozszerzenia równoważności na szersze klasy silnych typów.
+	
+	Główne wyniki rozprawy doktorskiej pochodzą z trzech prac \cite{KPR15}, \cite{Rz16} i \cite{KR18}, które łącznie dają w zasadzie optymalny opis sytuacji, w których wspomniana równoważność zachodzi (w szczególności obejmując wszystkie silne typy zadane na zbiorze realizacji jednego typu zupełnego i wszystkie orbitalne silne typy).
+	
+%	\begin{itemize}
+%		\item
+%		\cite{KPR15} (wspólnej z Krzysztofem Krupińskim i Anandem Pillayem),% w której, korzystając z dynamiki topologicznej dla grupy automorfizmów tzw.\ modelu monstrum, udowodniliśmy między innymi pełną równoważność gładkości i typowej definiowalności dla typów zadanych na zbiorze realizacji jednego typu zupełnego nad zbiorem pustym (tj.\ na jednej orbicie grupy automorfizmów),
+%		\item 
+%		\cite{Rz16} (mojej własnej),% której głównym wynikiem było znalezienie szerszego kontekstu tzw.\ słabo orbitalnych relacji równoważności (w tym tych rozważanych w \cite{KPR15}), dla których --- wykorzystując \cite{KPR15} --- również można pokazać podobną równoważność, oraz
+%		\item 
+%		\cite{KR18} (wspólnej z Krzysztofem Krupińskim).% w której rozwinęliśmy metody użyte w pracy \cite{KPR15}, aby przedstawić teoriomodelową grupę Galois, a także zbiór klas dowolnego typu zadanego na zbiorze realizacji jednego typu zupełnego, w postaci ilorazu Galois przez podgrupę, w sensie topologicznym, algebraicznym (w przypadku grupy Galois), a także do pewnego stopnia w sensie mocy borelowskiej. W szczególności przy założeniu NIP uzyskaliśmy pełną równość mocy borelowskiej grupy Galois (czy też silnego typu) i odpowiedniego ilorazu grupy polskiej.
+%	\end{itemize}
+	%W przeciwieństwie do wspomnianych powyżej prac, w rozprawie doktorskiej rozważam bardziej abstrakcyjny, czysto topologiczny (czy też dynamiczno topologiczny) kontekst. %, a następnie dowodzę główne twierdzenia nie odwołując się wprost do teoriomodelowych motywacji.
+	W rozprawie doktorskiej wyabstrahowałem kilka stosunkowo naturalnych własności relacji równoważności w układach dynamicznych występujących w teorii modeli, które były wykorzystywane w owych pracach. To pozwoliło na udowodnienie analogicznych twierdzeń w tym właśnie abstrakcyjnym kontekście, nie odwołując się wprost do żadnych teoriomodelowych faktów czy założeń, bazując na dynamice topologicznej (i jej związkach z dychotomią Bourgaina-Fremlina-Talagranda), własnościach grup zwartych i deskryptywnej teorii mnogości.
+	
+	Następnie, korzystając z owych abstrakcyjnych twierdzeń, wnioskujemy (głównie przez stosunkowo nietrudne sprawdzenie aksjomatów) wszystkie wyniki z prac \cite{KPR15}, \cite{Rz16} i \cite{KR18}, część z nich nawet nieco wzmacniając. Wydaje się też, że w podobny sposób można z nich wywnioskować podobne fakty w zasadniczo wszystkich teoriomodelowych sytuacjach, gdzie można się takich wyników spodziewać, na co podaję przykłady.
+	
+	Oprócz równoważności gładkości i typowej definiowalności (wyrażonej w rozprawie w postaci eleganckiej trychotomii) głównym wynikiem jest przedstawienie pewnych przestrzeni silnych typów, a w szczególności teoriomodelowej grupy Galois, jako ilorazu zwartej grupy polskiej przez podgrupę, w ogólności jako przestrzeni topologicznej z działaniem grupy (a dla grupy Galois również jako grupy topologicznej), a przy założeniu NIP również w sensie mocy borelowskiej.
+	
+	To pozwala na dokładne wyliczenie mocy borelowskiej grupy Galois, silnego typu Lascara i ogólnie dowolnego silnego typu, poprzez wyznaczenie odpowiedniej grupy polskiej wraz z podgrupą, przez którą należy ją podzielić. W pracy podaję przykład, jak w ten sposób wyznaczyć grupę Galois (wraz z mocą borelowską) w konkretnych przykładach (rozważanych wcześniej w \cite{CLPZ01} i \cite{KPS13}). Uzyskujemy też częściową odpowiedź na postawione w pracy \cite{KPS13} pytanie o możliwą moc borelowską silnego typu Lascara i grupy Galois: przy założeniu NIP jest ona równa mocy borelowskiej ilorazu zwartej grupy polskiej przez podgrupę $F_\sigma$. Można też oczekiwać, że uzyskane wyniki będą pomocne w odpowiedzi na inne pytania postawione w \cite{KPS13} (np.\ o monotoniczność mocy borelowskiej silnego typu Lascara), a także inne pokrewne (np.\ o możliwe moce borelowskie dowolnych silnych typów).
+	\AtNextBibliography{\small}
+	\vspace{-1em}
+	\printbibliography
+\end{document}
